@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
 { 
     public float moveSpeed = 5f; // Speed of movement
     private Rigidbody rb;       // Reference to the Rigidbody component
+    private Camera mainCamera;  // Reference to the main camera
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
+        mainCamera = Camera.main;       // Get the main camera
     }
 
     void Update()
@@ -19,8 +21,20 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal"); // Left/Right movement (A/D or Left/Right arrows)
         float moveZ = Input.GetAxis("Vertical");   // Forward/Backward movement (W/S or Up/Down arrows)
 
+        // Convert input to camera-relative direction
+        Vector3 forward = mainCamera.transform.forward;
+        Vector3 right = mainCamera.transform.right;
+
+        // Flatten vectors on the XZ plane (ignore vertical movement)
+        forward.y = 0;
+        right.y = 0;
+
+        // Normalize vectors to ensure consistent movement speed
+        forward.Normalize();
+        right.Normalize();
+
         // Calculate movement direction
-        Vector3 moveDirection = new Vector3(moveX, 0f, moveZ).normalized;
+        Vector3 moveDirection = (right * moveX + forward * moveZ).normalized;
 
         // Apply movement
         Vector3 moveVelocity = moveDirection * moveSpeed;

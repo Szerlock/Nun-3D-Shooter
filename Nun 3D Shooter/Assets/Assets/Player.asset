@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 10
   recovery: 0
-  moveSpeed: 0
+  moveSpeed: 5
   might: 0
-  projectileSpeed: 0
+  projectileSpeed: 2
   magnet: 0
