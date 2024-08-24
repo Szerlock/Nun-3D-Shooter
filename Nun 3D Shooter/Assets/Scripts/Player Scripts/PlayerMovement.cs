@@ -18,14 +18,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Get input for movement
-        float moveX = Input.GetAxis("Horizontal"); // Left/Right movement (A/D or Left/Right arrows)
-        float moveZ = Input.GetAxis("Vertical");   // Forward/Backward movement (W/S or Up/Down arrows)
+        float moveX = Input.GetAxis("Horizontal"); 
+        float moveZ = Input.GetAxis("Vertical");   
 
         // Convert input to camera-relative direction
         Vector3 forward = mainCamera.transform.forward;
         Vector3 right = mainCamera.transform.right;
 
-        // Flatten vectors on the XZ plane (ignore vertical movement)
         forward.y = 0;
         right.y = 0;
 
