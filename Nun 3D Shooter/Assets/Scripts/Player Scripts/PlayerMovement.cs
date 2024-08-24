@@ -4,72 +4,26 @@ using UnityEngine;
 
 
 public class PlayerMovement : MonoBehaviour
-{
-    [HideInInspector]
-    public float lastHorizontalVector;
-    [HideInInspector]
-    public float lastVerticalVector;
-    [HideInInspector]
-    public float lastForwardVector;
-    [HideInInspector]
-    public Vector3 moveDir;
-    [HideInInspector]
-    public Vector3 lastMovedVector;
-
-    Rigidbody rb;
-    [SerializeField]
-    private GameObject player;
+{ 
+    public float moveSpeed = 5f; // Speed of movement
+    private Rigidbody rb;       // Reference to the Rigidbody component
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        lastMovedVector = new Vector3(1, 0f, 0f); // Initialize with a default direction
+        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
     }
 
     void Update()
     {
-        InputManagement();
-    }
+        // Get input for movement
+        float moveX = Input.GetAxis("Horizontal"); // Left/Right movement (A/D or Left/Right arrows)
+        float moveZ = Input.GetAxis("Vertical");   // Forward/Backward movement (W/S or Up/Down arrows)
 
-    void FixedUpdate()
-    {
-        Move();
-    }
+        // Calculate movement direction
+        Vector3 moveDirection = new Vector3(moveX, 0f, moveZ).normalized;
 
-    void InputManagement()
-    {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        float moveZ = Input.GetAxisRaw("Depth"); 
-
-        moveDir = new Vector3(moveX, moveY, moveZ).normalized;
-
-        if(moveDir.x != 0)
-        {
-            lastHorizontalVector = moveDir.x;
-            lastMovedVector = new Vector3(lastHorizontalVector, lastMovedVector.y, lastMovedVector.z); // Update x component
-        }
-
-        if(moveDir.y != 0)
-        {
-            lastVerticalVector = moveDir.y;
-            lastMovedVector = new Vector3(lastMovedVector.x, lastVerticalVector, lastMovedVector.z); // Update y component
-        }
-
-        if(moveDir.z != 0)
-         {
-            lastForwardVector = moveDir.z;
-            lastMovedVector = new Vector3(lastMovedVector.x, lastMovedVector.y, lastForwardVector); // Update z component
-        }
-
-        if(moveDir.x != 0 && moveDir.y != 0 && moveDir.z != 0)
-        {
-            lastMovedVector = moveDir;
-        }
-    }
-   
-    void Move()
-    {
-        rb.velocity = lastMovedVector;
+        // Apply movement
+        Vector3 moveVelocity = moveDirection * moveSpeed;
+        rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
     }
 }
