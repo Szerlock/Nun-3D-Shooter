@@ -12,8 +12,7 @@ public class PlayerStats : MonoBehaviour
     public float currentHealth;
    // [HideInInspector]
     public float currentMoveSpeed;
-   // [HideInInspector]
-    public float currentProjectileSpeed;
+
 
     //I-Frames
     [Header("I-Frames")]
@@ -25,7 +24,6 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = characterData.MaxHealth;
         currentMoveSpeed = characterData.MoveSpeed;
-        currentProjectileSpeed = characterData.ProjectileSpeed;
     }
 
     private void Update()
@@ -61,18 +59,18 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("player DEAD");
     }
 
-    public void RestoreHealth(float amount)
-    {
-        //1 if statement makes it so it only heals if he is below max health
-        if(currentHealth < characterData.MaxHealth)
-        {
-            currentHealth += amount;
+    // public void RestoreHealth(float amount)
+    // {
+    //     //1 if statement makes it so it only heals if he is below max health
+    //     if(currentHealth < characterData.MaxHealth)
+    //     {
+    //         currentHealth += amount;
 
-            //to not overheal over max health
-            if(currentHealth > characterData.MaxHealth)
-            {
-                currentHealth = characterData.MaxHealth;
-            }
-        }
-    }
+    //         //to not overheal over max health
+    //         if(currentHealth > characterData.MaxHealth)
+    //         {
+    //             currentHealth = characterData.MaxHealth;
+    //         }
+    //     }
+    // }
 }
