@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae1ad0d2af312142a23027ea5882bf4, type: 3}
   m_Name: Ball
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 7
   maxHealth: 5
   damage: 2
