@@ -15,4 +15,7 @@ public class WeaponScriptableObject : ScriptableObject
     float coolDownDuration;
     public float CoolDownDuration {get => coolDownDuration; private set => coolDownDuration = value;}
     
+    [SerializeField]
+    float bulletSpeed;
+    public float BulletSpeed {get => bulletSpeed; private set => bulletSpeed = value;}
 }
