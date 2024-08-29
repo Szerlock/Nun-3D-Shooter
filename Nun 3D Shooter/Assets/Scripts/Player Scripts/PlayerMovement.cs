@@ -10,22 +10,25 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 5f; // Speed at which the camera rotates
     private Rigidbody rb;       // Reference to the Rigidbody component
     private Camera mainCamera;  // Reference to the main camera
-    private Animator animator;
+    private Animator animatorSword;
+    private Animator animatorCharacter;
 
 
     void Start()
     {
+        Transform nun = transform.Find("NunRun");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         mainCamera = Camera.main;       // Get the main camera
-        animator = GetComponentInChildren<Animator>();
+        animatorSword = GetComponentInChildren<Animator>();
+        animatorCharacter = nun.GetComponent<Animator>();
     }
 
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            animator.SetTrigger("Attack");
-            animator.SetBool("EndAttack", true);
+            animatorSword.SetTrigger("Attack");
+            animatorSword.SetBool("EndAttack", true);
         }
 
         // Get input for movement
@@ -53,8 +56,13 @@ public class PlayerMovement : MonoBehaviour
         if(moveDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            animatorCharacter.SetBool("isMoving", true);
+        }
+
+        else
+        {
+            animatorCharacter.SetBool("isMoving", false);
         }
         // Apply movement
         //Vector3 moveVelocity = moveDirection * moveSpeed;
