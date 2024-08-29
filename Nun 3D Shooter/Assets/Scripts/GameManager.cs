@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
         if (startMenu != null)
         {
             startMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         // Unpause the game
