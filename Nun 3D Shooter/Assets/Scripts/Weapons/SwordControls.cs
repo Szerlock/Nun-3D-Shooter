@@ -37,23 +37,5 @@ public class SwordControls : MonoBehaviour
                 Debug.LogError("EnemyStats component not found on enemy object.");
             }
         }
-
-        // Debug.Log("Trigger detected with: " + col.gameObject.name); // Check if trigger is detected
-
-        // if (col.CompareTag("Enemy"))
-        // {
-        //     Debug.Log("Hit an enemy!"); // Confirm that the correct tag is detected
-
-        //     EnemyStats enemy = col.GetComponent<EnemyStats>();
-        //     if (enemy != null)
-        //     {
-        //         Debug.Log("Applying damage: " + currentDamage); // Verify damage application
-        //         enemy.TakeDamage(currentDamage);
-        //     }
-        //     else
-        //     {
-        //         Debug.LogError("EnemyStats component not found on enemy object.");
-        //     }
-        // }
     }
 }

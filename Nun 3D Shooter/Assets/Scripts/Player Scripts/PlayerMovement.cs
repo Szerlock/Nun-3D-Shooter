@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private Camera mainCamera;  // Reference to the main camera
     private Animator animatorSword;
     private Animator animatorCharacter;
-
+    
+    //Toggle Weapons
+    public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
+    public GunController gunController;  // Reference to the GunController script
 
     void Start()
     {
@@ -21,14 +24,28 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main;       // Get the main camera
         animatorSword = GetComponentInChildren<Animator>();
         animatorCharacter = nun.GetComponent<Animator>();
+        
     }
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E))  // Press E to switch to gun
+        {
+            weaponToggle.ToggleWeapons();
+        }
+
         if(Input.GetButtonDown("Fire1"))
         {
-            animatorSword.SetTrigger("Attack");
-            animatorSword.SetBool("EndAttack", true);
+            if(weaponToggle.isGunActive)
+            {
+                gunController.GunFire();
+            }
+            else
+            {
+                animatorSword.SetTrigger("Attack");
+                animatorSword.SetBool("EndAttack", true);
+            }
         }
 
         // Get input for movement

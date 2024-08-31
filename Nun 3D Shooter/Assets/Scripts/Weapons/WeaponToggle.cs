@@ -9,6 +9,8 @@ public class WeaponToggle : MonoBehaviour
 
     private GunController gunController;
     private SwordControls meleeWeaponController;
+    [HideInInspector]
+    public bool isGunActive = false;  // Flag to check if the gun is active
 
     void Start()
     {
@@ -22,20 +24,13 @@ public class WeaponToggle : MonoBehaviour
         gunController.enabled = false;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))  // Press E to switch to gun
-        {
-            ToggleWeapons();
-        }
-    }
-
-    void ToggleWeapons()
+    public void ToggleWeapons()
     {
         if (gunController.enabled)
         {
             // Switch to melee weapon
             gunController.enabled = false;
+            isGunActive = false;
             Debug.Log("Switching to melee weapon");
             meleeWeaponController.enabled = true;
         }
@@ -43,6 +38,7 @@ public class WeaponToggle : MonoBehaviour
         {
             // Switch to gun
             gunController.enabled = true;
+            isGunActive = true;
             Debug.Log("Switching to gun");
             meleeWeaponController.enabled = false;
         }

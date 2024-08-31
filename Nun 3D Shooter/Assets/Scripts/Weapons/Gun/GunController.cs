@@ -23,17 +23,9 @@ public class GunController : MonoBehaviour
         {
             Debug.LogError("Weapon data not assigned.");
         }
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))  // Fire1 is usually the left mouse button
-        {
-            Fire();
-        }
-    }
+    } 
     
-    void Fire()
+    public void GunFire()
     {
     // Instantiate the bullet at the bullet spawn point
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
