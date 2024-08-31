@@ -5,6 +5,8 @@ using UnityEngine;
 public class SwordControls : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
+    private Animator animatorSword;
+    private BoxCollider swordCollider;
 
     //current Stats
     protected float currentDamage;
@@ -12,6 +14,9 @@ public class SwordControls : MonoBehaviour
 
     void Awake()
     {
+        swordCollider = GetComponent<BoxCollider>();
+        swordCollider.enabled = false;
+        animatorSword = GetComponent<Animator>();
         if (weaponData != null)
         {
         currentDamage = weaponData.Damage;
@@ -21,6 +26,27 @@ public class SwordControls : MonoBehaviour
         {
             Debug.LogError("Weapon data not assigned.");
         }
+    }
+
+    public void SwordAttack()
+    {
+        //play attack animation
+        animatorSword.SetTrigger("Attack");
+        EnableCollider();
+        Debug.Log("Sword Attack");
+        animatorSword.SetBool("EndAttack", true);
+        EndAttack();
+    }
+
+    public void EnableCollider()
+    {
+        swordCollider.enabled = true;
+    }
+
+    private void EndAttack()
+    {
+        swordCollider.enabled = false;
+        Debug.Log("End Attack");
     }
 
     protected void OnTriggerEnter(Collider col)

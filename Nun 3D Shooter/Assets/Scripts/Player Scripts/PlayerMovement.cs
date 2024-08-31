@@ -10,19 +10,20 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 5f; // Speed at which the camera rotates
     private Rigidbody rb;       // Reference to the Rigidbody component
     private Camera mainCamera;  // Reference to the main camera
-    private Animator animatorSword;
+    //private Animator animatorSword;
     private Animator animatorCharacter;
     
     //Toggle Weapons
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
+    public SwordControls swordController;
 
     void Start()
     {
         Transform nun = transform.Find("NunRun");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         mainCamera = Camera.main;       // Get the main camera
-        animatorSword = GetComponentInChildren<Animator>();
+        //animatorSword = GetComponentInChildren<Animator>();
         animatorCharacter = nun.GetComponent<Animator>();
         
     }
@@ -41,11 +42,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 gunController.GunFire();
             }
+
             else
             {
-                animatorSword.SetTrigger("Attack");
-                animatorSword.SetBool("EndAttack", true);
+                swordController.SwordAttack();
             }
+            // else
+            // {
+            //     animatorSword.SetTrigger("Attack");
+            //     animatorSword.SetBool("EndAttack", true);
+            // }
         }
 
         // Get input for movement
@@ -81,9 +87,5 @@ public class PlayerMovement : MonoBehaviour
         {
             animatorCharacter.SetBool("isMoving", false);
         }
-        // Apply movement
-        //Vector3 moveVelocity = moveDirection * moveSpeed;
-        //rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
-
     }
 }
