@@ -1395,6 +1395,7 @@ MonoBehaviour:
   - {fileID: 791063916}
   - {fileID: 791063915}
   interval: 0
+  enemiesAlive: 0
 --- !u!4 &791063918
 Transform:
   m_ObjectHideFlags: 0
@@ -1894,6 +1895,7 @@ MonoBehaviour:
   - {fileID: 1572795869}
   - {fileID: 1572795868}
   interval: 0
+  enemiesAlive: 0
 --- !u!1001 &1578957741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3982,7 +3984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2115291873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3996,15 +3998,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavesOfEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1572795870}
+  - {fileID: 791063917}
   spawnPoints:
   - {x: -39.61, y: 1.269322, z: 81.2}
   - {x: 52.8, y: 1.269322, z: 85.1}
   - {x: 91.9, y: 1.269322, z: -10.3}
   - {x: -70.9, y: 1.269322, z: -2.7}
   - {x: -81.6, y: 1.269322, z: -106.1}
-  timer: 0
 --- !u!4 &2115291874
 Transform:
   m_ObjectHideFlags: 0
