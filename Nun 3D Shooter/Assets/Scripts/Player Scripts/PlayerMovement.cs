@@ -17,9 +17,11 @@ public class PlayerMovement : MonoBehaviour
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
+    GameManager gameManager;   // Reference to the GameManager script
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         Transform nun = transform.Find("NunRun");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         mainCamera = Camera.main;       // Get the main camera
@@ -36,24 +38,21 @@ public class PlayerMovement : MonoBehaviour
             weaponToggle.ToggleWeapons();
         }
 
-        if(Input.GetButtonDown("Fire1"))
+         if (gameManager != null && gameManager.IsGameStarted())
         {
-            if(weaponToggle.isGunActive)
+            if(Input.GetButtonDown("Fire1"))
             {
-                gunController.GunFire();
-            }
+                if(weaponToggle.isGunActive)
+                {
+                    gunController.GunFire();
+                }
 
-            else
-            {
-                swordController.SwordAttack();
+                else
+                {
+                    swordController.SwordAttack();
+                }
             }
-            // else
-            // {
-            //     animatorSword.SetTrigger("Attack");
-            //     animatorSword.SetBool("EndAttack", true);
-            // }
         }
-
         // Get input for movement
         float moveX = Input.GetAxis("Horizontal"); 
         float moveZ = Input.GetAxis("Vertical");

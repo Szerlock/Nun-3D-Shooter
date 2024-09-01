@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
+    private Wave wave;
 
     //[HideInInspector]
     public float currentMoveSpeed;
@@ -20,6 +21,11 @@ public class EnemyStats : MonoBehaviour
         currentDamage = enemyData.Damage;
     }
 
+    public void SetEnemyData(Wave wave)
+    {
+        this.wave = wave;
+    }
+
     public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
@@ -33,6 +39,7 @@ public class EnemyStats : MonoBehaviour
     private void Kill()
     {
         Destroy(gameObject);
+        wave.EnemyDied();
     }
 
     private void OnCollisionStay(Collision col)
