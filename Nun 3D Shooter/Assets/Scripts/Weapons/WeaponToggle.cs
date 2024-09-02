@@ -7,17 +7,15 @@ public class WeaponToggle : MonoBehaviour
     public GameObject gun;  // Reference to the gun GameObject
     public GameObject meleeWeapon;  // Reference to the melee weapon GameObject
 
+    [SerializeField]
     private GunController gunController;
+    [SerializeField]
     private SwordControls meleeWeaponController;
     [HideInInspector]
     public bool isGunActive = false;  // Flag to check if the gun is active
 
     void Start()
     {
-        Transform gun = transform.Find("Gun");
-        Transform meleeWeapon = transform.Find("sword");
-        gunController = gun.GetComponent<GunController>();
-        meleeWeaponController = meleeWeapon.GetComponentInChildren<SwordControls>();
 
         // Start with the melee weapon enabled and the gun disabled
         meleeWeaponController.enabled = true;
@@ -26,6 +24,10 @@ public class WeaponToggle : MonoBehaviour
 
     public void ToggleWeapons()
     {
+        if(gunController == null)
+        {
+            Debug.Log("Gun controller not found.");
+        }
         if (gunController.enabled)
         {
             // Switch to melee weapon
