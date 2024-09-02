@@ -17,7 +17,7 @@ public class WeaponToggle : MonoBehaviour
         Transform gun = transform.Find("Gun");
         Transform meleeWeapon = transform.Find("sword");
         gunController = gun.GetComponent<GunController>();
-        meleeWeaponController = meleeWeapon.GetComponent<SwordControls>();
+        meleeWeaponController = meleeWeapon.GetComponentInChildren<SwordControls>();
 
         // Start with the melee weapon enabled and the gun disabled
         meleeWeaponController.enabled = true;

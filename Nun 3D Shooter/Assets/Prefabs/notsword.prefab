@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3884112322572752128}
   - component: {fileID: 9182609866038401758}
   m_Layer: 0
-  m_Name: sword
+  m_Name: notsword
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2635026169732996645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e1596e1b9f93f8f43a41f1be9dc7e3d7, type: 2}
   m_CullingMode: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: c98d84f1f6e310b43af6b3064b7bc378, type: 2}
+  swordCollider: {fileID: 0}
 --- !u!54 &9182609866038401758
 Rigidbody:
   m_ObjectHideFlags: 0

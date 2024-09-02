@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        Transform nun = transform.Find("NunRun");
+        Transform nun = transform.Find("Attack");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         mainCamera = Camera.main;       // Get the main camera
         //animatorSword = GetComponentInChildren<Animator>();
@@ -49,7 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
                 else
                 {
+                    
+                    //swordController.SwordAttack();
                     swordController.SwordAttack();
+                    animatorCharacter.SetTrigger("Attack");
+                    animatorCharacter.SetBool("EndAttack", true);
+
                 }
             }
         }

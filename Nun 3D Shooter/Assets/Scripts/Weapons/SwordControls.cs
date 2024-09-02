@@ -6,7 +6,8 @@ using UnityEngine;
 public class SwordControls : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
-    private Animator animatorSword;
+    [HideInInspector]
+    public Animator animatorSword;
     public BoxCollider swordCollider;
 
     //current Stats
@@ -35,11 +36,8 @@ public class SwordControls : MonoBehaviour
     public void SwordAttack()
     {
         StartCoroutine(DeactivateCollider(0.6f));
-        //play attack animation
-        animatorSword.SetTrigger("Attack");
         EnableCollider();
         Debug.Log("Sword Attack");
-        animatorSword.SetBool("EndAttack", true);
     }   
 
     public void EnableCollider()
@@ -48,7 +46,7 @@ public class SwordControls : MonoBehaviour
         Debug.Log("Collider enabled");
     }
 
-    private IEnumerator DeactivateCollider(float delay)
+    public IEnumerator DeactivateCollider(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
         swordCollider.enabled = false;
