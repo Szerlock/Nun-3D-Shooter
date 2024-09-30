@@ -39,7 +39,7 @@ public class EnemyStats : MonoBehaviour
     private void Kill()
     {
         Destroy(gameObject);
-        wave.EnemyDied();
+        //wave.EnemyDied();
     }
 
     private void OnCollisionStay(Collision col)

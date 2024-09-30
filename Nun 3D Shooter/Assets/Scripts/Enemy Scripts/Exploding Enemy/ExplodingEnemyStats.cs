@@ -34,7 +34,7 @@ public class ExplodingEnemyStats : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-        StartCoroutine(Kill(7f));
+        StartCoroutine(Kill(3f));
         }
     }
 
@@ -45,23 +45,26 @@ public class ExplodingEnemyStats : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         explosionCollider.enabled = false;
         Destroy(gameObject);
-        wave.EnemyDied();
+        //wave.EnemyDied();
     }
 
-    private void OnCollisionStay(Collision col)
+    protected void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player Collision");
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage); // use currentDamage
         }
-        if(col.gameObject.CompareTag("Tank_Enemy"))
+        else if(col.gameObject.CompareTag("Tank_Enemy"))
         {
+            Debug.Log("Tank Enemy Collision");
             EnemyStats enemy = col.gameObject.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
-        if(col.gameObject.CompareTag("Exploding_Enemy"))
+        else if(col.gameObject.CompareTag("Exploding_Enemy"))
         {
+            Debug.Log("exploding Enemy Collision");
             ExplodingEnemyStats enemy = col.gameObject.GetComponent<ExplodingEnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
