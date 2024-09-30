@@ -57,7 +57,7 @@ public class SwordControls : MonoBehaviour
     {
         if(col.CompareTag("Enemy"))
         {
-            EnemyStats enemy = col.GetComponent<EnemyStats>();
+            ExplodingEnemyStats enemy = col.GetComponent<ExplodingEnemyStats>();
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later

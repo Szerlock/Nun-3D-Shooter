@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ExplodingEnemy : MonoBehaviour
 {
-    EnemyStats enemy;
+    ExplodingEnemyStats enemy;
     Transform player;
 
     void Start()
     {
-        enemy = GetComponent<EnemyStats>();
+        enemy = GetComponent<ExplodingEnemyStats>();
         player = FindObjectOfType<PlayerMovement>().transform;
     }
 
