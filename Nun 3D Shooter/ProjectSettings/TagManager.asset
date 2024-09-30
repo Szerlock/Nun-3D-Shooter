@@ -8,6 +8,8 @@ TagManager:
   - Player
   - Enemy
   - Sword
+  - Tank_Enemy
+  - Exploding_Enemy
   layers:
   - Default
   - TransparentFX

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3668625839004736937}
   - component: {fileID: 8526065785595962222}
   - component: {fileID: 5514316241019374155}
+  - component: {fileID: 8781320855149406832}
   m_Layer: 0
   m_Name: Exploding Enemy
-  m_TagString: Untagged
+  m_TagString: Exploding_Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2065120105184965229}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.970792, y: 7.648132, z: 16.970205}
+  m_LocalPosition: {x: -13.970792, y: 7.77, z: 16.970205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -105,3 +106,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &8781320855149406832
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065120105184965229}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.2695093
+  m_Height: 2.5390186
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.39, z: -0.07}

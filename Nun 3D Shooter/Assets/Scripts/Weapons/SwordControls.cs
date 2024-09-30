@@ -55,7 +55,20 @@ public class SwordControls : MonoBehaviour
 
     protected void OnTriggerEnter(Collider col)
     {
-        if(col.CompareTag("Enemy"))
+        if(col.CompareTag("Tank_Enemy"))
+        {
+            EnemyStats enemy = col.GetComponent<EnemyStats>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+            }
+            else
+            {
+                Debug.LogError("EnemyStats component not found on enemy object.");
+            }
+        }
+
+        if(col.CompareTag("Exploding_Enemy"))
         {
             ExplodingEnemyStats enemy = col.GetComponent<ExplodingEnemyStats>();
             if (enemy != null)
