@@ -1,57 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;          // The player transform
-    public Vector3 offset;            // The initial offset from the player
-    public float rotationSpeed = 5f;  // Speed at which the camera rotates
-    public Vector2 yawMinMax = new Vector2(-45f, 45f); // Clamp values for yaw
+    public GameManager gameManager;
+    public Transform target;  // Player's transform
+    public Vector3 camaraOffset = new Vector3(0, 2, -5);  // Offset behind the player
+    public float smoothSpeed = 0.125f;  // Smoothing factor for camera movement
 
-    private float yaw = 0f;           // Current yaw (left and right rotation)
-    private CinemachineVirtualCamera cinemachineCamera; // Reference to Cinemachine Virtual Camera
+    public float sensitivity = 3f; // Mouse sensitivity
+    public float minY = -40f;      // Minimum Y rotation
+    public float maxY = 80f;       // Maximum Y rotation
 
-    void Start()
-    {
-        // Find the Cinemachine Virtual Camera in the scene
-        cinemachineCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        if (cinemachineCamera == null)
-        {
-            Debug.LogError("Cinemachine Virtual Camera not found.");
-            return;
-        }
-
-        // Set the initial position of the camera
-        transform.position = player.position + offset;
-
-        // Lock the camera's initial position offset relative to the player
-        cinemachineCamera.transform.position = transform.position;
-    }
+    private float currentX = 0f;   // Current X rotation (horizontal)
+    private float currentY = 0f;   // Current Y rotation (vertical)
 
     void Update()
     {
-        // Get mouse input for horizontal movement (yaw)
-        float mouseX = Input.GetAxis("Mouse X");
+        if (gameManager.IsGameStarted())
+        {
+            // Get mouse input for rotating the camera
+            currentX += Input.GetAxis("Mouse X") * sensitivity;
+            currentY -= Input.GetAxis("Mouse Y") * sensitivity;
 
-        // Update yaw based on mouse input
-        yaw += mouseX * rotationSpeed;
-
-        // Clamp yaw to prevent the camera from rotating too far around the player
-        yaw = Mathf.Clamp(yaw, yawMinMax.x, yawMinMax.y);
+            // Clamp vertical rotation (Y-axis)
+            currentY = Mathf.Clamp(currentY, minY, maxY);
+        }
     }
 
     void LateUpdate()
     {
-        // Calculate the desired yaw rotation
-        Quaternion rotation = Quaternion.Euler(0, yaw, 0);
+        if (gameManager.IsGameStarted())
+        {
+            // Calculate camera rotation based on mouse input
+            Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
 
-        // Update the position of the camera relative to the player
-        transform.position = player.position + rotation * offset;
+            // Calculate the new camera position based on rotation and offset
+            Vector3 desiredPosition = target.position + rotation * camaraOffset;
 
-        // Update the Cinemachine camera's position and rotation
-        cinemachineCamera.transform.position = transform.position;
-        cinemachineCamera.transform.rotation = rotation;
+            // Smoothly interpolate to the desired position
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+
+            // Make the camera always look at the player
+            transform.LookAt(target.position);
+        }
     }
 }

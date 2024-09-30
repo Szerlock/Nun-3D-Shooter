@@ -8,10 +8,11 @@ public class PlayerStats : MonoBehaviour
     public CharacterScriptableObject characterData;
 
     //Current Stats
-    //[HideInInspector]
-    public float currentHealth;
-   // [HideInInspector]
-    public float currentMoveSpeed;
+    private float currentHealth;
+    private float currentMoveSpeed;
+    public GameManager gameManager;
+    [SerializeField]
+    Corpse corpse;
 
 
     //I-Frames
@@ -56,6 +57,8 @@ public class PlayerStats : MonoBehaviour
 
     public void Kill()
     {
+        corpse.AddCorpse(transform.position);
+        gameManager.OpenRestartMenu();
         Debug.Log("player DEAD");
     }
 
