@@ -61,13 +61,4 @@ public class GhostEnemyStats : MonoBehaviour
         Destroy(gameObject);
         //wave.EnemyDied();
     }
-
-    private void OnCollisionStay(Collision col)
-    {
-        if(col.gameObject.CompareTag("Player"))
-        {
-            PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage); // use currentDamage
-        }
-    }
 }
