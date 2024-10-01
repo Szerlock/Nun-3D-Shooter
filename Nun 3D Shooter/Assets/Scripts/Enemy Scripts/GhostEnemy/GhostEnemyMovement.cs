@@ -16,9 +16,9 @@ public class GhostEnemyMovement : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Entered");
+            Debug.Log("Player Entered Sphere Collider");
             playerTransform = other.transform;
-            isRunningAway = true;
+            isRunningAway = true; // Start running away
         }
     }
 
@@ -26,8 +26,9 @@ public class GhostEnemyMovement : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Left");
-            isRunningAway = false;
+            Debug.Log("Player Left Sphere Collider");
+            isRunningAway = false; // Stop running away
+            playerTransform = null; // Clear the player reference
         }
     }
 
@@ -40,8 +41,9 @@ public class GhostEnemyMovement : MonoBehaviour
             // Move the enemy in the direction away from the player
             transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
         }
-        else
+        else if (playerTransform != null)
         {
+            // Check if enough time has passed to fire another projectile
             if (Time.time >= lastAttackTime + attackCooldown)
             {
                 Debug.Log("Fire Projectile");

@@ -45,10 +45,10 @@ public class GhostEnemyStats : MonoBehaviour
         rb.velocity = directionToPlayer * enemyData.ProjectileSpeed;
 
         // Set bullet damage
-        GhostProjectile ghostProjectileSkin = projectileGameObject.GetComponent<GhostProjectile>();
-        if (ghostProjectileSkin != null)
+        GhostProjectile ghostProjectile = projectileGameObject.GetComponent<GhostProjectile>();
+        if (ghostProjectile != null)
         {
-            ghostProjectileSkin.SetDamage(currentDamage);
+            ghostProjectile.SetDamage(currentDamage);
         }
         else
         {

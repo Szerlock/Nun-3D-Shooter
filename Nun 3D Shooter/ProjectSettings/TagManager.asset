@@ -10,6 +10,7 @@ TagManager:
   - Sword
   - Tank_Enemy
   - Exploding_Enemy
+  - Ghost_Enemy
   layers:
   - Default
   - TransparentFX
