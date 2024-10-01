@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     public GameManager gameManager;
     public Transform target;  // Player's transform
-    public Vector3 camaraOffset = new Vector3(0, 2, -5);  // Offset behind the player
+    public Vector3 cameraOffset = new Vector3();  // Offset behind the player
     public float smoothSpeed = 0.125f;  // Smoothing factor for camera movement
 
     public float sensitivity = 3f; // Mouse sensitivity
@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
 
             // Calculate the new camera position based on rotation and offset
-            Vector3 desiredPosition = target.position + rotation * camaraOffset;
+            Vector3 desiredPosition = target.position + rotation * cameraOffset;
 
             // Smoothly interpolate to the desired position
             transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -22,12 +23,19 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        Transform nun = transform.Find("Attack");
+        Transform nun = transform.Find("NewIdleNunBaked");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         mainCamera = Camera.main;       // Get the main camera
         //animatorSword = GetComponentInChildren<Animator>();
         animatorCharacter = nun.GetComponent<Animator>();
         
+    }
+
+    public IEnumerator FinishAttack(float time = 1.1f)
+    {
+        Debug.Log("Finish Attack");
+        yield return new WaitForSeconds(time);
+        animatorCharacter.SetBool("EndAttack", true);
     }
 
     void Update()
@@ -45,16 +53,23 @@ public class PlayerMovement : MonoBehaviour
                 if(weaponToggle.isGunActive)
                 {
                     gunController.GunFire();
+                    animatorCharacter.SetTrigger("Shoot");
                 }
 
                 else
                 {
-                    
-                    //swordController.SwordAttack();
+                    animatorCharacter.SetBool("EndAttack", false);
                     swordController.SwordAttack();
-                    animatorCharacter.SetTrigger("Attack");
-                    animatorCharacter.SetBool("EndAttack", true);
+                    animatorCharacter.SetTrigger("Attack"); // Trigger the attack animation
+                    //animatorCharacter.SetBool("EndAttack", true); // Indicate the start of the attack
 
+                    // Start the coroutine to handle attack duration
+                    StartCoroutine(FinishAttack());  
+                    
+                    // swordController.SwordAttack();
+                    // animatorCharacter.SetTrigger("Attack");
+                    // StartCoroutine(FinishAttack());
+                    //animatorCharacter.SetBool("EndAttack", true);
                 }
             }
         }

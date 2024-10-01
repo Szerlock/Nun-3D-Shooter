@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce9d3605f09dbfe4d8e344c9d1512145
+guid: 53ec7bd52ad3dce44851978b32e8a3ef
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -24,7 +24,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: New Attack Animation
+      name: New Attack
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 5
-      lastFrame: 33
+      lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
