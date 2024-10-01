@@ -4,20 +4,50 @@ using UnityEngine;
 
 public class GhostEnemyMovement : MonoBehaviour
 {
-    EnemyStats enemy;
-    Transform player;
-    Collider playerCollider;
+     public float runSpeed = 5f; // Speed at which the enemy will run
+    private Transform playerTransform; // Reference to the player's transform
+    private bool isRunningAway = false; // State if enemy is running away
+    public GhostEnemyStats ghostEnemyStats;
 
-    // Start is called before the first frame update
-    void Start()
+    public float attackCooldown = 2f;
+    private float lastAttackTime = 0f;
+
+    private void OnTriggerEnter(Collider other)
     {
-        enemy = GetComponent<EnemyStats>();
-        player = FindObjectOfType<PlayerMovement>().transform;
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player Entered");
+            playerTransform = other.transform;
+            isRunningAway = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player Left");
+            isRunningAway = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (isRunningAway && playerTransform != null)
+        {
+            // Calculate direction away from the player
+            Vector3 directionAwayFromPlayer = (transform.position - playerTransform.position).normalized;
+            // Move the enemy in the direction away from the player
+            transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
+        }
+        else
+        {
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                Debug.Log("Fire Projectile");
+                ghostEnemyStats.ProjectileFire();
+                lastAttackTime = Time.time; // Reset the attack timer
+            }
+        }
     }
 }
