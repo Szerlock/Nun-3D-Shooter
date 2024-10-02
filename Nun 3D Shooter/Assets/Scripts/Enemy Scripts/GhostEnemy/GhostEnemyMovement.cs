@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostEnemyMovement : MonoBehaviour
 {
-     public float runSpeed = 5f; // Speed at which the enemy will run
+     public float runSpeed = 0.005f; // Speed at which the enemy will run
     private Transform playerTransform; // Reference to the player's transform
     private bool isRunningAway = false; // State if enemy is running away
     public GhostEnemyStats ghostEnemyStats;
@@ -19,6 +19,7 @@ public class GhostEnemyMovement : MonoBehaviour
             Debug.Log("Player Entered Sphere Collider");
             playerTransform = other.transform;
             isRunningAway = true; // Start running away
+            Debug.Log("I finished running my code");
         }
     }
 
@@ -34,13 +35,15 @@ public class GhostEnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isRunningAway && playerTransform != null)
+        if (isRunningAway && (playerTransform != null))
         {
             // Calculate direction away from the player
             Vector3 directionAwayFromPlayer = (transform.position - playerTransform.position).normalized;
             // Move the enemy in the direction away from the player
+            Debug.Log(directionAwayFromPlayer * runSpeed * Time.deltaTime);
             transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
         }
+        /*
         else if (playerTransform != null)
         {
             // Check if enough time has passed to fire another projectile
@@ -51,5 +54,6 @@ public class GhostEnemyMovement : MonoBehaviour
                 lastAttackTime = Time.time; // Reset the attack timer
             }
         }
+        */
     }
 }

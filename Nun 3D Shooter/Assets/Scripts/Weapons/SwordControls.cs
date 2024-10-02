@@ -9,6 +9,7 @@ public class SwordControls : MonoBehaviour
     [HideInInspector]
     public Animator animatorSword;
     public BoxCollider swordCollider;
+    //public PlayerMovement pm
 
     //current Stats
     protected float currentDamage;
@@ -35,6 +36,7 @@ public class SwordControls : MonoBehaviour
 
     public void SwordAttack()
     {
+        //(pm.charactermovement.ismoving)
         StartCoroutine(DeactivateCollider(0.6f));
         EnableCollider();
         Debug.Log("Sword Attack");

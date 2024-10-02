@@ -58,7 +58,7 @@ public class GhostEnemyStats : MonoBehaviour
 
     private void Kill()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
         //wave.EnemyDied();
     }
 }
