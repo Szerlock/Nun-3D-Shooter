@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplodingEnemyStats : MonoBehaviour
+public class DoubleFaceStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
-    [SerializeField]
-    SphereCollider explosionCollider;
     private Wave wave;
+    [SerializeField]
+    public ShowTextDamage showTextDamage;
 
     [HideInInspector]
     public float currentMoveSpeed;
@@ -30,20 +30,17 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        currentHealth -= dmg;
+        showTextDamage.ShowDamage(dmg, transform);
 
+        currentHealth -= dmg;
         if(currentHealth <= 0)
         {
-        StartCoroutine(Kill(3f));
+            Kill();
         }
     }
 
-    private IEnumerator Kill(float delay)
+    private void Kill()
     {
-        yield return new WaitForSeconds(delay);
-        explosionCollider.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        explosionCollider.enabled = false;
         Destroy(gameObject);
         //wave.EnemyDied();
     }
@@ -55,18 +52,6 @@ public class ExplodingEnemyStats : MonoBehaviour
             Debug.Log("Player Collision");
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage); // use currentDamage
-        }
-        else if(col.gameObject.CompareTag("Tank_Enemy"))
-        {
-            Debug.Log("Tank Enemy Collision");
-            EnemyStats enemy = col.gameObject.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage); // use currentDamage
-        }
-        else if(col.gameObject.CompareTag("Exploding_Enemy"))
-        {
-            Debug.Log("exploding Enemy Collision");
-            ExplodingEnemyStats enemy = col.gameObject.GetComponent<ExplodingEnemyStats>();
-            enemy.TakeDamage(currentDamage); // use currentDamage
         }
     }
 }

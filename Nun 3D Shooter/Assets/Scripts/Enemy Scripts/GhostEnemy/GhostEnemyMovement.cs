@@ -19,7 +19,6 @@ public class GhostEnemyMovement : MonoBehaviour
             Debug.Log("Player Entered Sphere Collider");
             playerTransform = other.transform;
             isRunningAway = true; // Start running away
-            Debug.Log("I finished running my code");
         }
     }
 
@@ -43,7 +42,6 @@ public class GhostEnemyMovement : MonoBehaviour
             Debug.Log(directionAwayFromPlayer * runSpeed * Time.deltaTime);
             transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
         }
-        /*
         else if (playerTransform != null)
         {
             // Check if enough time has passed to fire another projectile
@@ -54,6 +52,5 @@ public class GhostEnemyMovement : MonoBehaviour
                 lastAttackTime = Time.time; // Reset the attack timer
             }
         }
-        */
     }
 }
