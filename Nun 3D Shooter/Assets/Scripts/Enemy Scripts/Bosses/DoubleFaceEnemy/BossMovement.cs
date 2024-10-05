@@ -21,6 +21,7 @@ public class BossMovement : MonoBehaviour
     {
         enemy = GetComponent<DoubleFaceStats>();
         player = FindObjectOfType<PlayerMovement>().transform;
+        StartCoroutine(NormalMovement());
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator Charge()
+    private IEnumerator NormalMovement()
     {
         while (true)
         {
@@ -43,6 +44,7 @@ public class BossMovement : MonoBehaviour
 
     private IEnumerator ChargeAtPlayer()
     {
+        Debug.Log("Charging at player");
         isCharging = true;
         chargeCount = 0;
 

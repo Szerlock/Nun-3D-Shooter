@@ -8,6 +8,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     [SerializeField]
     SphereCollider explosionCollider;
     private Wave wave;
+    private bool isExploding = false;
 
     [HideInInspector]
     public float currentMoveSpeed;
@@ -40,6 +41,8 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     private IEnumerator Kill(float delay)
     {
+        isExploding = true;
+        gameObject.GetComponent<Animator>().SetBool("Explode", true);
         yield return new WaitForSeconds(delay);
         explosionCollider.enabled = true;
         yield return new WaitForSeconds(0.5f);
@@ -68,5 +71,10 @@ public class ExplodingEnemyStats : MonoBehaviour
             ExplodingEnemyStats enemy = col.gameObject.GetComponent<ExplodingEnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
+    }
+
+    public bool IsExploding()
+    {
+        return isExploding;
     }
 }
