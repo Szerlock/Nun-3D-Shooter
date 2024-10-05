@@ -108,6 +108,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImpRun
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80d49ef20183df4459e00db5bec452e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Imp_Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1878583019580050669, guid: 80d49ef20183df4459e00db5bec452e6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -173,8 +178,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352840192372630508}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 80d49ef20183df4459e00db5bec452e6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 5ddfeb8829591734eb7f18595168955a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

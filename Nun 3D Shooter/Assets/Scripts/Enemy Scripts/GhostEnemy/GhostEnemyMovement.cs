@@ -39,7 +39,6 @@ public class GhostEnemyMovement : MonoBehaviour
             // Calculate direction away from the player
             Vector3 directionAwayFromPlayer = (transform.position - playerTransform.position).normalized;
             // Move the enemy in the direction away from the player
-            Debug.Log(directionAwayFromPlayer * runSpeed * Time.deltaTime);
             transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
         }
         else if (playerTransform != null)

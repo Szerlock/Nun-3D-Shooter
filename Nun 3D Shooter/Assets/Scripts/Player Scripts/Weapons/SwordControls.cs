@@ -79,7 +79,46 @@ public class SwordControls : MonoBehaviour
             }
             else
             {
-                Debug.LogError("EnemyStats component not found on enemy object.");
+                Debug.LogError("ExplodingEnemyStats component not found on enemy object.");
+            }
+        }
+
+        if(col.CompareTag("Ghost_Enemy"))
+        {
+            GhostEnemyStats enemy = col.GetComponent<GhostEnemyStats>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+            }
+            else
+            {
+                Debug.LogError("GhostEnemyStats component not found on enemy object.");
+            }
+        }
+
+        if(col.CompareTag("Imp_Enemy"))
+        {
+            ImpEnemy enemy = col.GetComponent<ImpEnemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+            }
+            else
+            {
+                Debug.LogError("ImpEnemy component not found on enemy object.");
+            }
+        }
+
+        if(col.CompareTag("DoubleFace_Enemy"))
+        {
+            DoubleFaceStats enemy = col.GetComponent<DoubleFaceStats>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+            }
+            else
+            {
+                Debug.LogError("DoubleFaceStats component not found on enemy object.");
             }
         }
     }

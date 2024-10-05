@@ -2011,7 +2011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a7a410156264b439fa50f1a462b62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: ce06d277e33c729408fe6497598237a2, type: 2}
+  enemyData: {fileID: 0}
   projectile: {fileID: 7570604535680005406, guid: 725e8d4b4c2086b40aa3f0e0ed481984,
     type: 3}
   projectileSpawnPoint: {fileID: 1825539380642545145}

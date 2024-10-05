@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleFaceStats : MonoBehaviour
+public class ImpEnemy : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
     private Wave wave;
-    [SerializeField]
-    public ShowTextDamage showTextDamage;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float currentMoveSpeed;
-    [HideInInspector]
+    //[HideInInspector]
     public float currentHealth;
-    [HideInInspector]
+    //[HideInInspector]
     public float currentDamage;
 
     void Awake()
@@ -30,9 +28,8 @@ public class DoubleFaceStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
-
         currentHealth -= dmg;
+
         if(currentHealth <= 0)
         {
             Kill();
@@ -45,11 +42,10 @@ public class DoubleFaceStats : MonoBehaviour
         //wave.EnemyDied();
     }
 
-    protected void OnTriggerEnter(Collider col)
+    private void OnCollisionStay(Collision col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player Collision");
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage); // use currentDamage
         }

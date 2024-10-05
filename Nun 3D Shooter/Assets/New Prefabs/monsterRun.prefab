@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: monsterRun
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
+        type: 3}
+      propertyPath: m_TagString
+      value: DoubleFace_Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1672057517340599598, guid: e99655105f010c745beecf5a0a642186,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -116,6 +121,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 532743276101484737}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2726018141823267147}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7785907717530531931}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1820790523560417584}
   m_SourcePrefab: {fileID: 100100000, guid: e99655105f010c745beecf5a0a642186, type: 3}
 --- !u!1 &2910187043750231483 stripped
 GameObject:
@@ -144,3 +161,49 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.38, y: 2.273406, z: 1.8}
   m_Center: {x: 0, y: 1.3032947, z: 0}
+--- !u!114 &-2726018141823267147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910187043750231483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615044bb05baaae48aa2f403340b3bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 7778018336146673774, guid: 6fb45d693cb857c41b2f97ff1ee2cd01,
+    type: 3}
+--- !u!114 &-7785907717530531931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910187043750231483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491b1cd48f2dfca4fa9d27b8f49b8fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeSpeedMultiplier: 5
+  chargeDuration: 1
+  chargeCooldown: 3
+--- !u!114 &1820790523560417584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910187043750231483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf19f567702db8349bb4899e1114dea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: b9e1674603a2929499a5642c268460b1, type: 2}
+  showTextDamage: {fileID: -2726018141823267147}
+  currentMoveSpeed: 0
+  currentHealth: 0
+  currentDamage: 0

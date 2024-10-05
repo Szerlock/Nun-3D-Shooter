@@ -11,6 +11,8 @@ TagManager:
   - Tank_Enemy
   - Exploding_Enemy
   - Ghost_Enemy
+  - Imp_Enemy
+  - DoubleFace_Enemy
   layers:
   - Default
   - TransparentFX
