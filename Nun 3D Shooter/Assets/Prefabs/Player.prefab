@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6288570809601514253}
   - component: {fileID: 325500573629057294}
-  - component: {fileID: 7894798213962933162}
   - component: {fileID: 814574543938522021}
   - component: {fileID: 5529571024734665410}
   - component: {fileID: 3867149388239417298}
@@ -66,27 +65,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &7894798213962933162
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620535308271284667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.7087464, y: 1.01, z: 0.6588135}
-  m_Center: {x: 0, y: 0.51, z: 0}
 --- !u!114 &814574543938522021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,10 +155,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.18
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!1001 &2655702014622056511
 PrefabInstance:
   m_ObjectHideFlags: 0
