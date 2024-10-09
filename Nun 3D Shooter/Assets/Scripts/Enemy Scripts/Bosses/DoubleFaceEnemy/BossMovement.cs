@@ -29,10 +29,9 @@ public class BossMovement : MonoBehaviour
     {   
         if(!isCharging)
         {
-            transform.LookAt(player.transform);
-
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
         }
+        
     }
 
     private IEnumerator NormalMovement()
@@ -52,6 +51,7 @@ public class BossMovement : MonoBehaviour
 
         while(chargeCount < 3)
         {
+            transform.LookAt(player.transform);
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             float chargeEndTime = Time.time + chargeDuration;
 

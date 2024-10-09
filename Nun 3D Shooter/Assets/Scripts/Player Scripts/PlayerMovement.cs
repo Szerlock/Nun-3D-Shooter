@@ -21,21 +21,6 @@ public class PlayerMovement : MonoBehaviour
     public SwordControls swordController;
     GameManager gameManager;   // Reference to the GameManager script
 
-    // Health Recovery System
-    [SerializeField]
-    public float maxHealth = 100f;            // Player's maximum health
-    public float currentHealth;                // Player's current health
-    public float healthRecoveryAmount = 10f;   // Amount of health recovered per enemy killed
-    public float comboTimeLimit = 1f;          // Time limit to continue the combo
-    public int comboHitLimit = 6;              // Number of hits required to finish a combo
-    public float recoveryDuration = 2f;        // Duration of the health recovery state
-    public float recoveryCooldown = 5f;        // Cooldown period after health recovery
-
-    private int comboCount = 0;                // Current number of hits in the combo
-    private float lastAttackTime;              // Time of the last attack
-    private bool isRecovering = false;         // Whether the player is in the recovery state
-    private float recoveryCooldownTimer = 0f;  // Cooldown timer
-
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -56,10 +41,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(recoveryCooldown > 0)
-        {
-            recoveryCooldownTimer -= Time.deltaTime;
-        }
 
         if (Input.GetKeyDown(KeyCode.E))  // Press E to switch to gun
         {
@@ -82,13 +63,6 @@ public class PlayerMovement : MonoBehaviour
                     swordController.SwordAttack();
                     animatorCharacter.SetTrigger("Attack"); // Trigger the attack animation
 
-                    comboCount++; // Increment the combo count
-                    lastAttackTime = Time.time; // Update the last attack time
-
-                    if(comboCount >= comboHitLimit && !isRecovering && recoveryCooldownTimer <= 0) // Check if the combo limit has been reached
-                    {
-                        StartRecovery();
-                    }
                     // Start the coroutine to handle attack duration
                     StartCoroutine(FinishAttack());  
                     
@@ -133,27 +107,5 @@ public class PlayerMovement : MonoBehaviour
         {
             animatorCharacter.SetBool("isMoving", false);
         }
-    }
-
-    private void StartRecovery()
-    {
-        isRecovering = true; // Set the recovery state to true
-        Invoke("StopRecovery", recoveryDuration); // Invoke the RecoverHealth method after the recovery duration
-    }
-
-    private void StopRecovery()
-    {
-        isRecovering = false; // Set the recovery state to false
-        recoveryCooldownTimer = recoveryCooldown; // Set the recovery cooldown timer
-        comboCount = 0; // Reset the combo count
-    }
-
-    public void EnemyKilled()
-    {
-        if(isRecovering)
-        {
-            currentHealth += healthRecoveryAmount; // Recover health
-            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Clamp health to the maximum value
-        }
-    }   
+    } 
 }

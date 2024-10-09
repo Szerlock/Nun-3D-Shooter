@@ -7531,6 +7531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 066d79132fa8ff34fb1a5c1548875f06, type: 2}
+  pushBackForce: 0
   gameManager: {fileID: 0}
   corpse: {fileID: 0}
   invincibilityDuration: 0.3
@@ -7564,25 +7565,50 @@ PrefabInstance:
       propertyPath: damageTextPrefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5184540168460789812, guid: cb712edfe8d061f4288532febbe7a805,
+        type: 3}
+      propertyPath: showTextDamage
+      value: 
+      objectReference: {fileID: 469428622}
+    - target: {fileID: 7784162910098632025, guid: cb712edfe8d061f4288532febbe7a805,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784162910098632025, guid: cb712edfe8d061f4288532febbe7a805,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784162910098632025, guid: cb712edfe8d061f4288532febbe7a805,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8171125286129333546, guid: cb712edfe8d061f4288532febbe7a805,
         type: 3}
       propertyPath: m_Name
       value: ImpRun
       objectReference: {fileID: 0}
+    - target: {fileID: 8171125286129333546, guid: cb712edfe8d061f4288532febbe7a805,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8804110159094951824, guid: cb712edfe8d061f4288532febbe7a805,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.77
+      value: 3.77
       objectReference: {fileID: 0}
     - target: {fileID: 8804110159094951824, guid: cb712edfe8d061f4288532febbe7a805,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75700235
+      value: -0.44
       objectReference: {fileID: 0}
     - target: {fileID: 8804110159094951824, guid: cb712edfe8d061f4288532febbe7a805,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.95
+      value: 5.49
       objectReference: {fileID: 0}
     - target: {fileID: 8804110159094951824, guid: cb712edfe8d061f4288532febbe7a805,
         type: 3}
@@ -7619,7 +7645,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3521060572826568456, guid: cb712edfe8d061f4288532febbe7a805, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7637,6 +7664,11 @@ PrefabInstance:
       propertyPath: damageTextPrefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3750935345430393696, guid: aee1f0c7918502043a7796969c639a6a,
+        type: 3}
+      propertyPath: showTextDamage
+      value: 
+      objectReference: {fileID: 469428622}
     - target: {fileID: 8463608337533122950, guid: aee1f0c7918502043a7796969c639a6a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7692,7 +7724,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: monsterRun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3668917325062971778, guid: aee1f0c7918502043a7796969c639a6a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7729,6 +7762,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1805878886641279583, guid: 5c09bd5271c5f1f4987384b01210d546,
+        type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7741ce80279e6c449afd2666e6de5c34,
+        type: 2}
+    - target: {fileID: 1805878886641279583, guid: 5c09bd5271c5f1f4987384b01210d546,
+        type: 3}
+      propertyPath: showTextDamage
+      value: 
+      objectReference: {fileID: 469428622}
     - target: {fileID: 7118703489528752563, guid: 5c09bd5271c5f1f4987384b01210d546,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7847,6 +7891,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4982499137877585147, guid: b616393851a0c0a4abd523ed5b888777,
+        type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 611dbc1a92b7352478acd6143331ee1f,
+        type: 2}
+    - target: {fileID: 4982499137877585147, guid: b616393851a0c0a4abd523ed5b888777,
+        type: 3}
+      propertyPath: showTextDamage
+      value: 
+      objectReference: {fileID: 469428622}
     - target: {fileID: 5385429307724504098, guid: b616393851a0c0a4abd523ed5b888777,
         type: 3}
       propertyPath: m_Name
@@ -8194,10 +8249,25 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 179616550}
+    - target: {fileID: 814574543938522021, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: pushBackForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3620535308271284667, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_Name
       value: Final Player GameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867149388239417298, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867149388239417298, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: currentHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
@@ -8376,9 +8446,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3014862181907787494, guid: 8c633c65fb1e6bd40b56cd674518df18,
         type: 3}
+      propertyPath: showTextDamage
+      value: 
+      objectReference: {fileID: 469428622}
+    - target: {fileID: 3014862181907787494, guid: 8c633c65fb1e6bd40b56cd674518df18,
+        type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1860868536}
+    - target: {fileID: 3228549283790577647, guid: 8c633c65fb1e6bd40b56cd674518df18,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374146193826816663, guid: 8c633c65fb1e6bd40b56cd674518df18,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8620202060936506088, guid: 8c633c65fb1e6bd40b56cd674518df18,
         type: 3}
       propertyPath: m_LocalPosition.x

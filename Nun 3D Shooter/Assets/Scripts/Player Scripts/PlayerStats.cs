@@ -6,11 +6,11 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
     public CharacterScriptableObject characterData;
-    private CapsuleCollider capsuleCollider;
 
+    [SerializeField]
+    private float pushBackForce;
     //Current Stats
     private float currentHealth;
-    private float currentMoveSpeed;
     public GameManager gameManager;
     [SerializeField]
     Corpse corpse;
@@ -24,10 +24,7 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        capsuleCollider = GetComponent<CapsuleCollider>();
-
         currentHealth = characterData.MaxHealth;
-        currentMoveSpeed = characterData.MoveSpeed;
     }
 
     private void Update()
@@ -35,7 +32,6 @@ public class PlayerStats : MonoBehaviour
         if(invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
-            capsuleCollider.enabled = false;
         }
         else if(isInvincible)
         {
@@ -43,11 +39,15 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, Vector3 damageSourcePosition)
     {
         if(!isInvincible)
         {
             currentHealth -= dmg;
+
+            Vector3 pushDirection = (transform.position - damageSourcePosition).normalized; // Direction away from the damage source
+            Rigidbody playerRigidbody = GetComponent<Rigidbody>(); // Ensure the player has a Rigidbody
+            playerRigidbody.AddForce(pushDirection * pushBackForce, ForceMode.Impulse);
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
@@ -66,18 +66,18 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("player DEAD");
     }
 
-    // public void RestoreHealth(float amount)
-    // {
-    //     //1 if statement makes it so it only heals if he is below max health
-    //     if(currentHealth < characterData.MaxHealth)
-    //     {
-    //         currentHealth += amount;
+    public void RestoreHealth(float amount)
+    {
+        //1 if statement makes it so it only heals if he is below max health
+        if(currentHealth < characterData.MaxHealth)
+        {
+            currentHealth += amount;
 
-    //         //to not overheal over max health
-    //         if(currentHealth > characterData.MaxHealth)
-    //         {
-    //             currentHealth = characterData.MaxHealth;
-    //         }
-    //     }
-    // }
+            //to not overheal over max health
+            if(currentHealth > characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+    }
 }

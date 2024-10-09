@@ -15,12 +15,14 @@ public class ImpEnemy : MonoBehaviour
     public float currentHealth;
     //[HideInInspector]
     public float currentDamage;
+    private int currencyAmount;
 
     void Awake()
     {
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        currencyAmount = enemyData.CurrencyAmount;
     }
 
     public void SetEnemyData(Wave wave)
@@ -44,7 +46,7 @@ public class ImpEnemy : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         Destroy(gameObject);
-        //wave.EnemyDied();
+        wave.EnemyDied(currencyAmount);
     }
 
     private void OnCollisionStay(Collision col)
@@ -52,7 +54,7 @@ public class ImpEnemy : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage); // use currentDamage
+            player.TakeDamage(currentDamage, transform.position); // use currentDamage
         }
     }
 }

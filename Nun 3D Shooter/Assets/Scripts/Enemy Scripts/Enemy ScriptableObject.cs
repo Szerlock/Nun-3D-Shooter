@@ -21,4 +21,8 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField]
     float projectileSpeed;
     public float ProjectileSpeed {get => projectileSpeed; private set => projectileSpeed = value;}
+
+    [SerializeField]
+    int currencyAmount;
+    public int CurrencyAmount {get => currencyAmount; private set => currencyAmount = value;}
 }

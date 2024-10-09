@@ -61,7 +61,7 @@ public class ExplodingEnemyStats : MonoBehaviour
         {
             Debug.Log("Player Collision");
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage); // use currentDamage
+            player.TakeDamage(currentDamage, transform.position);    
         }
         else if(col.gameObject.CompareTag("Tank_Enemy"))
         {

@@ -9,13 +9,13 @@ public class Wave : MonoBehaviour
     public float interval;
     public int enemiesAlive = 0;
     
-    public void SpawnWave(Wave waveManager, Vector3[] spawnPoints)
+    public void SpawnWave(Wave wave, Vector3[] spawnPoints)
     {        
         // Instantiate the enemy at the chosen spawn point
-        for(int i = 0; i < waveManager.enemySpawnData.Length; i++)
+        for(int i = 0; i < wave.enemySpawnData.Length; i++)
         {
             Vector3 spawnPosition = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-            GameObject newEnemy = Instantiate(waveManager.enemySpawnData[i].enemyPrefab);
+            GameObject newEnemy = Instantiate(wave.enemySpawnData[i].enemyPrefab);
             newEnemy.transform.position = spawnPosition;
             enemiesAlive++;
         }
@@ -30,8 +30,9 @@ public class Wave : MonoBehaviour
         return false;
     }
 
-    public void EnemyDied()
+    public void EnemyDied(int currencyAmount)
     {
         enemiesAlive--;
+        CurrencyManager.Instance.AddCurrency(currencyAmount);
     }
 }
