@@ -9,6 +9,8 @@ public class GhostEnemyStats : MonoBehaviour
     public GameObject projectile;
     public Transform projectileSpawnPoint;
     public Transform playerTransform;
+    [SerializeField]
+    public ShowTextDamage showTextDamage;
 
     public float currentHealth;
     public float currentDamage;
@@ -26,12 +28,21 @@ public class GhostEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        currentHealth -= dmg;
+        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
 
+        currentHealth -= dmg;
         if(currentHealth <= 0)
         {
-            Kill();
+            StartCoroutine(Kill());
         }
+    }
+
+    private IEnumerator Kill()
+    {
+        yield return new WaitForSeconds(0.3f);
+
+        Destroy(gameObject);
+        //wave.EnemyDied();
     }
 
     public void ProjectileFire()
@@ -54,11 +65,5 @@ public class GhostEnemyStats : MonoBehaviour
         {
             Debug.LogError("Bullet script not found on bullet prefab.");
         }
-    }
-
-    private void Kill()
-    {
-        Destroy(gameObject);
-        //wave.EnemyDied();
     }
 }

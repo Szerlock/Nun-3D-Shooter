@@ -7,6 +7,9 @@ public class EnemyStats : MonoBehaviour
     public EnemyScriptableObject enemyData;
     private Wave wave;
 
+    [SerializeField]
+    public ShowTextDamage showTextDamage;
+
     //[HideInInspector]
     public float currentMoveSpeed;
     //[HideInInspector]
@@ -28,16 +31,19 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        currentHealth -= dmg;
+        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
 
+        currentHealth -= dmg;
         if(currentHealth <= 0)
         {
-            Kill();
+            StartCoroutine(Kill());
         }
     }
 
-    private void Kill()
+    private IEnumerator Kill()
     {
+        yield return new WaitForSeconds(0.3f);
+
         Destroy(gameObject);
         //wave.EnemyDied();
     }

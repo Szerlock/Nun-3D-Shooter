@@ -24,6 +24,8 @@ public class ExplodingEnemy : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
+        transform.LookAt(player.transform);
+        
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
     }
 }

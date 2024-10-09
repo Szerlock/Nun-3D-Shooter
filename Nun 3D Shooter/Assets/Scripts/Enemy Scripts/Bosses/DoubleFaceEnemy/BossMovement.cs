@@ -29,6 +29,8 @@ public class BossMovement : MonoBehaviour
     {   
         if(!isCharging)
         {
+            transform.LookAt(player.transform);
+
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
         }
     }

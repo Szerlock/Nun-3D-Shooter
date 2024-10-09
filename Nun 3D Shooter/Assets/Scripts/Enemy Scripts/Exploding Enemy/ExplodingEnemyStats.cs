@@ -10,6 +10,9 @@ public class ExplodingEnemyStats : MonoBehaviour
     private Wave wave;
     private bool isExploding = false;
 
+    [SerializeField]
+    public ShowTextDamage showTextDamage;
+
     [HideInInspector]
     public float currentMoveSpeed;
     [HideInInspector]
@@ -31,11 +34,12 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        currentHealth -= dmg;
+        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
 
+        currentHealth -= dmg;
         if(currentHealth <= 0)
         {
-        StartCoroutine(Kill(3f));
+            StartCoroutine(Kill(3f));
         }
     }
 
@@ -45,7 +49,7 @@ public class ExplodingEnemyStats : MonoBehaviour
         gameObject.GetComponent<Animator>().SetBool("Explode", true);
         yield return new WaitForSeconds(delay);
         explosionCollider.enabled = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         explosionCollider.enabled = false;
         Destroy(gameObject);
         //wave.EnemyDied();
@@ -69,6 +73,18 @@ public class ExplodingEnemyStats : MonoBehaviour
         {
             Debug.Log("exploding Enemy Collision");
             ExplodingEnemyStats enemy = col.gameObject.GetComponent<ExplodingEnemyStats>();
+            enemy.TakeDamage(currentDamage); // use currentDamage
+        }
+        else if(col.gameObject.CompareTag("DoubleFace_Enemy"))
+        {
+            Debug.Log("DoubleFace Enemy Collision");
+            DoubleFaceStats enemy = col.gameObject.GetComponent<DoubleFaceStats>();
+            enemy.TakeDamage(currentDamage/2); // use currentDamage
+        }
+        else if(col.gameObject.CompareTag("Imp_Enemy"))
+        {
+            Debug.Log("Imp Enemy Collision");
+            EnemyStats enemy = col.gameObject.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
     }

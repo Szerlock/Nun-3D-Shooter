@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SwordControls : MonoBehaviour
 {
+    public GameObject text;
+
     public WeaponScriptableObject weaponData;
     [HideInInspector]
     public Animator animatorSword;
@@ -98,7 +100,7 @@ public class SwordControls : MonoBehaviour
 
         if(col.CompareTag("Imp_Enemy"))
         {
-            ImpEnemy enemy = col.GetComponent<ImpEnemy>();
+            EnemyStats enemy = col.GetComponent<EnemyStats>();
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later

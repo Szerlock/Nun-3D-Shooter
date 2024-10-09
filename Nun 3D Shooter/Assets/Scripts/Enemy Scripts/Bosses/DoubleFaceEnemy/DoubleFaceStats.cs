@@ -35,12 +35,14 @@ public class DoubleFaceStats : MonoBehaviour
         currentHealth -= dmg;
         if(currentHealth <= 0)
         {
-            Kill();
+            StartCoroutine(Kill());
         }
     }
 
-    private void Kill()
+    private IEnumerator Kill()
     {
+        yield return new WaitForSeconds(0.3f);
+
         Destroy(gameObject);
         //wave.EnemyDied();
     }

@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
     public CharacterScriptableObject characterData;
+    private CapsuleCollider capsuleCollider;
 
     //Current Stats
     private float currentHealth;
@@ -23,6 +24,8 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+        capsuleCollider = GetComponent<CapsuleCollider>();
+
         currentHealth = characterData.MaxHealth;
         currentMoveSpeed = characterData.MoveSpeed;
     }
@@ -32,6 +35,7 @@ public class PlayerStats : MonoBehaviour
         if(invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
+            capsuleCollider.enabled = false;
         }
         else if(isInvincible)
         {
