@@ -6,4 +6,9 @@ public class EnemySpawnData : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public int quantity;
+
+    public int GetQuantity()
+    {
+        return quantity;
+    }
 }

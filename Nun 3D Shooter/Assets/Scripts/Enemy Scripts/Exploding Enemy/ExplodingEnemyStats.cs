@@ -27,11 +27,6 @@ public class ExplodingEnemyStats : MonoBehaviour
         currentDamage = enemyData.Damage;
     }
 
-    public void SetEnemyData(Wave wave)
-    {
-        this.wave = wave;
-    }
-
     public void TakeDamage(float dmg)
     {
         StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
@@ -43,6 +38,11 @@ public class ExplodingEnemyStats : MonoBehaviour
         }
     }
 
+    public void SetWave(Wave wave)
+    {
+        this.wave = wave;
+    }
+
     private IEnumerator Kill(float delay)
     {
         isExploding = true;
@@ -51,40 +51,41 @@ public class ExplodingEnemyStats : MonoBehaviour
         explosionCollider.enabled = true;
         yield return new WaitForSeconds(0.1f);
         explosionCollider.enabled = false;
+
+        wave.EnemyDied(1);
         Destroy(gameObject);
-        //wave.EnemyDied();
     }
 
     protected void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player Collision");
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position);    
         }
         else if(col.gameObject.CompareTag("Tank_Enemy"))
         {
-            Debug.Log("Tank Enemy Collision");
             EnemyStats enemy = col.gameObject.GetComponent<EnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
         else if(col.gameObject.CompareTag("Exploding_Enemy"))
         {
-            Debug.Log("exploding Enemy Collision");
             ExplodingEnemyStats enemy = col.gameObject.GetComponent<ExplodingEnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
         else if(col.gameObject.CompareTag("DoubleFace_Enemy"))
         {
-            Debug.Log("DoubleFace Enemy Collision");
             DoubleFaceStats enemy = col.gameObject.GetComponent<DoubleFaceStats>();
             enemy.TakeDamage(currentDamage/2); // use currentDamage
         }
         else if(col.gameObject.CompareTag("Imp_Enemy"))
         {
-            Debug.Log("Imp Enemy Collision");
             EnemyStats enemy = col.gameObject.GetComponent<EnemyStats>();
+            enemy.TakeDamage(currentDamage); // use currentDamage
+        }
+        else if(col.gameObject.CompareTag("Ghost_Enemy"))
+        {
+            GhostEnemyStats enemy = col.gameObject.GetComponent<GhostEnemyStats>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
     }

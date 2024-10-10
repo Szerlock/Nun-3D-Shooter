@@ -7,6 +7,7 @@ public class CurrencyManager : MonoBehaviour
     public static CurrencyManager Instance { get; private set; }
 
     public int CurrentCurrency { get; private set; }
+    public int CurrentHealthCurrency { get; private set; }
 
     private void Awake()
     {
@@ -19,6 +20,11 @@ public class CurrencyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void AddHealthCurrency(int amount)
+    {
+        CurrentHealthCurrency += amount;
     }
 
     public void AddCurrency(int amount)
@@ -37,5 +43,6 @@ public class CurrencyManager : MonoBehaviour
     public void ResetCurrency()
     {
         CurrentCurrency = 0;
+        CurrentHealthCurrency = 0;
     }
 }
