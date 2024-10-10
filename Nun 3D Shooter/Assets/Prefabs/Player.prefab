@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 066d79132fa8ff34fb1a5c1548875f06, type: 2}
+  pushBackForce: 0
   gameManager: {fileID: 0}
   corpse: {fileID: 0}
   invincibilityDuration: 0.5
@@ -112,13 +113,6 @@ MonoBehaviour:
   weaponToggle: {fileID: 48081271983089492}
   gunController: {fileID: 987575899999507695}
   swordController: {fileID: 7794532326102744249}
-  maxHealth: 100
-  currentHealth: 0
-  healthRecoveryAmount: 10
-  comboTimeLimit: 1
-  comboHitLimit: 6
-  recoveryDuration: 2
-  recoveryCooldown: 5
 --- !u!114 &48081271983089492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +150,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.18
-  m_Height: 1
+  m_Height: 0.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!1001 &2655702014622056511
@@ -1269,6 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16ba105af4750b48b4ad9bf23bb15fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
   weaponData: {fileID: 11400000, guid: c98d84f1f6e310b43af6b3064b7bc378, type: 2}
   animatorSword: {fileID: 0}
   swordCollider: {fileID: 4265141084946847995}
