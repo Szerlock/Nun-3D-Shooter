@@ -11,18 +11,23 @@ public class EnemyStats : MonoBehaviour
     [SerializeField]
     public ShowTextDamage showTextDamage;
 
-    //[HideInInspector]
+    [HideInInspector]
     public float currentMoveSpeed;
-    //[HideInInspector]
+    [HideInInspector]
     public float currentHealth;
-    //[HideInInspector]
+    [HideInInspector]
     public float currentDamage;
+    public int healthCurrency;
+    [HideInInspector]
+    public int currencyAmount;
 
     void Awake()
     {
+        healthCurrency = enemyData.HealthCurrencyAmount;
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        currencyAmount = enemyData.CurrencyAmount;
     }
 
     public void SetWave(Wave wave)
@@ -45,7 +50,7 @@ public class EnemyStats : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        wave.EnemyDied(2);
+        wave.EnemyDied(currencyAmount);
         Destroy(gameObject);
     }
 

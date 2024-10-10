@@ -9,16 +9,19 @@ public class ImpEnemy : MonoBehaviour
     [SerializeField]
     public ShowTextDamage showTextDamage;
 
-    //[HideInInspector]
+    [HideInInspector]
     public float currentMoveSpeed;
-    //[HideInInspector]
+    [HideInInspector]
     public float currentHealth;
-    //[HideInInspector]
+    [HideInInspector]
     public float currentDamage;
-    private int currencyAmount;
+    [HideInInspector]
+    public float healthCurrency;
+    private int currencyAmount; 
 
     void Awake()
     {
+        healthCurrency = enemyData.HealthCurrencyAmount;
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;

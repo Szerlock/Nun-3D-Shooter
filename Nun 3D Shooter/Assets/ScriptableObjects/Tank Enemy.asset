@@ -17,3 +17,4 @@ MonoBehaviour:
   damage: 20
   projectileSpeed: 0
   currencyAmount: 0
+  healthCurrencyAmount: 1

@@ -25,4 +25,8 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField]
     int currencyAmount;
     public int CurrencyAmount {get => currencyAmount; private set => currencyAmount = value;}
+
+    [SerializeField]
+    int healthCurrencyAmount;
+    public int HealthCurrencyAmount { get => healthCurrencyAmount; private set => healthCurrencyAmount = value; }
 }

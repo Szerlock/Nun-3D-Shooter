@@ -12,9 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 5f; // Speed at which the camera rotates
     private Rigidbody rb;       // Reference to the Rigidbody component
     private Camera mainCamera;  // Reference to the main camera
-    //private Animator animatorSword;
     private Animator animatorCharacter;
-    
+    PlayerStats playerStats;  // Reference to the PlayerStats script
+
     //Toggle Weapons
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>(); // Get the PlayerStats component
         gameManager = FindObjectOfType<GameManager>();
         Transform nun = transform.Find("NewIdleNunBaked");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
@@ -48,8 +49,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.R))
-        { 
-                        
+        {
+            if(playerStats == null)
+            {
+                Debug.LogError("PlayerStats not found.");
+            }
+            playerStats.RestoreHealth(CurrencyManager.Instance.SpendHealthCurrency());
         }
 
          if (gameManager != null && gameManager.IsGameStarted())

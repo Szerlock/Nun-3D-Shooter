@@ -63,7 +63,6 @@ public class PlayerStats : MonoBehaviour
     {
         corpse.AddCorpse(transform.position);
         gameManager.OpenRestartMenu();
-        Debug.Log("player DEAD");
     }
 
     public void RestoreHealth(float amount)

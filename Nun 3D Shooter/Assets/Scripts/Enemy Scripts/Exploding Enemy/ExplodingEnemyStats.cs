@@ -19,12 +19,17 @@ public class ExplodingEnemyStats : MonoBehaviour
     public float currentHealth;
     [HideInInspector]
     public float currentDamage;
+    private int healthCurrency;
+    [HideInInspector]
+    public int currencyAmount;
 
     void Awake()
     {
+        healthCurrency = enemyData.HealthCurrencyAmount;
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        currencyAmount = enemyData.CurrencyAmount;
     }
 
     public void TakeDamage(float dmg)
@@ -52,7 +57,8 @@ public class ExplodingEnemyStats : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         explosionCollider.enabled = false;
 
-        wave.EnemyDied(1);
+        wave.EnemyDied(currencyAmount);
+        CurrencyManager.Instance.AddHealthCurrency(healthCurrency);
         Destroy(gameObject);
     }
 

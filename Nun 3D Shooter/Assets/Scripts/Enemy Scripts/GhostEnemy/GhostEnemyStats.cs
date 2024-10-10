@@ -12,13 +12,23 @@ public class GhostEnemyStats : MonoBehaviour
     [SerializeField]
     public ShowTextDamage showTextDamage;
 
+    [HideInInspector]
+    public float currentMoveSpeed;
+    [HideInInspector]
     public float currentHealth;
+    [HideInInspector]
     public float currentDamage;
+    [HideInInspector]
+    public int healthCurrency;
+    [HideInInspector]
+    public int currencyAmount;
 
     void Awake()
     {
+        healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        currencyAmount = enemyData.CurrencyAmount;
     }
 
     public void SetWave(Wave wave)
@@ -42,7 +52,7 @@ public class GhostEnemyStats : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         Destroy(gameObject);
-        wave.EnemyDied(1);
+        wave.EnemyDied(currencyAmount);
     }
 
     public void ProjectileFire()
