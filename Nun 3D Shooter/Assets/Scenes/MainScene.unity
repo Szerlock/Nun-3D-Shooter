@@ -98,7 +98,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: ec0ece7874bec404a9c4a040e193b6d5,
+  m_LightingDataAsset: {fileID: 112000000, guid: fce308c84438a7f47910fb43a7fa962e,
     type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
@@ -1314,22 +1314,22 @@ PrefabInstance:
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.4722233
       objectReference: {fileID: 0}
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.881479
       objectReference: {fileID: 0}
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
@@ -1339,7 +1339,7 @@ PrefabInstance:
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -123.643
       objectReference: {fileID: 0}
     - target: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
@@ -14948,7 +14948,6 @@ MonoBehaviour:
   enemySpawnData:
   - {fileID: 791063916}
   - {fileID: 791063915}
-  interval: 0
   enemiesAlive: 0
 --- !u!4 &791063918
 Transform:
@@ -28564,7 +28563,6 @@ MonoBehaviour:
   enemySpawnData:
   - {fileID: 1572795869}
   - {fileID: 1572795868}
-  interval: 0
   enemiesAlive: 0
 --- !u!1001 &1577214094
 PrefabInstance:
@@ -36672,9 +36670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3f2fb955bcce64dbe35446ac25f905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavesOfEnemies:
-  - {fileID: 1572795870}
-  - {fileID: 791063917}
   spawnPoints:
   - {x: -39.61, y: 1.269322, z: 81.2}
   - {x: 52.8, y: 1.269322, z: 85.1}
