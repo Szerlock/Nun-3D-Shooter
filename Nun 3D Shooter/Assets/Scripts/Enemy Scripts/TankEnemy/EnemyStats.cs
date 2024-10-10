@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
+    [SerializeField]
     private Wave wave;
 
     [SerializeField]
@@ -24,7 +25,7 @@ public class EnemyStats : MonoBehaviour
         currentDamage = enemyData.Damage;
     }
 
-    public void SetEnemyData(Wave wave)
+    public void SetWave(Wave wave)
     {
         this.wave = wave;
     }
@@ -44,8 +45,8 @@ public class EnemyStats : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
+        wave.EnemyDied(2);
         Destroy(gameObject);
-        //wave.EnemyDied();
     }
 
     private void OnCollisionStay(Collision col)

@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3d711a25706df854d9cc12b1bf23542e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.2869005
+      value: 15.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3d711a25706df854d9cc12b1bf23542e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.20601302
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3d711a25706df854d9cc12b1bf23542e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.0502002
+      value: -1.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3d711a25706df854d9cc12b1bf23542e,
         type: 3}
@@ -160,7 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d260a8844243e6468036002580ed917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 7741ce80279e6c449afd2666e6de5c34, type: 2}
+  wave: {fileID: 0}
+  showTextDamage: {fileID: 4732105586887557899, guid: 42903fc7ae2924b43b960eb22a1bce64,
+    type: 3}
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0

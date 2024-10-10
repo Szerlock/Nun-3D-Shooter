@@ -47,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
             weaponToggle.ToggleWeapons();
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        { 
+                        
+        }
+
          if (gameManager != null && gameManager.IsGameStarted())
         {
             if(Input.GetButtonDown("Fire1"))

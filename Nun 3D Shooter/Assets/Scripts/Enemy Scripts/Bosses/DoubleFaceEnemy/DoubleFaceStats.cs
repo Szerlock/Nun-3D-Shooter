@@ -23,7 +23,7 @@ public class DoubleFaceStats : MonoBehaviour
         currentDamage = enemyData.Damage;
     }
 
-    public void SetEnemyData(Wave wave)
+    public void SetWave(Wave wave)
     {
         this.wave = wave;
     }

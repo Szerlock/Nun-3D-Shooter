@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     public void StartGame()
     {
-        Debug.Log("Game Started");
         corpse.SpawnCorpse();
         // Hide the start menu
         if (startMenu != null)

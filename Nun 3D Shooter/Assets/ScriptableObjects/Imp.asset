@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae1ad0d2af312142a23027ea5882bf4, type: 3}
   m_Name: Imp
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 0
   maxHealth: 2
   damage: 1
   projectileSpeed: 0
+  currencyAmount: 0
