@@ -29,11 +29,6 @@ public class SwordControls : MonoBehaviour
         {
         currentDamage = weaponData.Damage;
         }
-
-        else
-        {
-            Debug.Log("Weapon data not assigned.");
-        }
     }
 
     public void SwordAttack()
@@ -41,20 +36,17 @@ public class SwordControls : MonoBehaviour
         //(pm.charactermovement.ismoving)
         StartCoroutine(DeactivateCollider(0.6f));
         EnableCollider();
-        Debug.Log("Sword Attack");
     }   
 
     public void EnableCollider()
     {
         swordCollider.enabled = true;
-        Debug.Log("Collider enabled");
     }
 
     public IEnumerator DeactivateCollider(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
         swordCollider.enabled = false;
-        Debug.Log("End Attack");
     }
 
     protected void OnTriggerEnter(Collider col)

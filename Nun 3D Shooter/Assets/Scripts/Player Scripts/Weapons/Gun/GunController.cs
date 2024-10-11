@@ -5,8 +5,8 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
-    public GameObject bulletPrefab;  // The bullet prefab to instantiate
-    public Transform bulletSpawnPoint;  // The point from where the bullets will be spawned
+    public GameObject shotgunShot;  // The bullet prefab to instantiate
+    public Transform shotgunShotSpawnPoint;  // The point from where the shotgunShot will be spawned
 
     //current Stats
     protected float currentDamage;
@@ -28,21 +28,25 @@ public class GunController : MonoBehaviour
     public void GunFire()
     {
     // Instantiate the bullet at the bullet spawn point
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        GameObject shotgun = Instantiate(shotgunShot, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);
 
         // Set bullet velocity in the direction the player is looking
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = bulletSpawnPoint.forward * weaponData.BulletSpeed;
+        Rigidbody rb = shotgun.GetComponent<Rigidbody>();
+        rb.velocity = shotgunShotSpawnPoint.forward * weaponData.BulletSpeed;
 
         // Set bullet damage
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        if (bulletScript != null)
+        Bullet[] bullets = shotgun.GetComponentsInChildren<Bullet>();
+        foreach(Bullet bullet in bullets)
         {
-            bulletScript.SetDamage(currentDamage);
+            if (bullet != null)
+            {
+                bullet.SetDamage(currentDamage);
+            }
+            else
+            {
+                Debug.LogError("Bullet script not found on bullet prefab.");
+            }
         }
-        else
-        {
-            Debug.LogError("Bullet script not found on bullet prefab.");
-        }
+
     }
 }

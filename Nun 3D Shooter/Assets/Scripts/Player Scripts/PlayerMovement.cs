@@ -33,11 +33,17 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public IEnumerator FinishAttack(float time = 1.09f)
+    private IEnumerator FinishAttack()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(1.09f);
         animatorCharacter.SetBool("IsAttacking", false);
 
+    }
+
+    private IEnumerator FinishShooting()
+    { 
+        yield return new WaitForSeconds(1f);
+        animatorCharacter.SetBool("IsShooting", false);
     }
 
     void Update()
@@ -59,20 +65,22 @@ public class PlayerMovement : MonoBehaviour
 
          if (gameManager != null && gameManager.IsGameStarted())
         {
-            if(Input.GetButtonDown("Fire1"))
+            if(Input.GetButtonDown("Fire1") && !animatorCharacter.GetBool("IsAttacking"))
             {
                 animatorCharacter.SetBool("isMoving", false);
-                animatorCharacter.SetBool("IsAttacking", true);
+                //animatorCharacter.SetBool("IsAttacking", true);
 
                 //Fix Gun animation
                 if (weaponToggle.isGunActive)
                 {
+                    animatorCharacter.SetBool("IsShooting", true);
                     gunController.GunFire();
-                    animatorCharacter.SetTrigger("Shoot");
+                    StartCoroutine(FinishShooting());
                 }
 
                 else
                 {
+                    animatorCharacter.SetBool("IsAttacking", true);
                     swordController.SwordAttack();
                     StartCoroutine(FinishAttack());
                 }

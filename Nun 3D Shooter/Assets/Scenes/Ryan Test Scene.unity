@@ -7084,6 +7084,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdec8e5b6b6bb784ba3d5d435ba8611e, type: 3}
+--- !u!1 &1478418203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478418204}
+  m_Layer: 0
+  m_Name: SpawnBullets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1478418204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478418203}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.0698444, z: -0, w: 0.99755794}
+  m_LocalPosition: {x: -0.182, y: 0.456, z: 0.851}
+  m_LocalScale: {x: 1.9782, y: 1.9782, z: 1.9782}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1860868536}
+  m_LocalEulerAnglesHint: {x: 0, y: -8.01, z: 0}
 --- !u!1 &1486666911
 GameObject:
   m_ObjectHideFlags: 0
@@ -8483,8 +8514,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996602126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.140396, y: 0.6359225, z: -1.3709413}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.140396, y: 0.63592243, z: -1.3709413}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9863,9 +9894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: a693789245c90164896e4be9f46d8515, type: 2}
-  bulletPrefab: {fileID: 7570604535680005406, guid: 725e8d4b4c2086b40aa3f0e0ed481984,
-    type: 3}
-  bulletSpawnPoint: {fileID: 7202917499773892701}
+  shotgunShot: {fileID: 0}
+  shotgunShotSpawnPoint: {fileID: 0}
 --- !u!65 &7202917499773892706
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10057,6 +10087,17 @@ PrefabInstance:
       propertyPath: pushBackForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 987575899999507695, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: shotgunShot
+      value: 
+      objectReference: {fileID: 3137764036407803990, guid: d2d97fd6d126fb74cacfde8400176ce2,
+        type: 3}
+    - target: {fileID: 987575899999507695, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: shotgunShotSpawnPoint
+      value: 
+      objectReference: {fileID: 1478418204}
     - target: {fileID: 3620535308271284667, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_Name
@@ -10134,7 +10175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1478418204}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8bacff460d510742a72a511d76fef5a, type: 3}
 --- !u!1 &8156610453797063273
