@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 
 public class PlayerMovement : MonoBehaviour
-{ 
+{
     public float moveSpeed = 5f; // Speed of movement
     public float rotationSpeed = 5f; // Speed at which the camera rotates
     private Rigidbody rb;       // Reference to the Rigidbody component
@@ -19,6 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
+
+    [Header("SwordAnim")]
+    public float spamWindow = 0.5f;
+    public float lastAttackTime = 0;
+    private int attackPhase = 0;
+
 
     void Start()
     {
@@ -35,19 +41,6 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = 5f;
     }
 
-    private IEnumerator FinishAttack()
-    {
-        yield return new WaitForSeconds(1.09f);
-        animatorCharacter.SetBool("IsAttacking", false);
-
-    }
-
-    private IEnumerator FinishShooting()
-    { 
-        yield return new WaitForSeconds(1f);
-        animatorCharacter.SetBool("IsShooting", false);
-    }
-
     void Update()
     {
 
@@ -58,46 +51,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(playerStats == null)
+            if (playerStats == null)
             {
                 Debug.LogError("PlayerStats not found.");
             }
             playerStats.RestoreHealth(CurrencyManager.Instance.SpendHealthCurrency());
         }
 
-         if (GameManager.instance.IsGameStarted())
+        if (GameManager.instance.IsGameStarted())
         {
-            if(Input.GetButtonDown("Fire1") && !animatorCharacter.GetBool("IsAttacking"))
-            {
-                animatorCharacter.SetBool("isMoving", false);
-                //animatorCharacter.SetBool("IsAttacking", true);
-
-                //Fix Gun animation
-                if (weaponToggle.isGunActive)
-                {
-                    animatorCharacter.SetBool("IsShooting", true);
-                    gunController.GunFire();
-                    StartCoroutine(FinishShooting());
-                }
-
-                else
-                {
-                    animatorCharacter.SetBool("IsAttacking", true);
-                    swordController.SwordAttack();
-                    StartCoroutine(FinishAttack());
-                }
-            }
+            HandleAttack();
         }
-           HandleMovement();
+        HandleMovement();
     }
 
     private void HandleMovement()
     {
-        if (!animatorCharacter.GetBool("IsAttacking"))
+        if (!animatorCharacter.GetBool("IsAttacking") && !animatorCharacter.GetBool("IsSecondAttack") && attackPhase != 1)
         {
             // Get input for movement
             float moveX = Input.GetAxis("Horizontal");
             float moveZ = Input.GetAxis("Vertical");
+
 
 
             // Convert input to camera-relative direction
@@ -127,5 +102,63 @@ public class PlayerMovement : MonoBehaviour
                 animatorCharacter.SetBool("isMoving", false);
             }
         }
-    } 
+    }
+
+    private void HandleAttack()
+    {
+        if (Time.time - lastAttackTime > spamWindow)
+        {
+            attackPhase = 0;
+        }
+
+        if (Input.GetButtonDown("Fire1") && !animatorCharacter.GetBool("IsAttacking"))
+        {
+            animatorCharacter.SetBool("isMoving", false);
+
+            //Fix Gun animation
+            if (weaponToggle.isGunActive)
+            {
+                animatorCharacter.SetBool("IsShooting", true);
+                gunController.GunFire();
+                lastAttackTime = Time.time;
+                StartCoroutine(FinishShooting());
+            }
+
+            else if (attackPhase == 0 && !animatorCharacter.GetBool("IsSecondAttack"))
+            {
+                animatorCharacter.SetBool("IsAttacking", true);
+                swordController.SwordAttack();
+                attackPhase = 1;
+                lastAttackTime = Time.time;
+                StartCoroutine(FinishAttack());
+            }
+
+            else if (attackPhase == 1 && !animatorCharacter.GetBool("IsSecondAttack"))
+            {
+                animatorCharacter.SetBool("IsSecondAttack", true);
+                swordController.SwordAttack();
+                attackPhase = 0;
+                lastAttackTime = Time.time;
+                StartCoroutine(FinishSecondAttack());
+            }
+        }
+    }
+
+    private IEnumerator FinishAttack()
+    {
+        yield return new WaitForSeconds(0.26f);
+        animatorCharacter.SetBool("IsAttacking", false);
+    }
+
+    private IEnumerator FinishSecondAttack()
+    {
+        yield return new WaitForSeconds(0.8f);
+        animatorCharacter.SetBool("IsSecondAttack", false);
+    }
+
+    private IEnumerator FinishShooting()
+    {
+        yield return new WaitForSeconds(1f);
+        animatorCharacter.SetBool("IsShooting", false);
+    }
 }
