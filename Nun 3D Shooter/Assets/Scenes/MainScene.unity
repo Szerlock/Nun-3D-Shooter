@@ -27414,7 +27414,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -28226,7 +28226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7602471685547209481, guid: 5c09bd5271c5f1f4987384b01210d546,
     type: 3}
-  quantity: 2
+  quantity: 3
 --- !u!114 &1572795869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36375,8 +36375,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints:
-  - {x: 20.6, y: 0, z: -1.8}
-  - {x: -15.89, y: 0, z: 20.67}
+  - {x: -15.865387, y: 1.72, z: 20.669683}
+  - {x: -13.74, y: 1.72, z: 16.94}
+  - {x: -16.53, y: 1.72, z: 16.94}
+  - {x: -11.65, y: 1.72, z: 20.97}
+  - {x: 16.147, y: 0, z: 5.69}
+  - {x: 12.56, y: 0, z: 0.15}
 --- !u!4 &2115291874
 Transform:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
 
         if (col.CompareTag("Imp_Enemy"))
         {
-            EnemyStats enemy = col.GetComponent<EnemyStats>();
+            ImpEnemy enemy = col.GetComponent<ImpEnemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later

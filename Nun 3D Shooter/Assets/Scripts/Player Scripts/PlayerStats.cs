@@ -39,10 +39,14 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg, Vector3 damageSourcePosition)
+    public void TakeDamage(float dmg, Vector3 damageSourcePosition, float pushBackForce)
     {
         if(!isInvincible)
         {
+            if (pushBackForce < 1)
+            {
+                return;
+            }
             currentHealth -= dmg;
 
             Vector3 pushDirection = (transform.position - damageSourcePosition).normalized; // Direction away from the damage source

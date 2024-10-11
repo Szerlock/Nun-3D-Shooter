@@ -67,7 +67,7 @@ public class ExplodingEnemyStats : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage, transform.position);    
+            player.TakeDamage(currentDamage, transform.position, 8);    
         }
         else if(col.gameObject.CompareTag("Tank_Enemy"))
         {
@@ -86,7 +86,7 @@ public class ExplodingEnemyStats : MonoBehaviour
         }
         else if(col.gameObject.CompareTag("Imp_Enemy"))
         {
-            EnemyStats enemy = col.gameObject.GetComponent<EnemyStats>();
+            ImpEnemy enemy = col.gameObject.GetComponent<ImpEnemy>();
             enemy.TakeDamage(currentDamage); // use currentDamage
         }
         else if(col.gameObject.CompareTag("Ghost_Enemy"))

@@ -5,15 +5,15 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
-    [SerializeField]
     private Wave wave;
 
     [SerializeField]
     public ShowTextDamage showTextDamage;
 
+    public bool IsAttacking { get; set; }
+
     [HideInInspector]
     public float currentMoveSpeed;
-    [HideInInspector]
     public float currentHealth;
     [HideInInspector]
     public float currentDamage;
@@ -23,6 +23,7 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
+        IsAttacking = false;
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
@@ -58,8 +59,9 @@ public class EnemyStats : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            IsAttacking = true;
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage, transform.position); // use currentDamage
+            player.TakeDamage(currentDamage, transform.position, 4); // use currentDamage
         }
     }
 }

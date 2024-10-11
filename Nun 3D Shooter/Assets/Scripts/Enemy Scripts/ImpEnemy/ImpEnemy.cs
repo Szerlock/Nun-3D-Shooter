@@ -28,7 +28,7 @@ public class ImpEnemy : MonoBehaviour
         currencyAmount = enemyData.CurrencyAmount;
     }
 
-    public void SetEnemyData(Wave wave)
+    public void SetWave(Wave wave)
     {
         this.wave = wave;
     }
@@ -57,7 +57,7 @@ public class ImpEnemy : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage, transform.position); // use currentDamage
+            player.TakeDamage(currentDamage, transform.position, 0); // use currentDamage
         }
     }
 }

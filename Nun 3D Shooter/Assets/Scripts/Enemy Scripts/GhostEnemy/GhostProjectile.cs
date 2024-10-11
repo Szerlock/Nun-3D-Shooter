@@ -18,7 +18,7 @@ public class GhostProjectile : MonoBehaviour
             PlayerStats player = col.GetComponent<PlayerStats>();
             if (player != null)
             {
-                player.TakeDamage(damage, transform.position);            
+                player.TakeDamage(damage, transform.position, 0);            
             }
             else
             {

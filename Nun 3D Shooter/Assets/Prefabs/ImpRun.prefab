@@ -129,10 +129,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 80d49ef20183df4459e00db5bec452e6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5184540168460789812}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 80d49ef20183df4459e00db5bec452e6,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8791691679008456273}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 80d49ef20183df4459e00db5bec452e6,
         type: 3}
@@ -142,6 +138,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7784162910098632025}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 80d49ef20183df4459e00db5bec452e6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -763751786556469059}
   m_SourcePrefab: {fileID: 100100000, guid: 80d49ef20183df4459e00db5bec452e6, type: 3}
 --- !u!1 &8171125286129333546 stripped
 GameObject:
@@ -161,22 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1680900ebd55f49a2be433ddfa75d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5184540168460789812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8171125286129333546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d260a8844243e6468036002580ed917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: c7fab40e621fc2d488908c1f11b1a855, type: 2}
-  currentMoveSpeed: 0
-  currentHealth: 0
-  currentDamage: 0
 --- !u!95 &8791691679008456273
 Animator:
   serializedVersion: 5
@@ -211,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageTextPrefab: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!136 &7784162910098632025
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -234,3 +219,21 @@ CapsuleCollider:
   m_Height: 0.04
   m_Direction: 1
   m_Center: {x: 0, y: 0.05, z: 0}
+--- !u!114 &-763751786556469059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171125286129333546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e54db8c4d7bc344b9209048db899e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: c7fab40e621fc2d488908c1f11b1a855, type: 2}
+  showTextDamage: {fileID: 0}
+  currentMoveSpeed: 0
+  currentHealth: 0
+  currentDamage: 0
+  healthCurrency: 0

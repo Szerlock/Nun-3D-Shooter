@@ -53,7 +53,7 @@ public class DoubleFaceStats : MonoBehaviour
         {
             Debug.Log("Player Collision");
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage, transform.position);
+            player.TakeDamage(currentDamage, transform.position, 5);
         }
     }
 }
