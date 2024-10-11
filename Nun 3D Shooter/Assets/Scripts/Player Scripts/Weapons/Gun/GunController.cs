@@ -6,6 +6,7 @@ public class GunController : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
     public GameObject shotgunShot;  // The bullet prefab to instantiate
+    public GameObject vfx;
     public Transform shotgunShotSpawnPoint;  // The point from where the shotgunShot will be spawned
 
     //current Stats
@@ -29,7 +30,7 @@ public class GunController : MonoBehaviour
     {
     // Instantiate the bullet at the bullet spawn point
         GameObject shotgun = Instantiate(shotgunShot, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);
-
+        GameObject vfxOBJ = Instantiate(vfx, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);   
         // Set bullet velocity in the direction the player is looking
         Rigidbody rb = shotgun.GetComponent<Rigidbody>();
         rb.velocity = shotgunShotSpawnPoint.forward * weaponData.BulletSpeed;
@@ -47,6 +48,7 @@ public class GunController : MonoBehaviour
                 Debug.LogError("Bullet script not found on bullet prefab.");
             }
         }
-
+        Destroy(shotgun, 2f);
+        Destroy(vfxOBJ, 0.25f);
     }
 }

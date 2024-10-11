@@ -28,7 +28,11 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main;       // Get the main camera
         //animatorSword = GetComponentInChildren<Animator>();
         animatorCharacter = nun.GetComponent<Animator>();
-        
+    }
+
+    public void ResetMoveSpeed()
+    {
+        moveSpeed = 5f;
     }
 
     private IEnumerator FinishAttack()
