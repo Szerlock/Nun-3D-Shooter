@@ -33,11 +33,11 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public IEnumerator FinishAttack(float time = 1.1f)
+    public IEnumerator FinishAttack(float time = 1.09f)
     {
-        Debug.Log("Finish Attack");
         yield return new WaitForSeconds(time);
-        animatorCharacter.SetBool("EndAttack", true);
+        animatorCharacter.SetBool("IsAttacking", false);
+
     }
 
     void Update()
@@ -61,7 +61,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Input.GetButtonDown("Fire1"))
             {
-                if(weaponToggle.isGunActive)
+                animatorCharacter.SetBool("isMoving", false);
+                animatorCharacter.SetBool("IsAttacking", true);
+
+                //Fix Gun animation
+                if (weaponToggle.isGunActive)
                 {
                     gunController.GunFire();
                     animatorCharacter.SetTrigger("Shoot");
@@ -69,53 +73,49 @@ public class PlayerMovement : MonoBehaviour
 
                 else
                 {
-                    animatorCharacter.SetBool("EndAttack", false);
                     swordController.SwordAttack();
-                    animatorCharacter.SetTrigger("Attack"); // Trigger the attack animation
-
-                    // Start the coroutine to handle attack duration
-                    StartCoroutine(FinishAttack());  
-                    
+                    StartCoroutine(FinishAttack());
                 }
             }
         }
-        HandleMovement();
+           HandleMovement();
     }
 
     private void HandleMovement()
     {
-        // Get input for movement
-        float moveX = Input.GetAxis("Horizontal"); 
-        float moveZ = Input.GetAxis("Vertical");
-           
-
-        // Convert input to camera-relative direction
-        Vector3 forward = mainCamera.transform.forward;
-        Vector3 right = mainCamera.transform.right;
-
-        forward.y = 0;
-        right.y = 0;
-
-        // Normalize vectors to ensure consistent movement speed
-        forward.Normalize();
-        right.Normalize();
-
-        // Calculate movement direction
-        Vector3 moveDirection = (right * moveX + forward * moveZ);
-        moveDirection.Normalize();
-
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
-
-        if(moveDirection != Vector3.zero)
+        if (!animatorCharacter.GetBool("IsAttacking"))
         {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            animatorCharacter.SetBool("isMoving", true);
-        }
+            // Get input for movement
+            float moveX = Input.GetAxis("Horizontal");
+            float moveZ = Input.GetAxis("Vertical");
 
-        else
-        {
-            animatorCharacter.SetBool("isMoving", false);
+
+            // Convert input to camera-relative direction
+            Vector3 forward = mainCamera.transform.forward;
+            Vector3 right = mainCamera.transform.right;
+
+            forward.y = 0;
+            right.y = 0;
+
+            // Normalize vectors to ensure consistent movement speed
+            forward.Normalize();
+            right.Normalize();
+
+            // Calculate movement direction
+            Vector3 moveDirection = (right * moveX + forward * moveZ).normalized;
+
+            transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+
+            if (moveDirection != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+                animatorCharacter.SetBool("isMoving", true);
+            }
+            else
+            {
+                animatorCharacter.SetBool("isMoving", false);
+            }
         }
     } 
 }
