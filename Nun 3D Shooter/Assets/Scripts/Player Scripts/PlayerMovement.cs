@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public SwordControls swordController;
 
     [Header("SwordAnim")]
-    public float spamWindow = 0.5f;
+    public float spamWindow = 1f;
     public float lastAttackTime = 0;
     private int attackPhase = 0;
 
