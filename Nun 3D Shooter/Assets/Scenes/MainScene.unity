@@ -1213,7 +1213,7 @@ PrefabInstance:
         type: 3}
       propertyPath: shotgunShot
       value: 
-      objectReference: {fileID: 3137764036407803990, guid: d2d97fd6d126fb74cacfde8400176ce2,
+      objectReference: {fileID: 4882082258795069605, guid: 1bcbf21a46f3e134d80e343d33a9b884,
         type: 3}
     - target: {fileID: 987575899999507695, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
