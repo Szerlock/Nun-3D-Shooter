@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance { get; private set; }
     [SerializeField]
     private GameObject startMenu;
     [SerializeField]
@@ -18,9 +19,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Time.timeScale = 0f;
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
     public void StartGame()
     {
         corpse.SpawnCorpse();

@@ -19,12 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
-    GameManager gameManager;   // Reference to the GameManager script
 
     void Start()
     {
         playerStats = GetComponent<PlayerStats>(); // Get the PlayerStats component
-        gameManager = FindObjectOfType<GameManager>();
         Transform nun = transform.Find("NewIdleNunBaked");
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         mainCamera = Camera.main;       // Get the main camera
@@ -63,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             playerStats.RestoreHealth(CurrencyManager.Instance.SpendHealthCurrency());
         }
 
-         if (gameManager != null && gameManager.IsGameStarted())
+         if (GameManager.instance.IsGameStarted())
         {
             if(Input.GetButtonDown("Fire1") && !animatorCharacter.GetBool("IsAttacking"))
             {

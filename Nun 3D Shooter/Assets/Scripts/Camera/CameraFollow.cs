@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameManager gameManager;
     public Transform target;  // Player's transform
     public Vector3 cameraOffset = new Vector3();  // Offset behind the player
     public float smoothSpeed = 0.125f;  // Smoothing factor for camera movement
@@ -18,7 +17,7 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.IsGameStarted())
+        if (GameManager.instance.IsGameStarted())
         {
             // Get mouse input for rotating the camera
             currentX += Input.GetAxis("Mouse X") * sensitivity;
@@ -31,7 +30,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (gameManager.IsGameStarted())
+        if (GameManager.instance.IsGameStarted())
         {
             // Calculate camera rotation based on mouse input
             Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);

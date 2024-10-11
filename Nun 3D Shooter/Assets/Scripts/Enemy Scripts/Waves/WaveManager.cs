@@ -18,7 +18,7 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(StartNextWave());   
+        StartCoroutine(StartNextWave());
     }
 
     private IEnumerator StartNextWave()

@@ -8,12 +8,12 @@ public class Wave : MonoBehaviour
     public List<EnemySpawnData> enemySpawnData;
 
     private int amountPerEnemy;
-    //public float interval;
     public int enemiesAlive = 0;
-    
+    Unity.Mathematics.Random random = new Unity.Mathematics.Random((uint)System.DateTime.Now.Ticks);
+
+
     public void SpawnWave(Wave wave, List<Vector3> spawnPoints)
     {
-        Unity.Mathematics.Random random = new Unity.Mathematics.Random((uint)System.DateTime.Now.Ticks);
         foreach (EnemySpawnData enemyData in enemySpawnData)
         {
             amountPerEnemy = enemyData.GetQuantity();
@@ -45,8 +45,14 @@ public class Wave : MonoBehaviour
                     newEnemy.GetComponent<GhostEnemyStats>().SetWave(this);
                 }
                 enemiesAlive++;
+                StartCoroutine(SpawnEnemy());
             }
         }
+    }
+
+    private IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(random.NextFloat(0, 2));
     }
 
     public bool IsWaveComplete()

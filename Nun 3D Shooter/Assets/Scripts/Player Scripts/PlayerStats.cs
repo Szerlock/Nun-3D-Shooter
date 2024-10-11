@@ -11,7 +11,6 @@ public class PlayerStats : MonoBehaviour
     private float pushBackForce;
     //Current Stats
     private float currentHealth;
-    public GameManager gameManager;
     [SerializeField]
     Corpse corpse;
 
@@ -66,7 +65,7 @@ public class PlayerStats : MonoBehaviour
     public void Kill()
     {
         corpse.AddCorpse(transform.position);
-        gameManager.OpenRestartMenu();
+        GameManager.instance.OpenRestartMenu();
     }
 
     public void RestoreHealth(float amount)

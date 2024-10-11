@@ -8,6 +8,7 @@ public class Dashing : MonoBehaviour
 
     public float dashSpeed;
     public float dashTime;
+    public float dashCooldown = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +19,17 @@ public class Dashing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && dashCooldown <= 0)
         {
-            StartCoroutine(Dash());
+            Dash();
+        }
+        if(dashCooldown > 0)
+        {
+            dashCooldown -= Time.deltaTime;
         }
     }
 
-    IEnumerator Dash()
+    public void  Dash()
     {
         float startTime = Time.time;
         float originalMoveSpeed = movementScript.moveSpeed;
@@ -35,12 +40,11 @@ public class Dashing : MonoBehaviour
             // Move with dash speed
             Vector3 moveDirection = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")).normalized;
             transform.Translate(moveDirection * dashSpeed * Time.deltaTime, Space.World);
-            yield return null;
         }
 
         // Reset the moveSpeed to default speed after dashing
         movementScript.moveSpeed = originalMoveSpeed;
-            Debug.Log("Dash ended. Speed reset to: " + originalMoveSpeed);
-
+        dashCooldown = 3f;
+        Debug.Log("Dash ended. Speed reset to: " + originalMoveSpeed);
     }
 }

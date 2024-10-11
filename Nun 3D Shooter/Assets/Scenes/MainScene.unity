@@ -1279,6 +1279,17 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 179616550}
+    - target: {fileID: 987575899999507695, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: shotgunShot
+      value: 
+      objectReference: {fileID: 3137764036407803990, guid: d2d97fd6d126fb74cacfde8400176ce2,
+        type: 3}
+    - target: {fileID: 987575899999507695, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: shotgunShotSpawnPoint
+      value: 
+      objectReference: {fileID: 899521572}
     - target: {fileID: 3620535308271284667, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_Name
@@ -6541,7 +6552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908ef574a46201a44a7a233fc9466929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 179616550}
   target: {fileID: 624442564}
   cameraOffset: {x: -2.12, y: 1.7, z: -5.36}
   smoothSpeed: 0.125
@@ -23321,6 +23331,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 209271905}
   m_LocalEulerAnglesHint: {x: 13.02, y: -399.3, z: 0}
+--- !u!1 &1249032286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249032290}
+  - component: {fileID: 1249032287}
+  - component: {fileID: 1249032289}
+  - component: {fileID: 1249032288}
+  m_Layer: 0
+  m_Name: Wave (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1249032287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249032286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fd47a50df5aa148915e88e0a82d2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawnData:
+  - {fileID: 1249032289}
+  - {fileID: 1249032288}
+  enemiesAlive: 0
+--- !u!114 &1249032288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249032286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc105c5678f0a94e92f179d6787cadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7602471685547209481, guid: 5c09bd5271c5f1f4987384b01210d546,
+    type: 3}
+  quantity: 3
+--- !u!114 &1249032289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249032286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc105c5678f0a94e92f179d6787cadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 5385429307724504098, guid: b616393851a0c0a4abd523ed5b888777,
+    type: 3}
+  quantity: 3
+--- !u!4 &1249032290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249032286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.045446932, y: 2.6040192, z: -0.28153846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1257049322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6269950441792952867, guid: 44df61e2ed65b584e9f957ebd5d3ca63,
@@ -30909,6 +30999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 1572795870}
+  - {fileID: 1249032287}
   spawnPoints: {fileID: 2115291873}
   timeBetweenWaves: 20
 --- !u!1001 &1779866098
@@ -36915,6 +37006,7 @@ SceneRoots:
   - {fileID: 2115291874}
   - {fileID: 1746920217}
   - {fileID: 1572795867}
+  - {fileID: 1249032290}
   - {fileID: 62979684}
   - {fileID: 547062692}
   - {fileID: 983117281}
