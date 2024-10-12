@@ -2,13 +2,19 @@ version: 2
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 - Assets/HealthOrb/froth.tpsheet
+- Assets/HealthOrb/frothThick.tpsheet
+- Assets/HealthOrb/froththicker.tpsheet
 - Assets/HealthOrb/Health Orb.tpsheet
 textureFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 - Assets/HealthOrb/froth.png
+- Assets/HealthOrb/frothThick.png
+- Assets/HealthOrb/froththicker.png
 - Assets/HealthOrb/Health Orb.png
 normalmapFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
+- 
 - 
 - 
 enableDebugOutput: 0
