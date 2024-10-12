@@ -38,7 +38,7 @@ public class Wave : MonoBehaviour
                 }
                 else if(newEnemy.CompareTag("Imp_Enemy"))
                 {
-                    newEnemy.GetComponent<ImpEnemy>().SetWave(this);
+                    newEnemy.GetComponentInChildren<ImpEnemy>().SetWave(this);
                 }
                 else if(newEnemy.CompareTag("Ghost_Enemy"))
                 {

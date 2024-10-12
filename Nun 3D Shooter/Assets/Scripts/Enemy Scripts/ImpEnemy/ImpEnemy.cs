@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class ImpEnemy : MonoBehaviour
@@ -9,6 +10,7 @@ public class ImpEnemy : MonoBehaviour
     [SerializeField]
     public ShowTextDamage showTextDamage;
     private ImpMovement enemyMovement;
+    public Animator animatorController { get; set; }
 
     public bool IsAttacking { get; set; }
 
@@ -20,6 +22,7 @@ public class ImpEnemy : MonoBehaviour
 
     void Awake()
     {
+        animatorController = GetComponent<Animator>();
         currentMoveSpeed = enemyData.MoveSpeed;
         enemyMovement = GetComponentInParent<ImpMovement>();
         healthCurrency = enemyData.HealthCurrencyAmount;
@@ -35,7 +38,7 @@ public class ImpEnemy : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform)); 
 
         currentHealth -= dmg;
         if(currentHealth <= 0)
@@ -57,15 +60,17 @@ public class ImpEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
+        Destroy(transform.parent.gameObject);
         Destroy(gameObject);
         wave.EnemyDied(currencyAmount);
     }
 
-    private void OnCollisionStay(Collision col)
+    private void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
             IsAttacking = true;
+            animatorController.SetBool("IsAttacking", true);
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 0); // use currentDamage
         }
