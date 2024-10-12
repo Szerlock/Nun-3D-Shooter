@@ -79,7 +79,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 066d79132fa8ff34fb1a5c1548875f06, type: 2}
   pushBackForce: 0
-  gameManager: {fileID: 0}
   corpse: {fileID: 0}
   invincibilityDuration: 0.5
 --- !u!114 &5529571024734665410
@@ -96,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 50
   dashTime: 0.3
+  dashCooldown: 3
 --- !u!114 &3867149388239417298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +113,8 @@ MonoBehaviour:
   weaponToggle: {fileID: 48081271983089492}
   gunController: {fileID: 987575899999507695}
   swordController: {fileID: 7794532326102744249}
+  spamWindow: 1.5
+  lastAttackTime: 0
 --- !u!114 &48081271983089492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,17 +1288,11 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1053185, y: 0.32219216, z: 0.03257222}
-  m_Center: {x: 0.008934528, y: -0.0000001269927, z: -0.0000004773697}
+  m_Size: {x: 1.3210005, y: 0.5426297, z: 0.10662186}
+  m_Center: {x: 0.116774894, y: -0.031261787, z: 0.002066015}
 --- !u!4 &2544616888834140116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1bfa06e891354ce469054c5bf60b621f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2655702014622056511}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2871253457199221660 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -9006549272062162013, guid: 1bfa06e891354ce469054c5bf60b621f,
     type: 3}
   m_PrefabInstance: {fileID: 2655702014622056511}
   m_PrefabAsset: {fileID: 0}
@@ -1945,9 +1941,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: a693789245c90164896e4be9f46d8515, type: 2}
-  bulletPrefab: {fileID: 7570604535680005406, guid: 725e8d4b4c2086b40aa3f0e0ed481984,
-    type: 3}
-  bulletSpawnPoint: {fileID: 2871253457199221660}
+  shotgunShot: {fileID: 0}
+  vfx: {fileID: 0}
+  shotgunShotSpawnPoint: {fileID: 0}
 --- !u!1 &8816427529485105164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6809667800248449075, guid: 1bfa06e891354ce469054c5bf60b621f,

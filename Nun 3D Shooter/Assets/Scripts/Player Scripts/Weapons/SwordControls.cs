@@ -11,6 +11,8 @@ public class SwordControls : MonoBehaviour
     [HideInInspector]
     public Animator animatorSword;
     public BoxCollider swordCollider;
+    [SerializeField]
+    private GameObject vfx;
     //public PlayerMovement pm
 
     //current Stats
@@ -19,11 +21,11 @@ public class SwordControls : MonoBehaviour
 
     void Start()
     {
-        swordCollider.enabled = false;
-        if(swordCollider != null)
-        {
-            Debug.Log("Sword collider found.");
-        }
+        //swordCollider.enabled = false;
+        //if(swordCollider != null)
+        //{
+        //    Debug.Log("Sword collider found.");
+        //}
         animatorSword = GetComponent<Animator>();
         if (weaponData != null)
         {
@@ -35,18 +37,20 @@ public class SwordControls : MonoBehaviour
     {
         //(pm.charactermovement.ismoving)
         StartCoroutine(DeactivateCollider(0.6f));
-        EnableCollider();
+        //EnableCollider();
     }   
 
-    public void EnableCollider()
-    {
-        swordCollider.enabled = true;
-    }
+    //public void EnableCollider()
+    //{
+    //    //swordCollider.enabled = true;
+    //}
 
     public IEnumerator DeactivateCollider(float delay)
     {
+        vfx.SetActive(true);
         yield return new WaitForSecondsRealtime(delay);
-        swordCollider.enabled = false;
+        vfx.SetActive(false);
+        //swordCollider.enabled = false;
     }
 
     protected void OnTriggerEnter(Collider col)
