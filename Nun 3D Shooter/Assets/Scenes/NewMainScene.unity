@@ -1243,6 +1243,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 786188612062044884, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 814574543938522021, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: corpse
@@ -1360,6 +1365,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.0043541677
       objectReference: {fileID: 0}
+    - target: {fileID: 2667974469673689772, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2871253457199221660, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1394,6 +1404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637586380275621229, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3867149388239417298, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
@@ -1610,6 +1625,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.8650954
       objectReference: {fileID: 0}
+    - target: {fileID: 7197215780772390760, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7274641901078492329, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1654,6 +1674,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.864339
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385774036351521118, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456576656499741234, guid: f8bacff460d510742a72a511d76fef5a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8603769523429730767, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
@@ -32300,7 +32330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
