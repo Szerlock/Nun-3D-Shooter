@@ -1207,7 +1207,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meleeWeaponController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1031344862}
     - target: {fileID: 54885042669401061, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1404,7 +1404,7 @@ PrefabInstance:
         type: 3}
       propertyPath: swordController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1031344862}
     - target: {fileID: 3934491479932914441, guid: f8bacff460d510742a72a511d76fef5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

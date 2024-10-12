@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public SwordControls swordController;
 
     [Header("SwordAnim")]
-    public float spamWindow = 1.5f;
+    public float spamWindow = 0.2f;
     public float lastAttackTime = 0;
     private int attackPhase = 0;
 
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animatorCharacter.SetBool("IsSecondAttack", true);
                 swordController.SwordAttack();
-                attackPhase = 0;
+                
                 lastAttackTime = Time.time;
                 StartCoroutine(FinishSecondAttack());
             }
@@ -154,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         animatorCharacter.SetBool("IsSecondAttack", false);
+        attackPhase = 0;
     }
 
     private IEnumerator FinishShooting()
