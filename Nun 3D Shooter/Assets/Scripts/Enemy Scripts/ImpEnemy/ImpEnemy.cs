@@ -8,21 +8,21 @@ public class ImpEnemy : MonoBehaviour
     private Wave wave;
     [SerializeField]
     public ShowTextDamage showTextDamage;
+    private ImpMovement enemyMovement;
 
-    [HideInInspector]
+    public bool IsAttacking { get; set; }
+
     public float currentMoveSpeed;
-    [HideInInspector]
-    public float currentHealth;
-    [HideInInspector]
-    public float currentDamage;
-    [HideInInspector]
-    public float healthCurrency;
+    private float currentHealth;
+    private float currentDamage;
+    private float healthCurrency;
     private int currencyAmount; 
 
     void Awake()
     {
-        healthCurrency = enemyData.HealthCurrencyAmount;
         currentMoveSpeed = enemyData.MoveSpeed;
+        enemyMovement = GetComponentInParent<ImpMovement>();
+        healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
         currencyAmount = enemyData.CurrencyAmount;
@@ -42,6 +42,15 @@ public class ImpEnemy : MonoBehaviour
         {
             StartCoroutine(Kill());
         }
+
+        enemyMovement.enabled = false;
+        StartCoroutine(Stagger());
+    }
+
+    private IEnumerator Stagger()
+    {
+        yield return new WaitForSeconds(1f);
+        enemyMovement.enabled = true;
     }
 
     private IEnumerator Kill()
@@ -56,6 +65,7 @@ public class ImpEnemy : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            IsAttacking = true;
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 0); // use currentDamage
         }

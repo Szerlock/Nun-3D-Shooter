@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,23 +10,22 @@ public class EnemyStats : MonoBehaviour
 
     [SerializeField]
     public ShowTextDamage showTextDamage;
+    private TankMovement enemyMovement;
 
     public bool IsAttacking { get; set; }
 
-    [HideInInspector]
     public float currentMoveSpeed;
-    public float currentHealth;
-    [HideInInspector]
-    public float currentDamage;
-    public int healthCurrency;
-    [HideInInspector]
-    public int currencyAmount;
+    private float currentHealth;
+    private float currentDamage;
+    private float healthCurrency;
+    private int currencyAmount;
 
     void Awake()
     {
+        currentMoveSpeed = enemyData.MoveSpeed;
+        enemyMovement = GetComponent<TankMovement>();
         IsAttacking = false;
         healthCurrency = enemyData.HealthCurrencyAmount;
-        currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
         currencyAmount = enemyData.CurrencyAmount;
@@ -39,12 +39,20 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
-
         currentHealth -= dmg;
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             StartCoroutine(Kill());
         }
+
+        enemyMovement.enabled = false;
+        StartCoroutine(Stagger());
+    }
+
+    private IEnumerator Stagger()
+    {
+        yield return new WaitForSeconds(1f);
+        enemyMovement.enabled = true;
     }
 
     private IEnumerator Kill()

@@ -20,10 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
 
-    [Header("SwordAnim")]
-    public float spamWindow = 0.2f;
-    public float lastAttackTime = 0;
-    private int attackPhase = 0;
 
 
     void Start()
@@ -67,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (!animatorCharacter.GetBool("IsAttacking") && !animatorCharacter.GetBool("IsSecondAttack") && attackPhase != 1)
+        if (!animatorCharacter.GetBool("IsAttacking") && !animatorCharacter.GetBool("IsShooting"))
         {
             // Get input for movement
             float moveX = Input.GetAxis("Horizontal");
@@ -106,12 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (Time.time - lastAttackTime > spamWindow)
-        {
-            attackPhase = 0;
-        }
-
-        if (Input.GetButtonDown("Fire1") && !animatorCharacter.GetBool("IsAttacking"))
+        if (Input.GetButtonDown("Fire1") && !animatorCharacter.GetBool("IsAttacking") && !animatorCharacter.GetBool("IsShooting"))
         {
             animatorCharacter.SetBool("isMoving", false);
 
@@ -120,46 +111,26 @@ public class PlayerMovement : MonoBehaviour
             {
                 animatorCharacter.SetBool("IsShooting", true);
                 gunController.GunFire();
-                lastAttackTime = Time.time;
                 StartCoroutine(FinishShooting());
             }
 
-            else if (attackPhase == 0 && !animatorCharacter.GetBool("IsSecondAttack"))
+            else
             {
                 animatorCharacter.SetBool("IsAttacking", true);
                 swordController.SwordAttack();
-                attackPhase = 1;
-                lastAttackTime = Time.time;
                 StartCoroutine(FinishAttack());
-            }
-
-            else if (attackPhase == 1 && !animatorCharacter.GetBool("IsSecondAttack"))
-            {
-                animatorCharacter.SetBool("IsSecondAttack", true);
-                swordController.SwordAttack();
-                
-                lastAttackTime = Time.time;
-                StartCoroutine(FinishSecondAttack());
             }
         }
     }
-
     private IEnumerator FinishAttack()
     {
-        yield return new WaitForSeconds(0.26f);
+        yield return new WaitForSeconds(0.7f);
         animatorCharacter.SetBool("IsAttacking", false);
-    }
-
-    private IEnumerator FinishSecondAttack()
-    {
-        yield return new WaitForSeconds(0.8f);
-        animatorCharacter.SetBool("IsSecondAttack", false);
-        attackPhase = 0;
     }
 
     private IEnumerator FinishShooting()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         animatorCharacter.SetBool("IsShooting", false);
     }
 }

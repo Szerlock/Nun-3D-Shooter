@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,20 +14,16 @@ public class ExplodingEnemyStats : MonoBehaviour
     [SerializeField]
     public ShowTextDamage showTextDamage;
 
-    [HideInInspector]
     public float currentMoveSpeed;
-    [HideInInspector]
-    public float currentHealth;
-    [HideInInspector]
-    public float currentDamage;
-    private int healthCurrency;
-    [HideInInspector]
-    public int currencyAmount;
+    private float currentHealth;
+    private float currentDamage;
+    private float healthCurrency;
+    private int currencyAmount;
 
     void Awake()
     {
-        healthCurrency = enemyData.HealthCurrencyAmount;
         currentMoveSpeed = enemyData.MoveSpeed;
+        healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
         currencyAmount = enemyData.CurrencyAmount;
@@ -58,7 +55,7 @@ public class ExplodingEnemyStats : MonoBehaviour
         explosionCollider.enabled = false;
 
         wave.EnemyDied(currencyAmount);
-        CurrencyManager.Instance.AddHealthCurrency(healthCurrency);
+        CurrencyManager.Instance.AddHealthCurrency((int)Math.Round(healthCurrency));
         Destroy(gameObject);
     }
 

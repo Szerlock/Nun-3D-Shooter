@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class TankMovement : MonoBehaviour
 {
     EnemyStats enemy;
     Transform player;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponent<EnemyStats>();
         player = FindObjectOfType<PlayerMovement>().transform;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,7 +21,9 @@ public class EnemyMovement : MonoBehaviour
         if (!enemy.IsAttacking)
         {
             transform.LookAt(player.transform);
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
+            Vector3 newPosition = Vector3.MoveTowards(rb.position, player.position, enemy.currentMoveSpeed * Time.deltaTime);
+
+            rb.MovePosition(newPosition);
         }
         else
         {
