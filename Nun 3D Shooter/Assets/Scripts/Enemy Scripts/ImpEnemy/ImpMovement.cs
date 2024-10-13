@@ -35,7 +35,7 @@ public class ImpMovement : MonoBehaviour
     private IEnumerator Attack()
     {
         Unity.Mathematics.Random random = new Unity.Mathematics.Random((uint)System.DateTime.Now.Ticks);
-        enemy.animatorController.SetBool("IsAttacking", false);
+        enemy.animatorController.Play("Attack");
         yield return new WaitForSeconds(random.NextFloat(2f, 8f));
         enemy.IsAttacking = false;
     }

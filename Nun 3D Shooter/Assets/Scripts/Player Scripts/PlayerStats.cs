@@ -54,8 +54,8 @@ public class PlayerStats : MonoBehaviour
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
-
-            if(currentHealth <= 0)
+            HealingOrb.instance.ModifyHealth(-dmg);
+            if (currentHealth <= 0)
             {
                 Kill();
             }
@@ -81,5 +81,6 @@ public class PlayerStats : MonoBehaviour
                 currentHealth = characterData.MaxHealth;
             }
         }
+        HealingOrb.instance.ModifyHealth(amount);
     }
 }

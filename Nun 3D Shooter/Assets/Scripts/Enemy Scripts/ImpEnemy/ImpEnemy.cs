@@ -8,8 +8,9 @@ public class ImpEnemy : MonoBehaviour
     public EnemyScriptableObject enemyData;
     private Wave wave;
     [SerializeField]
-    public ShowTextDamage showTextDamage;
+    public GameObject showTextDamage;
     private ImpMovement enemyMovement;
+
     public Animator animatorController { get; set; }
 
     public bool IsAttacking { get; set; }
@@ -39,6 +40,8 @@ public class ImpEnemy : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         //StartCoroutine(showTextDamage.ShowDamage(dmg, transform)); 
+        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+
 
         currentHealth -= dmg;
         if(currentHealth <= 0)
@@ -60,9 +63,12 @@ public class ImpEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
+        
+        wave.EnemyDied(currencyAmount);
+        CurrencyManager.Instance.AddHealthCurrency((int)System.Math.Round(healthCurrency));
         Destroy(transform.parent.gameObject);
         Destroy(gameObject);
-        wave.EnemyDied(currencyAmount);
+
     }
 
     private void OnTriggerEnter(Collider col)
@@ -70,7 +76,6 @@ public class ImpEnemy : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             IsAttacking = true;
-            animatorController.SetBool("IsAttacking", true);
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 0); // use currentDamage
         }

@@ -12,7 +12,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     private bool isExploding = false;
 
     [SerializeField]
-    public ShowTextDamage showTextDamage;
+    public GameObject showTextDamage;
 
     public float currentMoveSpeed;
     private float currentHealth;
@@ -31,7 +31,9 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+
 
         currentHealth -= dmg;
         if(currentHealth <= 0)

@@ -10,7 +10,7 @@ public class GhostEnemyStats : MonoBehaviour
     public Transform projectileSpawnPoint;
     public Transform playerTransform;
     [SerializeField]
-    public ShowTextDamage showTextDamage;
+    public GameObject showTextDamage;
 
     [HideInInspector]
     public float currentMoveSpeed;
@@ -19,7 +19,7 @@ public class GhostEnemyStats : MonoBehaviour
     [HideInInspector]
     public float currentDamage;
     [HideInInspector]
-    public int healthCurrency;
+    public float healthCurrency;
     [HideInInspector]
     public int currencyAmount;
 
@@ -38,7 +38,9 @@ public class GhostEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+
 
         currentHealth -= dmg;
         if(currentHealth <= 0)
@@ -51,8 +53,10 @@ public class GhostEnemyStats : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        Destroy(gameObject);
         wave.EnemyDied(currencyAmount);
+        CurrencyManager.Instance.AddHealthCurrency((int)System.Math.Round(healthCurrency));
+        Destroy(gameObject);
+
     }
 
     public void ProjectileFire()

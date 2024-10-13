@@ -17,4 +17,4 @@ MonoBehaviour:
   damage: 10
   projectileSpeed: 0
   currencyAmount: 0
-  healthCurrencyAmount: 1
+  healthCurrencyAmount: 10

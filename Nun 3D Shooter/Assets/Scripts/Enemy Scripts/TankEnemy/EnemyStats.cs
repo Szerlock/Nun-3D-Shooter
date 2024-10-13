@@ -9,7 +9,7 @@ public class EnemyStats : MonoBehaviour
     private Wave wave;
 
     [SerializeField]
-    public ShowTextDamage showTextDamage;
+    public GameObject showTextDamage;
     private TankMovement enemyMovement;
 
     public bool IsAttacking { get; set; }
@@ -38,7 +38,9 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+
         currentHealth -= dmg;
         if (currentHealth <= 0)
         {
@@ -60,6 +62,7 @@ public class EnemyStats : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         wave.EnemyDied(currencyAmount);
+        CurrencyManager.Instance.AddHealthCurrency((int)System.Math.Round(healthCurrency));
         Destroy(gameObject);
     }
 
