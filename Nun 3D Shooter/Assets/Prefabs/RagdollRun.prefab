@@ -254,12 +254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 611dbc1a92b7352478acd6143331ee1f, type: 2}
   explosionCollider: {fileID: 2330387175096966673}
-  showTextDamage: {fileID: 4732105586887557899, guid: 42903fc7ae2924b43b960eb22a1bce64,
+  showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
   currentMoveSpeed: 0
-  currentHealth: 0
-  currentDamage: 0
-  currencyAmount: 0
 --- !u!135 &2330387175096966673
 SphereCollider:
   m_ObjectHideFlags: 0

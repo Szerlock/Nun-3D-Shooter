@@ -4,29 +4,16 @@ using UnityEngine;
 
 public class ShowTextDamage : MonoBehaviour
 {
+    public float DestroyTime = 3f;
+    public Vector3 offset = new Vector3(0f, 2f, 0);
+    public Vector3 randomizeIntensity = new Vector3(0.5f, 0f, 0);
 
-    public GameObject damageTextPrefab; // Reference to your TextMeshPro prefab
-    public Canvas canvas; // Reference to the Canvas
-
-    public IEnumerator ShowDamage(float damageAmount, Transform targetTransform)
+    private void Start()
     {
-        // Instantiate the damage text prefab as a child of the canvas
-        GameObject damageText = Instantiate(damageTextPrefab, canvas.transform);
+        Destroy(gameObject, DestroyTime);
 
-        // Get the RectTransform component to position it correctly
-        RectTransform rectTransform = damageText.GetComponent<RectTransform>();
-        
-        // Set the position to be above the target (enemy) character
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position + new Vector3(0, 2, 0));
-        rectTransform.position = screenPosition;
-
-        // Get the TextMeshPro component and set the damage number
-        TMPro.TextMeshProUGUI textComponent = damageText.GetComponent<TMPro.TextMeshProUGUI>();
-        textComponent.text = damageAmount.ToString();
-
-        // Optionally, you can add a fade-out effect here
-        yield return new WaitForSeconds(0.3f);
-        // Fade out and destroy the text (implement if desired)
-        Destroy(damageText);
+        transform.localPosition += offset;
+        Random.Range(-randomizeIntensity.y, randomizeIntensity.y);
+        Random.Range(-randomizeIntensity.z, randomizeIntensity.z);
     }
 }

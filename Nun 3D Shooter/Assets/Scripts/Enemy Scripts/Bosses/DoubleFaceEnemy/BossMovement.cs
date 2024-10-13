@@ -8,44 +8,70 @@ public class BossMovement : MonoBehaviour
     // Start is called before the first frame update
     DoubleFaceStats enemy;
     Transform player;
+    Rigidbody rb;
 
-    public float chargeSpeedMultiplier = 5f;
+    public float chargeSpeedMultiplier = 4f;
     public float chargeDuration = 1f;
-    public float chargeCooldown = 3f;
+    public float chargeCooldown = 5f;
     private float timeBetweenCharges = 0.5f;
     private bool isCharging = false;
     private int chargeCount = 0;
 
+    private float restingTime = 3f;
+    private bool IsResting = false;
+
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         enemy = GetComponent<DoubleFaceStats>();
         player = FindObjectOfType<PlayerMovement>().transform;
-        StartCoroutine(NormalMovement());
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        if(!isCharging)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
-        }
-        
-    }
-
-    private IEnumerator NormalMovement()
     {
-        while (true)
+        if (chargeCooldown > 0)
         {
-            yield return new WaitForSeconds(chargeCooldown);
+            chargeCooldown -= Time.deltaTime;
+        }
+        if(chargeCooldown <= 0 && !isCharging && !IsResting)
+        {
             StartCoroutine(ChargeAtPlayer());
         }
+        if (!isCharging && !IsResting)
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
+            //transform.LookAt(player.transform);
+            //Vector3 newPosition = Vector3.MoveTowards(rb.position, player.position, enemy.currentMoveSpeed * Time.deltaTime);
+            MoveTowardsPlayer();
+            //rb.MovePosition(newPosition);
+        }
+        else if (IsResting)
+        {
+            StartCoroutine(Resting());
+        }
+
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        transform.LookAt(player.transform);
+        Vector3 newPosition = Vector3.MoveTowards(rb.position, player.position, enemy.currentMoveSpeed * Time.deltaTime);
+
+        rb.MovePosition(newPosition);
+    }
+
+
+    private IEnumerator Resting()
+    {
+        Unity.Mathematics.Random random = new Unity.Mathematics.Random((uint)System.DateTime.Now.Ticks);
+        yield return new WaitForSeconds(random.NextFloat(3f, 6f));
+        IsResting = false;
     }
 
     private IEnumerator ChargeAtPlayer()
     {
-        Debug.Log("Charging at player");
         isCharging = true;
         chargeCount = 0;
 
@@ -58,7 +84,6 @@ public class BossMovement : MonoBehaviour
 
             while (Time.time < chargeEndTime)
             {
-                // Move towards the player at a higher speed during the charge
                 transform.position += directionToPlayer * (enemy.currentMoveSpeed * chargeSpeedMultiplier) * Time.deltaTime;
                 yield return null;
             }
@@ -66,6 +91,11 @@ public class BossMovement : MonoBehaviour
             chargeCount++;
             yield return new WaitForSeconds(timeBetweenCharges);
         }
+
+        chargeCooldown = 5f;
         isCharging = false;
+
+        IsResting = true;
+        yield return new WaitForSeconds(restingTime);
     }
 }

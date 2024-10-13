@@ -6,6 +6,9 @@ public class ImpMovement : MonoBehaviour
 {
     ImpEnemy enemy;
     Transform player;
+
+    [SerializeField]
+    public GameObject showTextDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +41,13 @@ public class ImpMovement : MonoBehaviour
         enemy.animatorController.Play("Attack");
         yield return new WaitForSeconds(random.NextFloat(2f, 8f));
         enemy.IsAttacking = false;
+    }
+
+    public void ShowFloatingText(float dmg)
+    {
+        Transform cameraTransform = Camera.main.transform;
+
+        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
+        go.GetComponent<TextMesh>().text = dmg.ToString();
     }
 }

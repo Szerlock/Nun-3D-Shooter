@@ -120,10 +120,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3668917325062971778}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 449233553120007484}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
         type: 3}
@@ -133,6 +129,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1271112446328990138}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7655753222083538690}
   m_SourcePrefab: {fileID: 100100000, guid: e99655105f010c745beecf5a0a642186, type: 3}
 --- !u!1 &9097014357879055164 stripped
 GameObject:
@@ -140,19 +140,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8286200610694323821}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3668917325062971778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9097014357879055164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 615044bb05baaae48aa2f403340b3bab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageTextPrefab: {fileID: 0}
 --- !u!114 &449233553120007484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: b9e1674603a2929499a5642c268460b1, type: 2}
-  showTextDamage: {fileID: 3668917325062971778}
+  showTextDamage: {fileID: 569784095058934194, guid: b11a232983b638141935b38f7922bf52,
+    type: 3}
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
@@ -208,3 +196,30 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.4, z: 0}
+--- !u!54 &7655753222083538690
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097014357879055164}
+  serializedVersion: 4
+  m_Mass: 3.89
+  m_Drag: 4.07
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1

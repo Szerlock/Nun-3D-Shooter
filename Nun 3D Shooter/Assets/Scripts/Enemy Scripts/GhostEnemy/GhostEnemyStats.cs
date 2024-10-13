@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class GhostEnemyStats : MonoBehaviour
     [SerializeField]
     public GameObject showTextDamage;
 
+    private BoxCollider enemyCollider;
+
     [HideInInspector]
     public float currentMoveSpeed;
     [HideInInspector]
@@ -25,6 +28,7 @@ public class GhostEnemyStats : MonoBehaviour
 
     void Awake()
     {
+        enemyCollider = GetComponent<BoxCollider>();
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
@@ -39,8 +43,11 @@ public class GhostEnemyStats : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
-        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
 
+        if (showTextDamage)
+        {
+            ShowFloatingText();
+        }
 
         currentHealth -= dmg;
         if(currentHealth <= 0)
@@ -49,8 +56,18 @@ public class GhostEnemyStats : MonoBehaviour
         }
     }
 
+    private void ShowFloatingText()
+    {
+        Transform cameraTransform = Camera.main.transform;
+
+        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
+        go.GetComponent<TextMesh>().text = currentHealth.ToString();
+    }
+
     private IEnumerator Kill()
     {
+        enemyCollider.enabled = false;
+
         yield return new WaitForSeconds(0.3f);
 
         wave.EnemyDied(currencyAmount);

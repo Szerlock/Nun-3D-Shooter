@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class DoubleFaceStats : MonoBehaviour
 {
+
+    private BossMovement enemyMovement;
     public EnemyScriptableObject enemyData;
     private Wave wave;
     [SerializeField]
     public ShowTextDamage showTextDamage;
+    private CapsuleCollider enemyCollider;
+
+    private HashSet<Bullet> hitBullets = new HashSet<Bullet>();
 
     [HideInInspector]
     public float currentMoveSpeed;
@@ -18,6 +23,8 @@ public class DoubleFaceStats : MonoBehaviour
 
     void Awake()
     {
+        enemyCollider = GetComponent<CapsuleCollider>();
+        enemyMovement = GetComponent<BossMovement>();
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
@@ -30,17 +37,35 @@ public class DoubleFaceStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
+
+        ShowFloatingText(dmg);
 
         currentHealth -= dmg;
         if(currentHealth <= 0)
         {
             StartCoroutine(Kill());
         }
+        enemyMovement.enabled = false;
+        StartCoroutine(Stagger());
+    }
+    private IEnumerator Stagger()
+    {
+        yield return new WaitForSeconds(1f);
+        enemyMovement.enabled = true;
+    }
+
+    private void ShowFloatingText(float dmg)
+    {
+        Transform cameraTransform = Camera.main.transform;
+
+        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
+
+        go.GetComponent<TextMesh>().text = dmg.ToString();
     }
 
     private IEnumerator Kill()
     {
+        enemyCollider.enabled = false;
         yield return new WaitForSeconds(0.3f);
 
         Destroy(gameObject);
@@ -55,5 +80,16 @@ public class DoubleFaceStats : MonoBehaviour
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 5);
         }
+    }
+
+    public bool IsHitBy(Bullet bullet)
+    {
+        if (hitBullets.Contains(bullet))
+        {
+            return true;
+        }
+
+        hitBullets.Add(bullet);
+        return false;
     }
 }

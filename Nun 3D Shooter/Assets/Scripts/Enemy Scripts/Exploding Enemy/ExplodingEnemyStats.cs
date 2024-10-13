@@ -10,6 +10,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     SphereCollider explosionCollider;
     private Wave wave;
     private bool isExploding = false;
+    private CapsuleCollider enemyCollider;
 
     [SerializeField]
     public GameObject showTextDamage;
@@ -22,6 +23,7 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     void Awake()
     {
+        enemyCollider = GetComponent<CapsuleCollider>();
         currentMoveSpeed = enemyData.MoveSpeed;
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
@@ -30,9 +32,8 @@ public class ExplodingEnemyStats : MonoBehaviour
     }
 
     public void TakeDamage(float dmg)
-    {
-        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
-        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+    {        
+        ShowFloatingText(dmg);
 
 
         currentHealth -= dmg;
@@ -42,6 +43,15 @@ public class ExplodingEnemyStats : MonoBehaviour
         }
     }
 
+    private void ShowFloatingText(float dmg)
+    {
+
+        Transform cameraTransform = Camera.main.transform;
+
+        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
+        go.GetComponent<TextMesh>().text = dmg.ToString();
+    }
+
     public void SetWave(Wave wave)
     {
         this.wave = wave;
@@ -49,6 +59,9 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     private IEnumerator Kill(float delay)
     {
+        enemyCollider.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        enemyCollider.enabled = true;
         isExploding = true;
         gameObject.GetComponent<Animator>().SetBool("Explode", true);
         yield return new WaitForSeconds(delay);

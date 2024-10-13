@@ -7,6 +7,7 @@ public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
     private Wave wave;
+    private BoxCollider enemyCollider;
 
     [SerializeField]
     public GameObject showTextDamage;
@@ -22,6 +23,7 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
+        enemyCollider = GetComponent<BoxCollider>();
         currentMoveSpeed = enemyData.MoveSpeed;
         enemyMovement = GetComponent<TankMovement>();
         IsAttacking = false;
@@ -38,8 +40,7 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
-        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+        ShowFloatingText(dmg);
 
         currentHealth -= dmg;
         if (currentHealth <= 0)
@@ -51,6 +52,14 @@ public class EnemyStats : MonoBehaviour
         StartCoroutine(Stagger());
     }
 
+    private void ShowFloatingText(float dmg)
+    {
+        Transform cameraTransform = Camera.main.transform;
+
+        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
+        go.GetComponent<TextMesh>().text = dmg.ToString();
+    }
+
     private IEnumerator Stagger()
     {
         yield return new WaitForSeconds(1f);
@@ -59,6 +68,7 @@ public class EnemyStats : MonoBehaviour
 
     private IEnumerator Kill()
     {
+        enemyCollider.enabled = false;
         yield return new WaitForSeconds(0.3f);
 
         wave.EnemyDied(currencyAmount);

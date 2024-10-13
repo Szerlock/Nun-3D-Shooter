@@ -18,12 +18,9 @@ public class Bullet : MonoBehaviour
             EnemyStats enemy = col.GetComponent<EnemyStats>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+                enemy.TakeDamage(currentDamage);
             }
-            else
-            {
-                Debug.LogError("EnemyStats component not found on enemy object.");
-            }
+
         }
 
         if (col.CompareTag("Exploding_Enemy"))

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  maxHealth: 10
+  maxHealth: 30
   damage: 2
   projectileSpeed: 0
   currencyAmount: 0
+  healthCurrencyAmount: 0

@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e611e90eb8c20f49b21e8c56a48fdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: c7fab40e621fc2d488908c1f11b1a855, type: 2}
-  showTextDamage: {fileID: 0}
-  currentMoveSpeed: 0
+  showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
+    type: 3}
 --- !u!1001 &8463557398081725689
 PrefabInstance:
   m_ObjectHideFlags: 0

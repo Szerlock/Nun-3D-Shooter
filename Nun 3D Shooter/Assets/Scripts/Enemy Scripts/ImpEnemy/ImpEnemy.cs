@@ -7,22 +7,23 @@ public class ImpEnemy : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
     private Wave wave;
-    [SerializeField]
-    public GameObject showTextDamage;
+    
     private ImpMovement enemyMovement;
+    private CapsuleCollider enemyCollider;
 
     public Animator animatorController { get; set; }
 
     public bool IsAttacking { get; set; }
 
     public float currentMoveSpeed;
-    private float currentHealth;
+    public float currentHealth;
     private float currentDamage;
     private float healthCurrency;
     private int currencyAmount; 
 
     void Awake()
     {
+        enemyCollider = GetComponent<CapsuleCollider>();
         animatorController = GetComponent<Animator>();
         currentMoveSpeed = enemyData.MoveSpeed;
         enemyMovement = GetComponentInParent<ImpMovement>();
@@ -39,8 +40,7 @@ public class ImpEnemy : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform)); 
-        Instantiate(showTextDamage, transform.position, Quaternion.identity, transform);
+        enemyMovement.ShowFloatingText(dmg);
 
 
         currentHealth -= dmg;
@@ -61,8 +61,9 @@ public class ImpEnemy : MonoBehaviour
 
     private IEnumerator Kill()
     {
-        yield return new WaitForSeconds(0.3f);
 
+        enemyCollider.enabled = false;
+        yield return new WaitForSeconds(0.3f);
         
         wave.EnemyDied(currencyAmount);
         CurrencyManager.Instance.AddHealthCurrency((int)System.Math.Round(healthCurrency));
