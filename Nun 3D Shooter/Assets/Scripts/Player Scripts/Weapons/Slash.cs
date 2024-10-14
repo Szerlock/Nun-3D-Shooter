@@ -82,4 +82,9 @@ public class Slash : MonoBehaviour
             }
         }
     }
+
+    public void ChangeCurrentDamage(float dmg)
+    {
+        currentDamage += dmg;
+    }
 }

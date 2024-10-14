@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     private float pushBackForce;
     //Current Stats
     private float currentHealth;
+    private float maxHealth;
     [SerializeField]
     Corpse corpse;
 
@@ -24,6 +25,7 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         currentHealth = characterData.MaxHealth;
+        maxHealth = characterData.MaxHealth;
     }
 
     private void Update()
@@ -71,16 +73,25 @@ public class PlayerStats : MonoBehaviour
     public void RestoreHealth(float amount)
     {
         //1 if statement makes it so it only heals if he is below max health
-        if(currentHealth < characterData.MaxHealth)
+        if(currentHealth < maxHealth)
         {
             currentHealth += amount;
 
             //to not overheal over max health
-            if(currentHealth > characterData.MaxHealth)
+            if(currentHealth > maxHealth)
             {
-                currentHealth = characterData.MaxHealth;
+                currentHealth = maxHealth;
             }
         }
         HealingOrb.instance.ModifyHealth(amount);
+    }
+
+    public void IncreaseHealth(int value)
+    {
+        maxHealth += value;
+        if (currentHealth < maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 }

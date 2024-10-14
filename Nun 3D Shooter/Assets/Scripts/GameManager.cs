@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{   
+    CharacterScriptableObject characterData;
     public static GameManager instance { get; private set; }
     [SerializeField]
     private GameObject startMenu;
@@ -61,11 +62,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 
     public bool IsGameStarted()

@@ -6,7 +6,7 @@ public class CurrencyManager : MonoBehaviour
 {
     public static CurrencyManager Instance { get; private set; }
 
-    public int CurrentCurrency { get; private set; }
+    public int CurrentCurrency;
     public int CurrentHealthCurrency { get; private set; }
 
     private float multiplier = 1.5f;
@@ -52,12 +52,14 @@ public class CurrencyManager : MonoBehaviour
         CurrentCurrency += amount;
     }
 
-    public void SpendCurrency(int amount)
+    public bool SpendCurrency(int amount)
     {
         if (CurrentCurrency >= amount)
         {
             CurrentCurrency -= amount;
+            return true;
         }
+        return false;
     }
 
     public void ResetCurrency()

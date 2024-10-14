@@ -17,12 +17,17 @@ public class BossMovement : MonoBehaviour
     private bool isCharging = false;
     private int chargeCount = 0;
 
+    private Animator anim;
+
     private float restingTime = 3f;
     private bool IsResting = false;
+
+    private bool isStaggered = false;
 
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         enemy = GetComponent<DoubleFaceStats>();
         player = FindObjectOfType<PlayerMovement>().transform;
@@ -52,6 +57,14 @@ public class BossMovement : MonoBehaviour
             StartCoroutine(Resting());
         }
 
+        if (enemy.isStaggered)
+        {
+            anim.SetBool("IsMoving", false);
+        }
+        else if (!enemy.isStaggered)
+        {
+            anim.SetBool("IsMoving", true);
+        }
     }
 
     private void MoveTowardsPlayer()
@@ -65,9 +78,11 @@ public class BossMovement : MonoBehaviour
 
     private IEnumerator Resting()
     {
+        anim.SetBool("IsMoving", false);
         Unity.Mathematics.Random random = new Unity.Mathematics.Random((uint)System.DateTime.Now.Ticks);
         yield return new WaitForSeconds(random.NextFloat(3f, 6f));
         IsResting = false;
+        anim.SetBool("IsMoving", true);
     }
 
     private IEnumerator ChargeAtPlayer()
@@ -77,6 +92,12 @@ public class BossMovement : MonoBehaviour
 
         while(chargeCount < 3)
         {
+            if (enemy.isStaggered)
+            {
+                isCharging = false;
+                yield break;
+            }
+
             transform.LookAt(player.transform);
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             float chargeEndTime = Time.time + chargeDuration;

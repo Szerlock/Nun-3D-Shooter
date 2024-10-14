@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage);
+                StartCoroutine(enemy.Stagger());
             }
 
         }
@@ -28,7 +29,7 @@ public class Bullet : MonoBehaviour
             ExplodingEnemyStats enemy = col.GetComponent<ExplodingEnemyStats>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+                enemy.TakeDamage(currentDamage);
             }
             else
             {
@@ -41,7 +42,7 @@ public class Bullet : MonoBehaviour
             GhostEnemyStats enemy = col.GetComponent<GhostEnemyStats>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+                enemy.TakeDamage(currentDamage);
             }
             else
             {
@@ -54,7 +55,8 @@ public class Bullet : MonoBehaviour
             ImpEnemy enemy = col.GetComponent<ImpEnemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+                enemy.TakeDamage(currentDamage);
+
             }
             else
             {
@@ -67,7 +69,9 @@ public class Bullet : MonoBehaviour
             DoubleFaceStats enemy = col.GetComponent<DoubleFaceStats>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+                enemy.TakeDamage(currentDamage);
+                StartCoroutine(enemy.Stagger());
+
             }
             else
             {

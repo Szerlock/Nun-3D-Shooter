@@ -60,7 +60,7 @@ public class EnemyStats : MonoBehaviour
         go.GetComponent<TextMesh>().text = dmg.ToString();
     }
 
-    private IEnumerator Stagger()
+    public IEnumerator Stagger()
     {
         yield return new WaitForSeconds(1f);
         enemyMovement.enabled = true;

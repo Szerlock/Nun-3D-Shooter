@@ -5,10 +5,13 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
-    public GameObject shotgunShot;  // The bullet prefab to instantiate
+    public GameObject shotgunShot;
     public GameObject vfx;
-    public Transform shotgunShotSpawnPoint;  // The point from where the shotgunShot will be spawned
+    public Transform shotgunShotSpawnPoint;
 
+    private int gunCapacity = 4;
+    private float reloadTime = 7f;
+    private int currentGunCapacity = 4;
     //current Stats
     protected float currentDamage;
 
@@ -24,20 +27,59 @@ public class GunController : MonoBehaviour
         {
             Debug.LogError("Weapon data not assigned.");
         }
-    } 
-    
+    }
+
+    private void Update()
+    {
+        if (reloadTime >= 0)
+        {
+            reloadTime -= Time.deltaTime;
+        }
+        if (reloadTime <= 0 && currentGunCapacity < gunCapacity)
+        {
+            currentGunCapacity++;
+
+            // Implement showing icons for gun capacity
+            Debug.Log(currentGunCapacity);
+
+            if (currentGunCapacity < gunCapacity)
+            {
+                reloadTime = 7f;
+            }
+        }
+        else if (currentGunCapacity == gunCapacity)
+        {
+            reloadTime = 7f;
+        }
+    }
+
     public void GunFire()
     {
-    // Instantiate the bullet at the bullet spawn point
+        if (currentGunCapacity > 0)
+        {
+            currentGunCapacity--;
+
+            //Update icons for 1 less bullet capacity
+            Debug.Log(currentGunCapacity);
+            Fire();
+        }
+        else 
+        { 
+            Debug.Log("Out of ammo");
+        }
+    }
+
+    private void Fire()
+    {
         GameObject shotgun = Instantiate(shotgunShot, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);
-        GameObject vfxOBJ = Instantiate(vfx, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);   
+        GameObject vfxOBJ = Instantiate(vfx, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);
         // Set bullet velocity in the direction the player is looking
         Rigidbody rb = shotgun.GetComponent<Rigidbody>();
         rb.velocity = shotgunShotSpawnPoint.forward * weaponData.BulletSpeed;
 
         // Set bullet damage
         Bullet[] bullets = shotgun.GetComponentsInChildren<Bullet>();
-        foreach(Bullet bullet in bullets)
+        foreach (Bullet bullet in bullets)
         {
             if (bullet != null)
             {
@@ -50,5 +92,15 @@ public class GunController : MonoBehaviour
         }
         Destroy(shotgun, 2f);
         Destroy(vfxOBJ, 0.25f);
+    }
+
+    public void ChangeCurrentDamage(float dmg)
+    {
+        currentDamage += dmg;
+    }
+
+    public void IncreaseGunCapacity(int value)
+    {
+        gunCapacity = value;
     }
 }

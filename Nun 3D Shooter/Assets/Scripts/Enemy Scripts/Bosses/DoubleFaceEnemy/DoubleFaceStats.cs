@@ -14,6 +14,8 @@ public class DoubleFaceStats : MonoBehaviour
 
     private HashSet<Bullet> hitBullets = new HashSet<Bullet>();
 
+    public bool isStaggered = false;
+
     [HideInInspector]
     public float currentMoveSpeed;
     [HideInInspector]
@@ -45,13 +47,15 @@ public class DoubleFaceStats : MonoBehaviour
         {
             StartCoroutine(Kill());
         }
-        enemyMovement.enabled = false;
         StartCoroutine(Stagger());
     }
-    private IEnumerator Stagger()
+    public IEnumerator Stagger()
     {
-        yield return new WaitForSeconds(1f);
+        isStaggered = true;
+        enemyMovement.enabled = false;
+        yield return new WaitForSeconds(10f);
         enemyMovement.enabled = true;
+        isStaggered = false;
     }
 
     private void ShowFloatingText(float dmg)

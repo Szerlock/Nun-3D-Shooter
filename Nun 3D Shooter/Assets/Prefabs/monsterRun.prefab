@@ -133,6 +133,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7655753222083538690}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e99655105f010c745beecf5a0a642186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5926415882161952306}
   m_SourcePrefab: {fileID: 100100000, guid: e99655105f010c745beecf5a0a642186, type: 3}
 --- !u!1 &9097014357879055164 stripped
 GameObject:
@@ -170,6 +174,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: b9e1674603a2929499a5642c268460b1, type: 2}
   showTextDamage: {fileID: 569784095058934194, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
+  isStaggered: 0
   currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
@@ -195,7 +200,7 @@ CapsuleCollider:
   m_Radius: 1.66
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.4, z: 0}
+  m_Center: {x: 0, y: 1.79, z: 0}
 --- !u!54 &7655753222083538690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -223,3 +228,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!95 &-5926415882161952306
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097014357879055164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
