@@ -50,8 +50,8 @@ public class PlayerStats : MonoBehaviour
             }
             currentHealth -= dmg;
 
-            Vector3 pushDirection = (transform.position - damageSourcePosition).normalized; // Direction away from the damage source
-            Rigidbody playerRigidbody = GetComponent<Rigidbody>(); // Ensure the player has a Rigidbody
+            Vector3 pushDirection = (transform.position - damageSourcePosition).normalized;
+            Rigidbody playerRigidbody = GetComponent<Rigidbody>();
             playerRigidbody.AddForce(pushDirection * pushBackForce, ForceMode.Impulse);
 
             invincibilityTimer = invincibilityDuration;
