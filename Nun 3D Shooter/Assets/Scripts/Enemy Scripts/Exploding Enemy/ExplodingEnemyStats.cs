@@ -11,6 +11,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     private Wave wave;
     private bool isExploding = false;
     private CapsuleCollider enemyCollider;
+    private HealthBar healthBar;
 
     [SerializeField]
     public GameObject showTextDamage;
@@ -23,6 +24,7 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GetComponentInChildren<HealthBar>();
         enemyCollider = GetComponent<CapsuleCollider>();
         currentMoveSpeed = enemyData.MoveSpeed;
         healthCurrency = enemyData.HealthCurrencyAmount;
@@ -34,7 +36,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     public void TakeDamage(float dmg)
     {        
         ShowFloatingText(dmg);
-
+        healthBar.ReduceHealth(dmg);
 
         currentHealth -= dmg;
         if(currentHealth <= 0)

@@ -13,6 +13,8 @@ public class EnemyStats : MonoBehaviour
     public GameObject showTextDamage;
     private TankMovement enemyMovement;
 
+    private HealthBar healthBar;
+
     public bool IsAttacking { get; set; }
 
     public float currentMoveSpeed;
@@ -23,6 +25,7 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GetComponentInChildren<HealthBar>();
         enemyCollider = GetComponent<BoxCollider>();
         currentMoveSpeed = enemyData.MoveSpeed;
         enemyMovement = GetComponent<TankMovement>();
@@ -41,7 +44,7 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         ShowFloatingText(dmg);
-
+        healthBar.ReduceHealth(dmg);
         currentHealth -= dmg;
         if (currentHealth <= 0)
         {

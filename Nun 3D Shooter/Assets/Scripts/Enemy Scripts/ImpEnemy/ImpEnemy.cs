@@ -15,6 +15,8 @@ public class ImpEnemy : MonoBehaviour
 
     public bool IsAttacking { get; set; }
 
+    private HealthBar healthBar;
+
     public float currentMoveSpeed;
     public float currentHealth;
     private float currentDamage;
@@ -23,6 +25,7 @@ public class ImpEnemy : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GetComponentInChildren<HealthBar>();
         enemyCollider = GetComponent<CapsuleCollider>();
         animatorController = GetComponent<Animator>();
         currentMoveSpeed = enemyData.MoveSpeed;
@@ -41,7 +44,7 @@ public class ImpEnemy : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         enemyMovement.ShowFloatingText(dmg);
-
+        healthBar.ReduceHealth(dmg);
 
         currentHealth -= dmg;
         if(currentHealth <= 0)

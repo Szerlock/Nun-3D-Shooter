@@ -44,10 +44,10 @@ public class PlayerStats : MonoBehaviour
     {
         if(!isInvincible)
         {
-            if (pushBackForce < 1)
-            {
-                return;
-            }
+            //if (pushBackForce < 1)
+            //{
+            //    return;
+            //}
             currentHealth -= dmg;
 
             Vector3 pushDirection = (transform.position - damageSourcePosition).normalized;
