@@ -73,7 +73,7 @@ public class DoubleFaceStats : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         Destroy(gameObject);
-        //wave.EnemyDied();
+        wave.EnemyDied(100);
     }
 
     protected void OnTriggerEnter(Collider col)

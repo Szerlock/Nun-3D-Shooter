@@ -46,11 +46,7 @@ public class BossMovement : MonoBehaviour
         }
         if (!isCharging && !IsResting)
         {
-            //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
-            //transform.LookAt(player.transform);
-            //Vector3 newPosition = Vector3.MoveTowards(rb.position, player.position, enemy.currentMoveSpeed * Time.deltaTime);
             MoveTowardsPlayer();
-            //rb.MovePosition(newPosition);
         }
         else if (IsResting)
         {
