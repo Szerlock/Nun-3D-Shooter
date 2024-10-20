@@ -64,8 +64,6 @@ public class DoubleFaceStats : MonoBehaviour
         {
             nextStage = true;
         }
-
-        StartCoroutine(Stagger());
     }
 
     public bool NextStage()
@@ -99,16 +97,5 @@ public class DoubleFaceStats : MonoBehaviour
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 5);
         }
-    }
-
-    public bool IsHitBy(Bullet bullet)
-    {
-        if (hitBullets.Contains(bullet))
-        {
-            return true;
-        }
-
-        hitBullets.Add(bullet);
-        return false;
     }
 }

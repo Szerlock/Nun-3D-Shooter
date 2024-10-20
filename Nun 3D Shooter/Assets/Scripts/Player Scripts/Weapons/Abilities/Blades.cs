@@ -1,14 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Blades : MonoBehaviour
 {
     private float currentDamage;
+    private float speed;
+    private Transform target;
 
-    public void SetDamage(float damage)
+    public void SetDamage(float damage, float speed)
     {
         this.currentDamage = damage;
+        this.speed = speed;
+    }
+
+    public void SetTarget(Transform targetTransform)
+    {
+        target = targetTransform;
+    }
+
+    private void Update()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+
+        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -19,7 +40,6 @@ public class Bullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage);
-                StartCoroutine(enemy.Stagger());
                 Destroy(gameObject);
             }
 
@@ -73,7 +93,6 @@ public class Bullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage);
-                StartCoroutine(enemy.Stagger());
                 Destroy(gameObject);
             }
             else
@@ -88,7 +107,6 @@ public class Bullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
-                StartCoroutine(enemy.Stagger());
                 Destroy(gameObject);
             }
             else

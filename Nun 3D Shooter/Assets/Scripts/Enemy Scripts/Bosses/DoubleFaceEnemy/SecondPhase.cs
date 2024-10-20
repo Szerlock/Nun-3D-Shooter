@@ -57,10 +57,6 @@ public class SecondPhase : MonoBehaviour
         {
             StartCoroutine(Kill());
         }
-        if (IsHitBy(currentBullet))
-        {
-            StartCoroutine(Stagger());
-        }
     }
 
     public IEnumerator Stagger()
@@ -103,17 +99,5 @@ public class SecondPhase : MonoBehaviour
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 5);
         }
-    }
-
-    public bool IsHitBy(Bullet bullet)
-    {
-        if (hitBullets.Contains(bullet))
-        {
-            return true;
-        }
-
-        currentBullet = bullet;
-        hitBullets.Add(bullet);
-        return false;
     }
 }
