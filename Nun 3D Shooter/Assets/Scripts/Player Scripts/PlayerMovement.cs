@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
     public GameObject spinBlade;
+    public GameObject bladeStorm;
+
+    public Transform MarthyrSpawn;
 
 
     void Start()
@@ -49,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
         { 
             spinBlade.SetActive(true);
             StartCoroutine(DeactivateSpin());
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Instantiate(bladeStorm, MarthyrSpawn.position, MarthyrSpawn.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.R))

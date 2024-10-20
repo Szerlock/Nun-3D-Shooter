@@ -7,7 +7,7 @@ using UnityEngine;
 public class Blades : MonoBehaviour
 {
     private float currentDamage;
-    private float speed;
+    public float speed { get; set; }
     private Transform target;
 
     public void SetDamage(float damage, float speed)
@@ -25,6 +25,10 @@ public class Blades : MonoBehaviour
     {
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
+
+        //Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+        transform.LookAt(target.position);
 
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {

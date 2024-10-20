@@ -20,12 +20,10 @@ public class BladeStorm : MonoBehaviour
     [SerializeField]
     private float bladeSpeed = 10f;
 
-    [SerializeField]
-    private Blades blades;
-
-    private float bladeCooldown = 0.5f;
-    private float nextBladeTime = 0.5f;
+    private float bladeCooldown = 2f;
     private GameObject target;
+
+    private float duration;
     
     private float currentDamage;
     private float speed;
@@ -33,20 +31,33 @@ public class BladeStorm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        duration = weaponData.CoolDownDuration;
         currentDamage = weaponData.Damage;
         speed = weaponData.BulletSpeed;
     }
 
     private void Update()
     {
-        if (bladeCooldown >= 0.5)
+        if (bladeCooldown <= 0)
+        {
+            bladeCooldown = 2f;
+            FindClosestEnemy();
+        }
+        else
         {
             bladeCooldown -= Time.deltaTime;
-            target = FindClosestEnemy();
+        }
+        if (duration >= 0)
+        {
+            duration -= Time.deltaTime;
+        }
+        if (duration <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
-    private GameObject FindClosestEnemy()
+    private void FindClosestEnemy()
     {
         string[] enemyTags = { "Tank_Enemy", "Exploding_Enemy", "Ghost_Enemy", "Imp_Enemy", "DoubleFace_Enemy", "SecondPhase_Enemy" };
 
@@ -67,14 +78,14 @@ public class BladeStorm : MonoBehaviour
                 }
             }
         }
-
-        return closestEnemy;
+        target = closestEnemy;
+        ShootSword();
     }
 
     private void ShootSword()
     {
-        Instantiate(swordProjectile, bladeSpawnPoint.position, target.transform.rotation);
-        blades.SetDamage(currentDamage, speed);
-        blades.SetTarget(target.transform);
+        GameObject sword = Instantiate(swordProjectile, bladeSpawnPoint.position, target.transform.rotation);
+        sword.GetComponent<Blades>().SetDamage(currentDamage, speed);
+        sword.GetComponent<Blades>().SetTarget(target.transform);
     }
 }

@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ae1ad0d2af312142a23027ea5882bf4, type: 3}
-  m_Name: Boss
+  m_Script: {fileID: 11500000, guid: 8784a4141ef170e459469ad31f429564, type: 3}
+  m_Name: Marthyr
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  maxHealth: 100
   damage: 2
-  projectileSpeed: 0
-  currencyAmount: 0
-  healthCurrencyAmount: 0
+  coolDownDuration: 10
+  bulletSpeed: 5
