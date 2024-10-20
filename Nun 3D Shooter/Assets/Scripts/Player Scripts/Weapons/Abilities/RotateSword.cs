@@ -4,33 +4,15 @@ using UnityEngine;
 
 public class RotateSword : MonoBehaviour
 {
-    private Blades blades;
-    private Transform target;
-    private float speed = Blades.speed;
-
-
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        blades = GetComponentInChildren<Blades>();
+        
     }
 
-    public void SetTarget(Transform targetTransform)
+    // Update is called once per frame
+    void Update()
     {
-        target = targetTransform;
-    }
-
-    private void Update()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
-
-        //Quaternion lookRotation = Quaternion.LookRotation(direction);
-
-        transform.LookAt(target.position);
-
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class Blades : MonoBehaviour
 {
     private float currentDamage;
-    public float speed { get; set; }
+    private float speed;
     private Transform target;
 
     public void SetDamage(float damage, float speed)
