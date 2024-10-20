@@ -51,6 +51,8 @@ public class SecondPhase : MonoBehaviour
         ShowFloatingText(dmg);
 
         currentHealth -= dmg;
+        healthBar.ReduceHealth(dmg);
+
         if (currentHealth <= 0)
         {
             StartCoroutine(Kill());
