@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
-
+    public GameObject spinBlade;
 
 
     void Start()
@@ -45,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
             weaponToggle.ToggleWeapons();
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        { 
+            spinBlade.SetActive(true);
+            StartCoroutine(DeactivateSpin());
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (playerStats == null)
@@ -59,6 +65,12 @@ public class PlayerMovement : MonoBehaviour
             HandleAttack();
         }
         HandleMovement();
+    }
+
+    private IEnumerator DeactivateSpin()
+    {
+        yield return new WaitForSeconds(2f);
+        spinBlade.SetActive(false);
     }
 
     private void HandleMovement()
