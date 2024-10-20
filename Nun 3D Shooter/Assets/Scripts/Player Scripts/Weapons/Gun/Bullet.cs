@@ -78,6 +78,19 @@ public class Bullet : MonoBehaviour
                 Debug.LogError("DoubleFaceStats component not found on enemy object.");
             }
         }
+
+        if (col.CompareTag("SecondPhase_Enemy"))
+        {
+            SecondPhase enemy = col.GetComponent<SecondPhase>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
+            }
+            else
+            {
+                Debug.LogError("SecondPhase component not found on enemy object.");
+            }
+        }
         Destroy(gameObject);
     }
 }

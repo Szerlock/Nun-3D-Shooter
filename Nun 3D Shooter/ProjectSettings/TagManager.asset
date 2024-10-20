@@ -13,6 +13,7 @@ TagManager:
   - Ghost_Enemy
   - Imp_Enemy
   - DoubleFace_Enemy
+  - SecondPhase_Enemy
   layers:
   - Default
   - TransparentFX

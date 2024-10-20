@@ -14,11 +14,6 @@ public class BossHealthBar : MonoBehaviour
     public float currentHealth;
     private float lerpSpeed = 0.2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentHealth = maxHealth;
-    }
 
     // Update is called once per frame
     void Update()
