@@ -3,14 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleFaceStats : MonoBehaviour
+public class SecondPhase : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject secondPhase;
 
-    private Animator anim;
-
-    private BossMovement enemyMovement;
+    private SecondPhaseMovement enemyMovement;
     public EnemyScriptableObject enemyData;
     private Wave wave;
     [SerializeField]
@@ -27,18 +23,18 @@ public class DoubleFaceStats : MonoBehaviour
     [HideInInspector]
     public float currentDamage;
 
-    private float maxHealth;
-    private bool nextStage = false;
+    private bool nextStage = true;
+
+    private Bullet currentBullet;
+
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
-        enemyMovement = GetComponent<BossMovement>();
+        enemyMovement = GetComponent<SecondPhaseMovement>();
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
-        maxHealth = currentHealth;
     }
 
     public void SetWave(Wave wave)
@@ -52,32 +48,14 @@ public class DoubleFaceStats : MonoBehaviour
         ShowFloatingText(dmg);
 
         currentHealth -= dmg;
-        if(currentHealth <= maxHealth/2)
+        if (currentHealth <= 0)
         {
-            //StartCoroutine(Kill());
-            StartCoroutine(ActivateSecondPhase());
+            StartCoroutine(Kill());
         }
-
-        if (currentHealth <= maxHealth/2)
+        if (IsHitBy(currentBullet))
         {
-            nextStage = true;
-            NextStage();
+            StartCoroutine(Stagger());
         }
-
-        StartCoroutine(Stagger());
-    }
-
-    private IEnumerator ActivateSecondPhase()
-    {
-        anim.SetBool("Change", true);
-        yield return new WaitForSeconds(0.45f);
-        Instantiate(secondPhase, transform.position, transform.rotation);
-        this.enabled = false;
-    }
-
-    public bool NextStage()
-    {
-        return nextStage;
     }
 
     public IEnumerator Stagger()
@@ -89,6 +67,11 @@ public class DoubleFaceStats : MonoBehaviour
         isStaggered = false;
     }
 
+    public bool NextStage()
+    {
+        return nextStage;
+    }
+
     private void ShowFloatingText(float dmg)
     {
         Transform cameraTransform = Camera.main.transform;
@@ -98,14 +81,14 @@ public class DoubleFaceStats : MonoBehaviour
         go.GetComponent<TextMesh>().text = dmg.ToString();
     }
 
-    //private IEnumerator Kill()
-    //{
-    //    enemyCollider.enabled = false;
-    //    yield return new WaitForSeconds(0.3f);
+    private IEnumerator Kill()
+    {
+        enemyCollider.enabled = false;
+        yield return new WaitForSeconds(0.3f);
 
-    //    Destroy(gameObject);
-    //    wave.EnemyDied(100);
-    //}
+        Destroy(gameObject);
+        wave.EnemyDied(100);
+    }
 
     protected void OnTriggerEnter(Collider col)
     {
@@ -124,6 +107,7 @@ public class DoubleFaceStats : MonoBehaviour
             return true;
         }
 
+        currentBullet = bullet;
         hitBullets.Add(bullet);
         return false;
     }
