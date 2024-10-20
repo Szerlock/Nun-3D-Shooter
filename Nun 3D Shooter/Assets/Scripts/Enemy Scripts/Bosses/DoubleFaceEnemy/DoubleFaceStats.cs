@@ -15,6 +15,9 @@ public class DoubleFaceStats : MonoBehaviour
     public ShowTextDamage showTextDamage;
     private CapsuleCollider enemyCollider;
 
+    private BossHealthBar healthBar;
+
+
     private HashSet<Bullet> hitBullets = new HashSet<Bullet>();
 
     public bool isStaggered = false;
@@ -30,6 +33,7 @@ public class DoubleFaceStats : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GetComponentInChildren<BossHealthBar>();
         anim = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
         enemyMovement = GetComponent<BossMovement>();
@@ -53,7 +57,7 @@ public class DoubleFaceStats : MonoBehaviour
             currentHealth = 50;
             return;
         }
-
+        healthBar.ReduceHealth(dmg);
         currentHealth -= dmg;
 
         if (currentHealth <= maxHealth/2)

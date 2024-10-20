@@ -13,6 +13,8 @@ public class SecondPhase : MonoBehaviour
     public ShowTextDamage showTextDamage;
     private CapsuleCollider enemyCollider;
 
+    private BossHealthBar healthBar;
+
     private HashSet<Bullet> hitBullets = new HashSet<Bullet>();
 
     public bool isStaggered = false;
@@ -30,10 +32,11 @@ public class SecondPhase : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GetComponentInChildren<BossHealthBar>();
         enemyCollider = GetComponent<CapsuleCollider>();
         enemyMovement = GetComponent<SecondPhaseMovement>();
         currentMoveSpeed = enemyData.MoveSpeed;
-        currentHealth = enemyData.MaxHealth;
+        currentHealth = 50f;
         currentDamage = enemyData.Damage;
     }
 

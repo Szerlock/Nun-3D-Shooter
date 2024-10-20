@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SecondPhaseBoss
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  maxHealth: 50
+  maxHealth: 100
   damage: 2
   projectileSpeed: 0
   currencyAmount: 0
