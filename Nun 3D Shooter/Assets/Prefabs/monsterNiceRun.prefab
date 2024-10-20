@@ -118,6 +118,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 51218646258518379}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 03c2ad805f0b77d46b203536d7554b4c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8930570478041500308}
   m_SourcePrefab: {fileID: 100100000, guid: 03c2ad805f0b77d46b203536d7554b4c, type: 3}
 --- !u!1 &2923608554847042476 stripped
 GameObject:
@@ -160,9 +164,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491b1cd48f2dfca4fa9d27b8f49b8fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeSpot: {fileID: 1782342602792864127, guid: 56f63da6241b17d40aea6e523f129f4f,
+    type: 3}
   chargeSpeedMultiplier: 4
   chargeDuration: 1
   chargeCooldown: 5
+  spawnNewBoss: {x: 1.5, y: 16.6, z: 12.4}
+  secondPhase: {fileID: 9097014357879055164, guid: aee1f0c7918502043a7796969c639a6a,
+    type: 3}
 --- !u!114 &7511209713043991725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +212,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &-8930570478041500308
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2923608554847042476}
+  serializedVersion: 4
+  m_Mass: 5
+  m_Drag: 5
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0

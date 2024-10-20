@@ -10,6 +10,9 @@ public class BossMovement : MonoBehaviour
     Transform player;
     Rigidbody rb;
 
+
+    public Transform changeSpot;
+
     public float chargeSpeedMultiplier = 4f;
     public float chargeDuration = 1f;
     public float chargeCooldown = 5f;
@@ -23,6 +26,12 @@ public class BossMovement : MonoBehaviour
     private bool IsResting = false;
 
     private bool isStaggered = false;
+
+    [SerializeField]
+    public Vector3 spawnNewBoss;
+
+    [SerializeField]
+    public GameObject secondPhase;
 
 
     void Start()
@@ -47,14 +56,11 @@ public class BossMovement : MonoBehaviour
                 StartCoroutine(ChargeAtPlayer());
             }
         }
-        else if (enemy.NextStage())
+        if (enemy.NextStage())
         {
-            if (chargeCooldown <= 0 && !isCharging && !IsResting)
-            {
-                StartCoroutine(ChargeNonStop());
-            }
+            StartCoroutine(MoveTowardsChangeSpot());
         }
-        if (!isCharging && !IsResting)
+        else if (!isCharging && !IsResting)
         {
             MoveTowardsPlayer();
         }
@@ -71,6 +77,17 @@ public class BossMovement : MonoBehaviour
         {
             anim.SetBool("IsMoving", true);
         }
+    }
+
+    private IEnumerator MoveTowardsChangeSpot()
+    {
+        transform.LookAt(changeSpot.transform);
+        Vector3 newPosition = Vector3.MoveTowards(rb.position, changeSpot.position, enemy.currentMoveSpeed * 5 * Time.deltaTime);
+
+        rb.MovePosition(newPosition);
+        yield return new WaitForSeconds(3f);
+        Instantiate(secondPhase, spawnNewBoss, transform.rotation);
+        Destroy(gameObject);
     }
 
     private void MoveTowardsPlayer()
@@ -123,40 +140,5 @@ public class BossMovement : MonoBehaviour
         isCharging = false;
         IsResting = true;
         yield return new WaitForSeconds(restingTime);
-    }
-
-    private IEnumerator ChargeNonStop()
-    {
-        chargeCount = 0;
-
-        while (chargeCount < 3)
-        {
-            isCharging = true;
-            chargeCount = 0;
-
-            while (chargeCount < 3)
-            {
-                if (enemy.isStaggered)
-                {
-                    isCharging = false;
-                    yield break;
-                }
-
-                transform.LookAt(player.transform);
-                Vector3 directionToPlayer = (player.position - transform.position).normalized;
-                float chargeEndTime = Time.time + chargeDuration;
-
-
-                while (Time.time < chargeEndTime)
-                {
-                    transform.position += directionToPlayer * (enemy.currentMoveSpeed * chargeSpeedMultiplier) * Time.deltaTime;
-                    yield return null;
-                }
-
-                chargeCount++;
-                yield return new WaitForSeconds(timeBetweenCharges);
-                chargeCount = 0;
-            }
-        }
     }
 }

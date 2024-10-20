@@ -6,7 +6,7 @@ using UnityEngine;
 public class SecondPhaseMovement : MonoBehaviour
 {
     // Start is called before the first frame update
-    DoubleFaceStats enemy;
+    SecondPhase enemy;
     Transform player;
     Rigidbody rb;
 
@@ -29,7 +29,7 @@ public class SecondPhaseMovement : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        enemy = GetComponent<DoubleFaceStats>();
+        enemy = GetComponent<SecondPhase>();
         player = FindObjectOfType<PlayerMovement>().transform;
     }
 
@@ -72,6 +72,7 @@ public class SecondPhaseMovement : MonoBehaviour
             anim.SetBool("IsMoving", true);
         }
     }
+
 
     private void MoveTowardsPlayer()
     {

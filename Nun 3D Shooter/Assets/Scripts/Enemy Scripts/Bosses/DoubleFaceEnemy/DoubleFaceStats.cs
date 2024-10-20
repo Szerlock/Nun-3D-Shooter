@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class DoubleFaceStats : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject secondPhase;
 
     private Animator anim;
 
@@ -50,29 +48,20 @@ public class DoubleFaceStats : MonoBehaviour
     {
 
         ShowFloatingText(dmg);
+        if (currentHealth <= 50)
+        {
+            currentHealth = 50;
+            return;
+        }
 
         currentHealth -= dmg;
-        if(currentHealth <= maxHealth/2)
-        {
-            //StartCoroutine(Kill());
-            StartCoroutine(ActivateSecondPhase());
-        }
 
         if (currentHealth <= maxHealth/2)
         {
             nextStage = true;
-            NextStage();
         }
 
         StartCoroutine(Stagger());
-    }
-
-    private IEnumerator ActivateSecondPhase()
-    {
-        anim.SetBool("Change", true);
-        yield return new WaitForSeconds(0.45f);
-        Instantiate(secondPhase, transform.position, transform.rotation);
-        this.enabled = false;
     }
 
     public bool NextStage()
@@ -97,15 +86,6 @@ public class DoubleFaceStats : MonoBehaviour
 
         go.GetComponent<TextMesh>().text = dmg.ToString();
     }
-
-    //private IEnumerator Kill()
-    //{
-    //    enemyCollider.enabled = false;
-    //    yield return new WaitForSeconds(0.3f);
-
-    //    Destroy(gameObject);
-    //    wave.EnemyDied(100);
-    //}
 
     protected void OnTriggerEnter(Collider col)
     {
