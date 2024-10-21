@@ -9,10 +9,14 @@ public class Dashing : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
     public float dashCooldown = 3f;
+    private SphereCollider sphereCollider;
+
+    private static float damageIncrease = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        sphereCollider = GetComponentInChildren<SphereCollider>();
         movementScript = GetComponent<PlayerMovement>();
     }
 
@@ -32,8 +36,8 @@ public class Dashing : MonoBehaviour
     public IEnumerator Dash()
     {
         float startTime = Time.time;
-        movementScript.moveSpeed = dashSpeed; // Set the speed for the dash
-
+        movementScript.moveSpeed = dashSpeed;
+        sphereCollider.enabled = true;
         while (Time.time < startTime + dashTime)
         {
             // Move with dash speed
@@ -45,5 +49,16 @@ public class Dashing : MonoBehaviour
         // Reset the moveSpeed to default speed after dashing
         movementScript.ResetMoveSpeed();
         dashCooldown = 3f;
+        sphereCollider.enabled = false;
+    }
+
+    public float GetDamage()
+    {
+        return damageIncrease;
+    }
+
+    public void IncreaseDamage(float damage)
+    {
+        damageIncrease *= (1 + damage);
     }
 }
