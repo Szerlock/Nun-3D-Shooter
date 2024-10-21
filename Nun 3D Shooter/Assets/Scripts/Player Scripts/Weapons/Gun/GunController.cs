@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     private int gunCapacity = 7;
     [SerializeField]
     private float reloadTime = 15f;
-    private int currentGunCapacity = 7;
+    public int currentGunCapacity { get; set; } = 7;
 
     [SerializeField]
     public TextMeshProUGUI text;

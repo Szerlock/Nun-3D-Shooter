@@ -138,9 +138,12 @@ public class PlayerMovement : MonoBehaviour
             //Fix Gun animation
             if (weaponToggle.isGunActive)
             {
-                animatorCharacter.SetBool("IsShooting", true);
-                gunController.GunFire();
-                StartCoroutine(FinishShooting());
+                if (gunController.currentGunCapacity >= 1)
+                {
+                    animatorCharacter.SetBool("IsShooting", true);
+                    gunController.GunFire();
+                    StartCoroutine(FinishShooting());
+                }
             }
 
             else
