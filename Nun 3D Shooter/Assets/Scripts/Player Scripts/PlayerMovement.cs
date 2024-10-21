@@ -19,7 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public WeaponToggle weaponToggle;  // Reference to the WeaponToggle script
     public GunController gunController;  // Reference to the GunController script
     public SwordControls swordController;
+    
     public GameObject spinBlade;
+    public GameObject colliderSpin;
+
     public GameObject bladeStorm;
 
     public Transform MarthyrSpawn;
@@ -51,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         { 
             spinBlade.SetActive(true);
+            colliderSpin.SetActive(true);
+
             StartCoroutine(DeactivateSpin());
         }
 
@@ -79,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         spinBlade.SetActive(false);
+        colliderSpin.SetActive(false);
     }
 
     private void HandleMovement()
