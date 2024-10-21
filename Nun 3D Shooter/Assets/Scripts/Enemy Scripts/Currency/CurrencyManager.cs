@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
@@ -9,8 +10,15 @@ public class CurrencyManager : MonoBehaviour
     public int CurrentCurrency;
     public int CurrentHealthCurrency { get; private set; }
 
+    public int CurrentHealthPotions { get; private set; }
+
+
+    public TextMeshProUGUI HealthPotionText;
+
     private void Awake()
     {
+        HealthPotionText.text = string.Empty;
+
         if (Instance == null)
         {
             Instance = this;
@@ -24,15 +32,28 @@ public class CurrencyManager : MonoBehaviour
 
     public void AddHealthCurrency(int amount)
     {
+        if (CurrentHealthPotions == 15) 
+        {
+            return;
+        }
         HealingIcon.instance.ModifyHealth(amount);
         CurrentHealthCurrency += amount;
-    }
+        if (CurrentHealthCurrency >= 10)
+        { 
+            CurrentHealthCurrency -= 10;
+            CurrentHealthPotions++;
+            HealthPotionText.text = CurrentHealthPotions.ToString();
 
-    public int SpendHealthCurrency()
-    {
-        int temp = CurrentHealthCurrency;
-        CurrentHealthCurrency = 0;
-        return temp;
+            // If there's remaining currency, update the health icon
+            if (CurrentHealthCurrency > 0)
+            { 
+                HealingIcon.instance.ModifyHealth(CurrentHealthCurrency);
+            }
+            else 
+            { 
+                HealingIcon.instance.ModifyHealth(0);
+            }
+        }
     }
 
     public void AddCurrency(int amount)
@@ -48,6 +69,12 @@ public class CurrencyManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void SpendHealthPotion()
+    {
+        CurrentHealthPotions--;
+        HealthPotionText.text = CurrentHealthPotions.ToString();
     }
 
     public void ResetCurrency()

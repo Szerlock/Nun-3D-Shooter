@@ -17,57 +17,87 @@ public class HealingOrb : MonoBehaviour
         healthSlider = GetComponent<Slider>();
     }
 
+    //public void ModifyHealth(float amount)
+    //{
+
+    //    // Apply the healing or damage
+    //    healthSlider.value += amount;
+
+    //    if (healthSlider.value <= 0)
+    //    {
+    //        healthSlider.value = 0;
+    //    }
+
+    //    // Ensure the health stays within the valid range (from 0 to 1)
+    //    healthSlider.value = Mathf.Clamp(healthSlider.value, 0, healthSlider.maxValue);
+
+    //    // Calculate target health as the current value plus a specific amount, ensuring it doesn't exceed 1
+    //    float targetHealth = healthSlider.value + amount;
+
+    //    // If health isn't full and the amount is positive (i.e., healing), refill
+    //    if (amount > 0)
+    //    {
+    //        refilling = true;
+    //        StartCoroutine(RefillHealthOverTime(targetHealth));
+    //    }
+    //    else
+    //    {
+    //        refilling = false;
+    //        StopAllCoroutines();
+    //    }
+    //}
+
+    //// Coroutine to gradually refill health over time
+    //private IEnumerator RefillHealthOverTime(float targetHealth)
+    //{
+    //    while (refilling)
+    //    {
+    //        // Refill health at the defined refill speed
+    //        healthSlider.value += refillSpeed * Time.deltaTime;
+
+    //        // Ensure the health value doesn't exceed the target health
+    //        if (healthSlider.value >= targetHealth)
+    //        {
+    //            healthSlider.value = targetHealth; // Set to target health
+    //            refilling = false; // Stop refilling once target is reached
+    //        }
+
+    //        // Ensure the health value doesn't go below 0 or exceed 1
+    //        healthSlider.value = Mathf.Clamp(healthSlider.value, 0, healthSlider.maxValue);
+
+    //        // Wait for the next frame before continuing
+    //        yield return null;
+    //    }
+    //}
     public void ModifyHealth(float amount)
     {
-
-        // Apply the healing or damage
-        healthSlider.value += amount;
-
-        if (healthSlider.value <= 0)
+        if (amount < 0)
         {
-            healthSlider.value = 0;
+            float targetHealth = healthSlider.value - (-1 * amount);
+            StartCoroutine(SmoothSlideToValue(targetHealth, 0.5f));
+            return;
         }
 
-        // Ensure the health stays within the valid range (from 0 to 1)
-        healthSlider.value = Mathf.Clamp(healthSlider.value, 0, healthSlider.maxValue);
-
-        // Calculate target health as the current value plus a specific amount, ensuring it doesn't exceed 1
-        float targetHealth = healthSlider.value + amount;
-
-        // If health isn't full and the amount is positive (i.e., healing), refill
         if (amount > 0)
         {
-            refilling = true;
-            StartCoroutine(RefillHealthOverTime(targetHealth));
-        }
-        else
-        {
-            refilling = false;
-            StopAllCoroutines();
+            float targetHealth = healthSlider.value + amount;
+            StartCoroutine(SmoothSlideToValue(targetHealth, 0.5f));
         }
     }
 
-    // Coroutine to gradually refill health over time
-    private IEnumerator RefillHealthOverTime(float targetHealth)
+    private IEnumerator SmoothSlideToValue(float targetValue, float duration)
     {
-        while (refilling)
+        float startValue = healthSlider.value;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
         {
-            // Refill health at the defined refill speed
-            healthSlider.value += refillSpeed * Time.deltaTime;
-
-            // Ensure the health value doesn't exceed the target health
-            if (healthSlider.value >= targetHealth)
-            {
-                healthSlider.value = targetHealth; // Set to target health
-                refilling = false; // Stop refilling once target is reached
-            }
-
-            // Ensure the health value doesn't go below 0 or exceed 1
-            healthSlider.value = Mathf.Clamp(healthSlider.value, 0, healthSlider.maxValue);
-
-            // Wait for the next frame before continuing
+            healthSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        healthSlider.value = targetValue;
     }
 
     public void IncreaseMaxValue(float value)

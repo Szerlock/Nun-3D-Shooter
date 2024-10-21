@@ -98,11 +98,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (playerStats == null)
+            if (CurrencyManager.Instance.CurrentHealthPotions > 0)
             {
-                Debug.LogError("PlayerStats not found.");
+                CurrencyManager.Instance.SpendHealthPotion();
+                playerStats.RestoreHealth(10);
             }
-            playerStats.RestoreHealth(CurrencyManager.Instance.SpendHealthCurrency());
         }
 
         if (GameManager.instance.IsGameStarted())
