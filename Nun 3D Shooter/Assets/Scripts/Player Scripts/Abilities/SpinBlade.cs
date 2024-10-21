@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpinBlade : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
-    private float frameAttackSpeed = 0.2f;
+    private float frameAttackSpeed = 0.1f;
     private float currentDamage;
 
     private void Start()
@@ -19,6 +19,22 @@ public class SpinBlade : MonoBehaviour
     }
 
     protected void OnTriggerEnter(Collider col)
+    {
+        if (frameAttackSpeed <= 0)
+        {
+            ApplyDamage(col);
+        }
+    }
+
+    protected void OnTriggerStay(Collider col)
+    {
+        if (frameAttackSpeed <= 0)
+        {
+            ApplyDamage(col);
+            frameAttackSpeed = 0.2f;
+        }
+    }
+    protected void ApplyDamage(Collider col)
     {
         if (frameAttackSpeed <= 0)
         {
@@ -100,7 +116,6 @@ public class SpinBlade : MonoBehaviour
                 }
             }
         }
-        frameAttackSpeed = 0.2f;
     }
 
     public void ChangeCurrentDamage(float dmg)
