@@ -18,20 +18,25 @@ public class SpinBlade : MonoBehaviour
         frameAttackSpeed -= Time.deltaTime;
     }
 
-    protected void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider col)
     {
-        if (frameAttackSpeed <= 0)
+        if (col.CompareTag("Tank_Enemy") || col.CompareTag("Exploding_Enemy") || col.CompareTag("Ghost_Enemy") ||
+            col.CompareTag("Imp_Enemy") || col.CompareTag("DoubleFace_Enemy") || col.CompareTag("SecondPhase_Enemy"))
         {
             ApplyDamage(col);
         }
     }
 
-    protected void OnTriggerStay(Collider col)
+    private void OnTriggerStay(Collider col)
     {
-        if (frameAttackSpeed <= 0)
+        if (col.CompareTag("Tank_Enemy") || col.CompareTag("Exploding_Enemy") || col.CompareTag("Ghost_Enemy") ||
+            col.CompareTag("Imp_Enemy") || col.CompareTag("DoubleFace_Enemy") || col.CompareTag("SecondPhase_Enemy"))
         {
-            ApplyDamage(col);
-            frameAttackSpeed = 0.2f;
+            if (frameAttackSpeed <= 0)
+            {
+                ApplyDamage(col);
+                frameAttackSpeed = 0.2f;
+            }
         }
     }
     protected void ApplyDamage(Collider col)
