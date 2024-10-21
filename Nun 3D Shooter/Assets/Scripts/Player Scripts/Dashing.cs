@@ -9,7 +9,8 @@ public class Dashing : MonoBehaviour
 
     public float dashSpeed;
     public float dashTime;
-    public float dashCooldown = 6f;
+    private float dashCooldown = 0f;
+    public static float dashCooldownTime = 6f;
     private SphereCollider sphereCollider;
 
     private static float damageIncrease = 0;
@@ -30,7 +31,7 @@ public class Dashing : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-        if(dashCooldown > 0)
+        if(dashCooldown > 0 && GameManager.instance.IsGameStarted())
         {
             dashCooldown -= Time.deltaTime;
 
@@ -57,7 +58,7 @@ public class Dashing : MonoBehaviour
 
         // Reset the moveSpeed to default speed after dashing
         movementScript.ResetMoveSpeed();
-        dashCooldown = 3f;
+        dashCooldown = dashCooldownTime;
         sphereCollider.enabled = false;
     }
 
@@ -78,6 +79,6 @@ public class Dashing : MonoBehaviour
 
     public void DecreaseCooldown(float value)
     {
-        dashCooldown -= value;
+        dashCooldownTime -= value;
     }
 }
