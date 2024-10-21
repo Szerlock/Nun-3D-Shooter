@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GunController : MonoBehaviour
@@ -9,10 +10,15 @@ public class GunController : MonoBehaviour
     public GameObject vfx;
     public Transform shotgunShotSpawnPoint;
 
-    private int gunCapacity = 4;
-    private float reloadTime = 7f;
-    private int currentGunCapacity = 4;
-    //current Stats
+    private int gunCapacity = 7;
+    [SerializeField]
+    private float reloadTime = 15f;
+    private int currentGunCapacity = 7;
+
+    [SerializeField]
+    public TextMeshProUGUI text;
+
+    [SerializeField]
     protected float currentDamage;
 
 
@@ -39,17 +45,16 @@ public class GunController : MonoBehaviour
         {
             currentGunCapacity++;
 
-            // Implement showing icons for gun capacity
-            Debug.Log(currentGunCapacity);
+            text.text = currentGunCapacity.ToString();
 
             if (currentGunCapacity < gunCapacity)
             {
-                reloadTime = 7f;
+                reloadTime = 15f;
             }
         }
         else if (currentGunCapacity == gunCapacity)
         {
-            reloadTime = 7f;
+            reloadTime = 15f;
         }
     }
 
@@ -59,13 +64,8 @@ public class GunController : MonoBehaviour
         {
             currentGunCapacity--;
 
-            //Update icons for 1 less bullet capacity
-            Debug.Log(currentGunCapacity);
+            text.text = currentGunCapacity.ToString();
             Fire();
-        }
-        else
-        {
-            Debug.Log("Out of ammo");
         }
     }
 
@@ -73,11 +73,9 @@ public class GunController : MonoBehaviour
     {
         GameObject shotgun = Instantiate(shotgunShot, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);
         GameObject vfxOBJ = Instantiate(vfx, shotgunShotSpawnPoint.position, shotgunShotSpawnPoint.rotation);
-        // Set bullet velocity in the direction the player is looking
         Rigidbody rb = shotgun.GetComponent<Rigidbody>();
         rb.velocity = shotgunShotSpawnPoint.forward * weaponData.BulletSpeed;
 
-        // Set bullet damage
         Bullet[] bullets = shotgun.GetComponentsInChildren<Bullet>();
         foreach (Bullet bullet in bullets)
         {

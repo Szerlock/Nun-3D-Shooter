@@ -33,7 +33,7 @@ public class UpgradeCanvas : MonoBehaviour
     private PlayerMovement bladeSpinDuration;
 
     private List<int> gunUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
-    private List<int> gunReloadUpgrades = new List<int> { 1, 1, 1, 1, 1 };
+    private List<int> gunReloadUpgrades = new List<int> { 1, 1, 2, 2, 2 };
 
     private List<int> damageUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
     private List<float> damageUpgrades = new List<float> { 0.05f, 0.10f, 0.15f, 0.20f, 0.25f };
@@ -50,6 +50,7 @@ public class UpgradeCanvas : MonoBehaviour
     private List<int> bladeStormUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
     private List<int> bladeStormDamageUpgrades = new List<int> { 1, 1, 1, 1, 1 };
 
+    [SerializeField]
     private int currentUpgradeIndex = 0;
 
 

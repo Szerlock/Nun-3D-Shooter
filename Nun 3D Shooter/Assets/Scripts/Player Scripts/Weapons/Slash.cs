@@ -6,7 +6,8 @@ using UnityEngine;
 public class Slash : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
-        
+
+    [SerializeField]
     private float currentDamage;
 
     private void Start()

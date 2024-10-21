@@ -23,17 +23,23 @@ public class BladeStorm : MonoBehaviour
     private float bladeCooldown = 2f;
     private GameObject target;
 
+    [SerializeField]
+    private static float constantDuration = 10f;
+
     private float duration;
-    
+
+    [SerializeField]
     private float currentDamage;
+
     private float speed;
 
-    private int swordAmount = 1;
+    [SerializeField]
+    private static int swordAmount = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        duration = weaponData.CoolDownDuration;
+        duration = constantDuration;
         currentDamage = weaponData.Damage;
         speed = weaponData.BulletSpeed;
     }
@@ -101,7 +107,7 @@ public class BladeStorm : MonoBehaviour
 
     public void IncreaseDuration(int value)
     {
-        duration += value;
+        constantDuration += value;
     }
 
     public void IncreaseSwordCount(int value)

@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform MarthyrSpawn;
 
+    [SerializeField]
     private int bladeSpinDuration = 2;
 
 

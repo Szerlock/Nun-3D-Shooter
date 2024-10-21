@@ -6,6 +6,8 @@ public class SpinBlade : MonoBehaviour
 {
     public WeaponScriptableObject weaponData;
     private float frameAttackSpeed = 0.1f;
+
+    [SerializeField]
     private float currentDamage;
 
     private void Start()

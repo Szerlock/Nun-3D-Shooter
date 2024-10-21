@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8784a4141ef170e459469ad31f429564, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 1
   coolDownDuration: 0.5
   bulletSpeed: 5
