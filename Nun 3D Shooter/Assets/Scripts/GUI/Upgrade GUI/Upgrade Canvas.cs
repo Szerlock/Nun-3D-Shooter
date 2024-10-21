@@ -148,18 +148,18 @@ public class UpgradeCanvas : MonoBehaviour
     // Maybe make this also increase the reload time probably no
     public void UpgradeBladeStorm()
     {
-        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeSpinUpgradeCosts[0]);
+        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeStormUpgradeCosts[0]);
         if (enoughCurrency)
         {
             if (currentUpgradeIndex == 1 || currentUpgradeIndex == 3)
             {
-                bladeSpinUpgradeCosts.RemoveAt(0);
+                bladeStormUpgradeCosts.RemoveAt(0);
                 bladeStorm.IncreaseSwordCount(bladeStormDamageUpgrades[0]);
                 bladeStormDamageUpgrades.RemoveAt(0);
             }
             else
             {
-                bladeSpinUpgradeCosts.RemoveAt(0);
+                bladeStormUpgradeCosts.RemoveAt(0);
                 bladeStorm.IncreaseDuration(bladeStormDamageUpgrades[0]);
                 bladeStormDamageUpgrades.RemoveAt(0);
             }
@@ -212,7 +212,7 @@ public class UpgradeCanvas : MonoBehaviour
 
     public void UpgradeSpinAbility()
     { 
-        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeSpinDurationUpgrades[0]);
+        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeSpinUpgradeCosts[0]);
         if (enoughCurrency)
         {
             bladeSpinUpgradeCosts.RemoveAt(0);

@@ -29,6 +29,9 @@ public class BladeStorm : MonoBehaviour
     private float duration;
 
     [SerializeField]
+    private static float damageIncrease = 2f;
+
+    [SerializeField]
     private float currentDamage;
 
     private float speed;
@@ -40,7 +43,7 @@ public class BladeStorm : MonoBehaviour
     void Start()
     {
         duration = constantDuration;
-        currentDamage = weaponData.Damage;
+        currentDamage = damageIncrease;
         speed = weaponData.BulletSpeed;
     }
 
@@ -102,7 +105,7 @@ public class BladeStorm : MonoBehaviour
 
     public void ChangeCurrentDamage(float value)
     {
-        currentDamage *= (1 + value);
+        damageIncrease *= (1 + value);
     }
 
     public void IncreaseDuration(int value)
