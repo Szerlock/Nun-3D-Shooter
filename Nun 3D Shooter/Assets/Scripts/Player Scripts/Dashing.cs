@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Dashing : MonoBehaviour
@@ -12,6 +13,8 @@ public class Dashing : MonoBehaviour
     private SphereCollider sphereCollider;
 
     private static float damageIncrease = 0;
+
+    public TextMeshProUGUI dash;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,12 @@ public class Dashing : MonoBehaviour
         if(dashCooldown > 0)
         {
             dashCooldown -= Time.deltaTime;
+
+            dash.text = dashCooldown.ToString("F0");
+        }
+        else if (dashCooldown < 0)        
+        { 
+            dash.text = string.Empty;
         }
     }
 

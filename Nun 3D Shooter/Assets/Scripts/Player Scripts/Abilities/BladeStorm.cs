@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,17 +35,23 @@ public class BladeStorm : MonoBehaviour
     [SerializeField]
     private float currentDamage;
 
+    private BladeStormSlider abilitySlider;
+
     private float speed;
 
     [SerializeField]
     private static int swordAmount = 1;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        abilitySlider = BladeStormSlider.instance;
         duration = constantDuration;
         currentDamage = damageIncrease;
         speed = weaponData.BulletSpeed;
+
+        abilitySlider.StartCooldown(20, 20);
     }
 
     private void Update()
@@ -62,7 +69,7 @@ public class BladeStorm : MonoBehaviour
         {
             duration -= Time.deltaTime;
         }
-        if (duration <= 0)
+        if (duration <= 0)  
         {
             Destroy(gameObject);
         }

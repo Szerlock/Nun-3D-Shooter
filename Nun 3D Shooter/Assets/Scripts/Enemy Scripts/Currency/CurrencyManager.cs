@@ -9,8 +9,6 @@ public class CurrencyManager : MonoBehaviour
     public int CurrentCurrency;
     public int CurrentHealthCurrency { get; private set; }
 
-    private float multiplier = 1.5f;
-
     private void Awake()
     {
         if (Instance == null)
@@ -26,25 +24,15 @@ public class CurrencyManager : MonoBehaviour
 
     public void AddHealthCurrency(int amount)
     {
+        HealingIcon.instance.ModifyHealth(amount);
         CurrentHealthCurrency += amount;
     }
 
     public int SpendHealthCurrency()
     {
-        Debug.Log("Spending Health Currency");
-        int increments = CurrentHealthCurrency / 10;
-        double healingAmount = 0;
-        if(increments < 1)
-        {
-            return CurrentHealthCurrency;
-        }
-        for (int i = 0; i < increments; i++)
-        {
-            healingAmount += 10 * System.Math.Pow(multiplier, i);
-        }
-        healingAmount = System.Math.Round(healingAmount, 0);
+        int temp = CurrentHealthCurrency;
         CurrentHealthCurrency = 0;
-        return (int) healingAmount;
+        return temp;
     }
 
     public void AddCurrency(int amount)

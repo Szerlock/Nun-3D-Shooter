@@ -200,6 +200,7 @@ public class UpgradeCanvas : MonoBehaviour
         {
             healthUpgradeCosts.RemoveAt(0);
             playerStats.IncreaseHealth(healthAmountUpgrades[0]);
+            HealingOrb.instance.IncreaseMaxValue(healthAmountUpgrades[0]);
             healthAmountUpgrades.RemoveAt(0);
             return;
         }

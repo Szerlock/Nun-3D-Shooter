@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -30,6 +31,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int bladeSpinDuration = 2;
 
+    [Header("CooldownsForAbilities")]
+    private float bladeStormCooldown = 0f;
+    private float bladeSpinCooldown = 0f;
+
+    public TextMeshProUGUI bladeStormCooldownText;
+    public TextMeshProUGUI bladeSpinCooldownText;
 
     void Start()
     {
@@ -48,6 +55,26 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (bladeStormCooldown > 0)
+        {
+            bladeStormCooldown -= Time.deltaTime;
+            // Can change to 2 decimal places
+            bladeStormCooldownText.text = bladeStormCooldown.ToString("F0");
+        }
+        else if (bladeStormCooldown < 0)
+        {
+            bladeStormCooldownText.text = string.Empty;
+        }
+
+        if (bladeSpinCooldown > 0)
+        {
+            bladeSpinCooldown -= Time.deltaTime;
+            bladeSpinCooldownText.text = bladeSpinCooldown.ToString("F0");
+        }
+        else if (bladeSpinCooldown < 0)
+        {
+            bladeSpinCooldownText.text = string.Empty;
+        }
 
         if (Input.GetKeyDown(KeyCode.E))  // Press E to switch to gun
         {
@@ -56,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         { 
+            bladeSpinCooldown = 10f;
             spinBlade.SetActive(true);
             colliderSpin.SetActive(true);
 
@@ -64,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
+            bladeStormCooldown = 20f;
             Instantiate(bladeStorm, MarthyrSpawn.position, MarthyrSpawn.rotation);
         }
 

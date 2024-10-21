@@ -52,6 +52,9 @@ MonoBehaviour:
     type: 3}
   bladeSpawnPoint: {fileID: 3506692122939229957}
   bladeSpeed: 10
+  currentDamage: 0
+  abilitySlider: {fileID: 4872014564636539182, guid: 6cd5ef37601279749a8522c587d4b318,
+    type: 3}
 --- !u!1001 &3972452590012686574
 PrefabInstance:
   m_ObjectHideFlags: 0

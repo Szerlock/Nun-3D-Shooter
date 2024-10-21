@@ -83,6 +83,7 @@ public class PlayerStats : MonoBehaviour
                 currentHealth = maxHealth;
             }
         }
+        HealingIcon.instance.ModifyHealth(-100);
         HealingOrb.instance.ModifyHealth(amount);
     }
 
