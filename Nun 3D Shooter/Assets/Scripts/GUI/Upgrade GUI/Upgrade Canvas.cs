@@ -42,7 +42,7 @@ public class UpgradeCanvas : MonoBehaviour
     private List<int> healthAmountUpgrades = new List<int> { 20, 30, 40, 60, 80 };
 
     private List<int> dashUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
-    private List<int> dashDamageUpgrades = new List<int> { 10, 15, 20, 25, 40 };
+    private List<int> dashDamageUpgrades = new List<int> { 10, 1, 1, 1, 1 };
 
     private List<int> bladeSpinUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
     private List<int> bladeSpinDurationUpgrades = new List<int> { 1, 1, 1, 1, 1 };
@@ -52,7 +52,7 @@ public class UpgradeCanvas : MonoBehaviour
 
     [SerializeField]
     private int currentUpgradeIndex = 0;
-
+    private int currentDashIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -182,7 +182,7 @@ public class UpgradeCanvas : MonoBehaviour
             gunController.ChangeCurrentDamage(damageUpgrades[0]);
             bladeSpin.ChangeCurrentDamage(damageUpgrades[0]);
             bladeStorm.ChangeCurrentDamage(damageUpgrades[0]);
-            //dash.ChangeCurrentDamage(damageUpgrades[0]);
+            dash.IncreaseDamage(damageUpgrades[0]);
             damageUpgrades.RemoveAt(0);
             return;
         }
@@ -225,5 +225,32 @@ public class UpgradeCanvas : MonoBehaviour
             Debug.Log("Not enough currency");
             return;
         }
+    }
+
+    public void UpgradeDashAbility()
+    {
+        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(dashUpgradeCosts[0]);
+        if (enoughCurrency)
+        {
+            if (currentDashIndex == 0)
+            {
+                dashUpgradeCosts.RemoveAt(0);
+                dash.Damage(dashDamageUpgrades[0]);
+                dashDamageUpgrades.RemoveAt(0);
+            }
+
+        }
+        else if (currentDashIndex > 0)
+        { 
+            dashUpgradeCosts.RemoveAt(0);
+            dash.DecreaseCooldown(dashDamageUpgrades[0]);
+            dashDamageUpgrades.RemoveAt(0);
+        }
+        else
+        {
+            Debug.Log("Not enough currency");
+            return;
+        }
+        currentDashIndex++;
     }
 }

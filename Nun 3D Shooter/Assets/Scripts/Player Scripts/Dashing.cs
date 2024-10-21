@@ -8,7 +8,7 @@ public class Dashing : MonoBehaviour
 
     public float dashSpeed;
     public float dashTime;
-    public float dashCooldown = 3f;
+    public float dashCooldown = 6f;
     private SphereCollider sphereCollider;
 
     private static float damageIncrease = 0;
@@ -60,5 +60,15 @@ public class Dashing : MonoBehaviour
     public void IncreaseDamage(float damage)
     {
         damageIncrease *= (1 + damage);
+    }
+
+    public void Damage(float dmg)
+    { 
+        damageIncrease += dmg;
+    }
+
+    public void DecreaseCooldown(float value)
+    {
+        dashCooldown -= value;
     }
 }
