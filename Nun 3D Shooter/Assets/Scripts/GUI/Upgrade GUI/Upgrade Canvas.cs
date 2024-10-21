@@ -23,12 +23,20 @@ public class UpgradeCanvas : MonoBehaviour
     private GunController gunController;
     [SerializeField]
     private Slash swordController;
+    [SerializeField]
+    private BladeStorm bladeStorm;
+    [SerializeField]
+    private SpinBlade bladeSpin;
+    [SerializeField]
+    private Dashing dash;
+    [SerializeField]
+    private PlayerMovement bladeSpinDuration;
 
     private List<int> gunUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
-    private List<int> gunDamageUpgrades = new List<int> { 5, 10, 15, 20, 25 };
+    private List<int> gunReloadUpgrades = new List<int> { 1, 1, 1, 1, 1 };
 
-    private List<int> swordUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
-    private List<int> swordDamageUpgrades = new List<int> { 5, 10, 15, 20, 25 };
+    private List<int> damageUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
+    private List<float> damageUpgrades = new List<float> { 0.05f, 0.10f, 0.15f, 0.20f, 0.25f };
 
     private List<int> healthUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
     private List<int> healthAmountUpgrades = new List<int> { 20, 30, 40, 60, 80 };
@@ -36,9 +44,13 @@ public class UpgradeCanvas : MonoBehaviour
     private List<int> dashUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
     private List<int> dashDamageUpgrades = new List<int> { 10, 15, 20, 25, 40 };
 
-    private List<int> gunCapacityUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
-    private List<int> gunCapacityUpgrades = new List<int> { 1, 2, 3 };
+    private List<int> bladeSpinUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
+    private List<int> bladeSpinDurationUpgrades = new List<int> { 1, 1, 1, 1, 1 };
+    
+    private List<int> bladeStormUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
+    private List<int> bladeStormDamageUpgrades = new List<int> { 1, 1, 1, 1, 1 };
 
+    private int currentUpgradeIndex = 0;
 
 
     // Start is called before the first frame update
@@ -116,14 +128,14 @@ public class UpgradeCanvas : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void UpgradeGunDamage()
+    public void UpgradeGunReloadDamage()
     {
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(gunUpgradeCosts[0]);
         if (enoughCurrency)
         {
             gunUpgradeCosts.RemoveAt(0);
-            gunController.ChangeCurrentDamage(gunDamageUpgrades[0]);
-            gunDamageUpgrades.RemoveAt(0);
+            gunController.ChangeCurrentReloadSpeed(gunReloadUpgrades[0]);
+            gunReloadUpgrades.RemoveAt(0);
         }
         else
         {
@@ -133,30 +145,44 @@ public class UpgradeCanvas : MonoBehaviour
     }
 
     // Maybe make this also increase the reload time probably no
-    public void UpgradeGunCapacity()
+    public void UpgradeBladeStorm()
     {
-        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(gunCapacityUpgradeCosts[0]);
+        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeSpinUpgradeCosts[0]);
         if (enoughCurrency)
         {
-            gunCapacityUpgradeCosts.RemoveAt(0);
-            gunController.IncreaseGunCapacity(gunCapacityUpgrades[0]);
-            gunCapacityUpgrades.RemoveAt(0);
+            if (currentUpgradeIndex == 1 || currentUpgradeIndex == 3)
+            {
+                bladeSpinUpgradeCosts.RemoveAt(0);
+                bladeStorm.IncreaseSwordCount(bladeStormDamageUpgrades[0]);
+                bladeStormDamageUpgrades.RemoveAt(0);
+            }
+            else
+            {
+                bladeSpinUpgradeCosts.RemoveAt(0);
+                bladeStorm.IncreaseDuration(bladeStormDamageUpgrades[0]);
+                bladeStormDamageUpgrades.RemoveAt(0);
+            }
         }
         else
         {
             Debug.Log("Not enough currency");
             return;
         }
+        currentUpgradeIndex++;
     }
 
-    public void UpgradeSwordDamage()
+    public void UpgradeDamage()
     {
-        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(swordUpgradeCosts[0]);
+        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(damageUpgradeCosts[0]);
         if (enoughCurrency)
         {
-            swordUpgradeCosts.RemoveAt(0);
-            swordController.ChangeCurrentDamage(swordDamageUpgrades[0]);
-            swordDamageUpgrades.RemoveAt(0);
+            damageUpgradeCosts.RemoveAt(0);
+            swordController.ChangeCurrentDamage(damageUpgrades[0]);
+            gunController.ChangeCurrentDamage(damageUpgrades[0]);
+            bladeSpin.ChangeCurrentDamage(damageUpgrades[0]);
+            bladeStorm.ChangeCurrentDamage(damageUpgrades[0]);
+            //dash.ChangeCurrentDamage(damageUpgrades[0]);
+            damageUpgrades.RemoveAt(0);
             return;
         }
         else
@@ -174,6 +200,23 @@ public class UpgradeCanvas : MonoBehaviour
             healthUpgradeCosts.RemoveAt(0);
             playerStats.IncreaseHealth(healthAmountUpgrades[0]);
             healthAmountUpgrades.RemoveAt(0);
+            return;
+        }
+        else
+        {
+            Debug.Log("Not enough currency");
+            return;
+        }
+    }
+
+    public void UpgradeSpinAbility()
+    { 
+        bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeSpinDurationUpgrades[0]);
+        if (enoughCurrency)
+        {
+            bladeSpinUpgradeCosts.RemoveAt(0);
+            bladeSpinDuration.IncreaseDuration(bladeSpinDurationUpgrades[0]);
+            bladeSpinDurationUpgrades.RemoveAt(0);
             return;
         }
         else

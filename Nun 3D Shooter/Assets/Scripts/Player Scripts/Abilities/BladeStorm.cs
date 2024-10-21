@@ -28,6 +28,8 @@ public class BladeStorm : MonoBehaviour
     private float currentDamage;
     private float speed;
 
+    private int swordAmount = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,8 +86,26 @@ public class BladeStorm : MonoBehaviour
 
     private void ShootSword()
     {
-        GameObject sword = Instantiate(swordProjectile, bladeSpawnPoint.position, target.transform.rotation);
-        sword.GetComponent<Blades>().SetDamage(currentDamage, speed);
-        sword.GetComponent<Blades>().SetTarget(target.transform);
+        for (int i = 0; i < swordAmount; i++)
+        {
+            GameObject sword = Instantiate(swordProjectile, bladeSpawnPoint.position, target.transform.rotation);
+            sword.GetComponent<Blades>().SetDamage(currentDamage, speed);
+            sword.GetComponent<Blades>().SetTarget(target.transform);
+        }
+    }
+
+    public void ChangeCurrentDamage(float value)
+    {
+        currentDamage *= (1 + value);
+    }
+
+    public void IncreaseDuration(int value)
+    {
+        duration += value;
+    }
+
+    public void IncreaseSwordCount(int value)
+    { 
+        swordAmount += value;
     }
 }

@@ -95,8 +95,8 @@ public class Slash : MonoBehaviour
         }
     }
 
-    public void ChangeCurrentDamage(float dmg)
+    public void ChangeCurrentDamage(float value)
     {
-        currentDamage += dmg;
+        currentDamage *= (1 + value);
     }
 }

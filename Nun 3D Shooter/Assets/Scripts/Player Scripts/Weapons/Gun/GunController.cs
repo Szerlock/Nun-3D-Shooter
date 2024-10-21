@@ -20,7 +20,7 @@ public class GunController : MonoBehaviour
     {
         if (weaponData != null)
         {
-        currentDamage = weaponData.Damage;
+            currentDamage = weaponData.Damage;
         }
 
         else
@@ -63,8 +63,8 @@ public class GunController : MonoBehaviour
             Debug.Log(currentGunCapacity);
             Fire();
         }
-        else 
-        { 
+        else
+        {
             Debug.Log("Out of ammo");
         }
     }
@@ -94,13 +94,13 @@ public class GunController : MonoBehaviour
         Destroy(vfxOBJ, 0.25f);
     }
 
-    public void ChangeCurrentDamage(float dmg)
+    public void ChangeCurrentReloadSpeed(float value)
     {
-        currentDamage += dmg;
+        reloadTime -= value;
     }
 
-    public void IncreaseGunCapacity(int value)
+    public void ChangeCurrentDamage(float value)
     {
-        gunCapacity = value;
+        currentDamage *= (1 + value);
     }
 }

@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform MarthyrSpawn;
 
+    private int bladeSpinDuration = 2;
+
 
     void Start()
     {
@@ -82,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DeactivateSpin()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(bladeSpinDuration);
         spinBlade.SetActive(false);
         colliderSpin.SetActive(false);
     }
@@ -158,5 +160,10 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
         animatorCharacter.SetBool("IsShooting", false);
+    }
+
+    public void IncreaseDuration(int value)
+    {
+        bladeSpinDuration += value;
     }
 }
