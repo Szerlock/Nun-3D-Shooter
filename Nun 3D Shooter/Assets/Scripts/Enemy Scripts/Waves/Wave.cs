@@ -6,6 +6,8 @@ using UnityEngine;
 public class Wave : MonoBehaviour
 {
     public List<EnemySpawnData> enemySpawnData;
+    public GameObject Boss;
+    public Vector3 bossSpawnPoint;
 
     private int amountPerEnemy;
     public int enemiesAlive = 0;
@@ -14,6 +16,12 @@ public class Wave : MonoBehaviour
 
     public void SpawnWave(Wave wave, List<Vector3> spawnPoints)
     {
+        if (Boss != null && bossSpawnPoint != null) 
+        {
+            GameObject newEnemy = Instantiate(Boss, bossSpawnPoint, Quaternion.identity);
+            newEnemy.GetComponent<DoubleFaceStats>().SetWave(this);
+            enemiesAlive++;
+        }
         foreach (EnemySpawnData enemyData in enemySpawnData)
         {
             amountPerEnemy = enemyData.GetQuantity();
@@ -31,10 +39,6 @@ public class Wave : MonoBehaviour
                 else if(newEnemy.CompareTag("Tank_Enemy"))
                 {
                     newEnemy.GetComponent<EnemyStats>().SetWave(this);
-                }
-                else if(newEnemy.CompareTag("DoubleFace_Enemy"))
-                {
-                    newEnemy.GetComponent<DoubleFaceStats>().SetWave(this);
                 }
                 else if(newEnemy.CompareTag("Imp_Enemy"))
                 {

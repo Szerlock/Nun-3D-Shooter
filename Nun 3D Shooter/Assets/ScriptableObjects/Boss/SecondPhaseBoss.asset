@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae1ad0d2af312142a23027ea5882bf4, type: 3}
   m_Name: SecondPhaseBoss
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  maxHealth: 100
+  moveSpeed: 2
+  maxHealth: 50
   damage: 2
   projectileSpeed: 0
   currencyAmount: 0

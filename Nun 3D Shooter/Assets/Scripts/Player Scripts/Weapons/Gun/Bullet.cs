@@ -72,8 +72,7 @@ public class Bullet : MonoBehaviour
             DoubleFaceStats enemy = col.GetComponent<DoubleFaceStats>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage);
-                StartCoroutine(enemy.Stagger());
+                enemy.TakeGunDamage(currentDamage);
                 Destroy(gameObject);
             }
             else
@@ -87,8 +86,7 @@ public class Bullet : MonoBehaviour
             SecondPhase enemy = col.GetComponent<SecondPhase>();
             if (enemy != null)
             {
-                enemy.TakeDamage(currentDamage); //we use current damage instead of weapon data damage because of damage multipliers that will be added later
-                StartCoroutine(enemy.Stagger());
+                enemy.TakeGunDamage(currentDamage);
                 Destroy(gameObject);
             }
             else

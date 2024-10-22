@@ -189,7 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491b1cd48f2dfca4fa9d27b8f49b8fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeSpot: {fileID: 0}
+  changeSpot: {fileID: 1782342602792864127, guid: 56f63da6241b17d40aea6e523f129f4f,
+    type: 3}
   chargeSpeedMultiplier: 4
   chargeDuration: 1
   chargeCooldown: 5
@@ -209,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: b9e1674603a2929499a5642c268460b1, type: 2}
+  wave: {fileID: 0}
   showTextDamage: {fileID: 569784095058934194, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
   isStaggered: 0

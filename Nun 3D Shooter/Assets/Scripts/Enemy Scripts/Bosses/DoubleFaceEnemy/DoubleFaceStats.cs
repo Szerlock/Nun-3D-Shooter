@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class DoubleFaceStats : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class DoubleFaceStats : MonoBehaviour
 
     private BossMovement enemyMovement;
     public EnemyScriptableObject enemyData;
-    private Wave wave;
+    public Wave wave;
     [SerializeField]
     public ShowTextDamage showTextDamage;
     private CapsuleCollider enemyCollider;
@@ -71,8 +72,30 @@ public class DoubleFaceStats : MonoBehaviour
         return nextStage;
     }
 
+    public void TakeGunDamage(float dmg)
+    {
+
+        ShowFloatingText(dmg);
+        if (currentHealth <= 50)
+        {
+            currentHealth = 50;
+            return;
+        }
+        healthBar.ReduceHealth(dmg);
+        currentHealth -= dmg;
+        StartCoroutine(Stagger());
+        if (currentHealth <= maxHealth / 2)
+        {
+            nextStage = true;
+        }
+    }
+
     public IEnumerator Stagger()
     {
+        if (currentHealth <= maxHealth / 2)
+        { 
+            yield break;
+        }
         if (isStaggered)
         {
             yield break;

@@ -13,11 +13,11 @@ public class ImpMovement : MonoBehaviour
     void Start()
     {
         enemy = GetComponentInChildren<ImpEnemy>();
-        player = FindObjectOfType<PlayerMovement>().transform;
+        player = GameObject.Find("Imp Follow").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         if (!enemy.IsAttacking)
         {

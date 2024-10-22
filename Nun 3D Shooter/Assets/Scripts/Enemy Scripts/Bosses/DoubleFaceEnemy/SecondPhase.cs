@@ -59,6 +59,20 @@ public class SecondPhase : MonoBehaviour
         }
     }
 
+    public void TakeGunDamage(float dmg)
+    {
+
+        ShowFloatingText(dmg);
+        if (currentHealth <= 50)
+        {
+            currentHealth = 50;
+            return;
+        }
+        healthBar.ReduceHealth(dmg);
+        currentHealth -= dmg;
+        StartCoroutine(Stagger());
+    }
+
     public IEnumerator Stagger()
     {
         isStaggered = true;

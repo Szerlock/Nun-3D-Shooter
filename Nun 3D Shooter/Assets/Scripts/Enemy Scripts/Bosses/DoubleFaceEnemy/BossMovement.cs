@@ -82,11 +82,13 @@ public class BossMovement : MonoBehaviour
     private IEnumerator MoveTowardsChangeSpot()
     {
         transform.LookAt(changeSpot.transform);
-        Vector3 newPosition = Vector3.MoveTowards(rb.position, changeSpot.position, enemy.currentMoveSpeed * 5 * Time.deltaTime);
+        Vector3 newPosition = Vector3.MoveTowards(rb.position, changeSpot.position, enemy.currentMoveSpeed * 7 * Time.deltaTime);
 
         rb.MovePosition(newPosition);
-        yield return new WaitForSeconds(3f);
-        Instantiate(secondPhase, spawnNewBoss, transform.rotation);
+        yield return new WaitForSeconds(5f);
+        GameObject temp = Instantiate(secondPhase, spawnNewBoss, transform.rotation);
+        SecondPhase secondTemp = temp.GetComponent<SecondPhase>();
+        secondTemp.SetWave(enemy.wave);
         Destroy(gameObject);
     }
 
