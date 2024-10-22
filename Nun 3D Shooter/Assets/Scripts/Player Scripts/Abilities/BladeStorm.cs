@@ -35,8 +35,6 @@ public class BladeStorm : MonoBehaviour
     [SerializeField]
     private float currentDamage;
 
-    private BladeStormSlider abilitySlider;
-
     private float speed;
 
     [SerializeField]
@@ -46,12 +44,9 @@ public class BladeStorm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        abilitySlider = BladeStormSlider.instance;
         duration = constantDuration;
         currentDamage = damageIncrease;
         speed = weaponData.BulletSpeed;
-
-        abilitySlider.StartCooldown(20, 20);
     }
 
     private void Update()

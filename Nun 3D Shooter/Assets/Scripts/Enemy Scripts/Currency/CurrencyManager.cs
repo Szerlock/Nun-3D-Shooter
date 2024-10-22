@@ -43,16 +43,16 @@ public class CurrencyManager : MonoBehaviour
             CurrentHealthCurrency -= 10;
             CurrentHealthPotions++;
             HealthPotionText.text = CurrentHealthPotions.ToString();
+            HealingIcon.instance.ModifyHealth(-1f);
 
-            // If there's remaining currency, update the health icon
-            if (CurrentHealthCurrency > 0)
-            { 
-                HealingIcon.instance.ModifyHealth(CurrentHealthCurrency);
-            }
-            else 
-            { 
-                HealingIcon.instance.ModifyHealth(0);
-            }
+        }
+    }
+
+    public void Update()
+    {
+        if (HealingIcon.instance.healthSlider.value == 0)
+        {
+            HealingIcon.instance.ModifyHealth(CurrentHealthCurrency);
         }
     }
 

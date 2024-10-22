@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2745991814242251188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9013381090425829278}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9013381090425829278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745991814242251188}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.881479, z: 0, w: 0.4722233}
+  m_LocalPosition: {x: -0.00000006622131, y: 2, z: -0.000000115664655}
+  m_LocalScale: {x: 0.99999964, y: 1, z: 0.99999964}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 465044073323980946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3963638188060080979
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +63,7 @@ Transform:
   m_Children:
   - {fileID: 3506692122939229957}
   - {fileID: 5402312767263488056}
+  - {fileID: 9013381090425829278}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5874084569394363723
@@ -48,13 +80,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: b5b6b662e919b5f4497edf902732e897, type: 2}
   spinBlade: {fileID: 4314894039683194303}
-  swordProjectile: {fileID: 4435020752179614587, guid: 4710dac254b500a429fd78c70d093e2b,
+  swordProjectile: {fileID: 731407363208165981, guid: 1c5a0e952c961ab46a9e1ffd8f7c7086,
     type: 3}
-  bladeSpawnPoint: {fileID: 3506692122939229957}
+  bladeSpawnPoint: {fileID: 9013381090425829278}
   bladeSpeed: 10
   currentDamage: 0
-  abilitySlider: {fileID: 4872014564636539182, guid: 6cd5ef37601279749a8522c587d4b318,
-    type: 3}
 --- !u!1001 &3972452590012686574
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,14 +19,14 @@ public class HealingIcon : MonoBehaviour
     {
         if (amount < 0)
         { 
-            StartCoroutine(SmoothSlideToValue(0, 0.5f));
+            StartCoroutine(SmoothSlideToValue(0, 0.3f));
             return;
         }
         float targetHealth = healthSlider.value + amount;
 
         if (amount > 0)
         {
-            StartCoroutine(SmoothSlideToValue(targetHealth, 0.2f));
+            StartCoroutine(SmoothSlideToValue(targetHealth, 0f));
         }
     }
 

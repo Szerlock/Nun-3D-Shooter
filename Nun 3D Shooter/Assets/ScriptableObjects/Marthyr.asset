@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   coolDownDuration: 10
-  bulletSpeed: 5
+  bulletSpeed: 10
