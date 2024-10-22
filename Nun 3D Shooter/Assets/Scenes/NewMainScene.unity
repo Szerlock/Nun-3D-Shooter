@@ -8698,7 +8698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0319a4559ec8cd3488e9ff890814a88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentCurrency: 0
+  CurrentCurrency: 1500
   HealthPotionText: {fileID: 497682770}
 --- !u!4 &340950036
 Transform:
@@ -33234,7 +33234,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536437681}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -34852,6 +34852,12 @@ MonoBehaviour:
   gunText: {fileID: 774782625}
   dashText: {fileID: 1653785556}
   healthText: {fileID: 478344761}
+  stormButton: {fileID: 0}
+  bladeSpinButton: {fileID: 0}
+  damageButton: {fileID: 0}
+  gunButton: {fileID: 0}
+  dashButton: {fileID: 0}
+  healthButton: {fileID: 0}
 --- !u!4 &1668963719
 Transform:
   m_ObjectHideFlags: 0
