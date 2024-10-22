@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class PlayerStats : MonoBehaviour
     private float maxHealth;
     [SerializeField]
     Corpse corpse;
+
+    public GameObject healingVFX;
 
 
     //I-Frames
@@ -72,6 +75,7 @@ public class PlayerStats : MonoBehaviour
 
     public void RestoreHealth(float amount)
     {
+        StartCoroutine(EnableVFX());
         //1 if statement makes it so it only heals if he is below max health
         if(currentHealth < maxHealth)
         {
@@ -85,6 +89,13 @@ public class PlayerStats : MonoBehaviour
         }
         HealingIcon.instance.ModifyHealth(-100);
         HealingOrb.instance.ModifyHealth(amount);
+    }
+
+    private IEnumerator EnableVFX()
+    {
+        healingVFX.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        healingVFX.SetActive(false);
     }
 
     public void IncreaseHealth(int value)

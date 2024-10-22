@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UpgradeCanvas : MonoBehaviour
@@ -54,10 +55,26 @@ public class UpgradeCanvas : MonoBehaviour
     private int currentUpgradeIndex = 0;
     private int currentDashIndex = 0;
 
+    [Header("TextBox")]
+    public TextMeshProUGUI bladeSpinText;
+    public TextMeshProUGUI bladeStormText;
+    public TextMeshProUGUI damageText;
+    public TextMeshProUGUI gunText;
+    public TextMeshProUGUI dashText;
+    public TextMeshProUGUI healthText;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        interactText.SetActive(false);
+        bladeSpinText.text = $"Extends the duration of rotating blades by {bladeSpinDurationUpgrades[1]} seconds.\r\n";
+        bladeStormText.text = $"Increases the number of swords thrown by {bladeStormDamageUpgrades[1]} swords.\r\n";
+        damageText.text = $"Increases base attack by an additional {damageUpgrades[1]}%, compounding the total bonus.\r\n";
+        gunText.text = $"Reduces the cooldown for gaining a bullet by {gunReloadUpgrades[1]} seconds.\r\n";
+        dashText.text = $"Extends the duration of rotating blades by {dashDamageUpgrades[1]} seconds.\r\n";
+        healthText.text = $"Increases base hp by {healthAmountUpgrades[1]}.\r\n";
+
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.enabled = false;
     }

@@ -29,6 +29,8 @@ public class SecondPhase : MonoBehaviour
 
     private Bullet currentBullet;
 
+    public GameObject StaggerVFX;
+
 
     void Awake()
     {
@@ -75,11 +77,13 @@ public class SecondPhase : MonoBehaviour
 
     public IEnumerator Stagger()
     {
+        StaggerVFX.SetActive(true);
         isStaggered = true;
         enemyMovement.enabled = false;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(3f);
         enemyMovement.enabled = true;
         isStaggered = false;
+        StaggerVFX.SetActive(false);
     }
 
     public bool NextStage()

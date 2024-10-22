@@ -32,6 +32,9 @@ public class DoubleFaceStats : MonoBehaviour
     private float maxHealth;
     private bool nextStage = false;
 
+    public GameObject StaggerVFX;
+
+
     void Awake()
     {
         healthBar = GetComponentInChildren<BossHealthBar>();
@@ -92,8 +95,10 @@ public class DoubleFaceStats : MonoBehaviour
 
     public IEnumerator Stagger()
     {
+        StaggerVFX.SetActive(true);
         if (currentHealth <= maxHealth / 2)
-        { 
+        {
+            StaggerVFX.SetActive(false);
             yield break;
         }
         if (isStaggered)
@@ -105,6 +110,7 @@ public class DoubleFaceStats : MonoBehaviour
         yield return new WaitForSeconds(3f);
         enemyMovement.enabled = true;
         isStaggered = false;
+        StaggerVFX.SetActive(false);
     }
 
     private void ShowFloatingText(float dmg)

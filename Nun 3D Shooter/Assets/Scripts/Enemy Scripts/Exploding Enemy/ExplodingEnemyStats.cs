@@ -22,6 +22,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     private float healthCurrency;
     private int currencyAmount;
 
+    public GameObject circleUI;
     public GameObject Explosion;
 
     void Awake()
@@ -63,6 +64,7 @@ public class ExplodingEnemyStats : MonoBehaviour
 
     private IEnumerator Kill(float delay)
     {
+        circleUI.SetActive(true);
         enemyCollider.enabled = false;
         yield return new WaitForSeconds(0.1f);
         enemyCollider.enabled = true;
