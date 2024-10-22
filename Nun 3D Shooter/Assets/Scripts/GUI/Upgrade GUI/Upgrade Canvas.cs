@@ -63,17 +63,24 @@ public class UpgradeCanvas : MonoBehaviour
     public TextMeshProUGUI dashText;
     public TextMeshProUGUI healthText;
 
+    private int bladeUpIndex = 0;
+    private int stormUpIndex = 0;
+    private int dashUpIndex = 0;
+    private int damageUpIndex = 0;
+    private int gunUpIndex = 0;
+    private int healthIndex = 0;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        bladeSpinText.text = $"Extends the duration of rotating blades by {bladeSpinDurationUpgrades[1]} seconds.\r\n";
-        bladeStormText.text = $"Increases the number of swords thrown by {bladeStormDamageUpgrades[1]} swords.\r\n";
-        damageText.text = $"Increases base attack by an additional {damageUpgrades[1]}%, compounding the total bonus.\r\n";
-        gunText.text = $"Reduces the cooldown for gaining a bullet by {gunReloadUpgrades[1]} seconds.\r\n";
-        dashText.text = $"Extends the duration of rotating blades by {dashDamageUpgrades[1]} seconds.\r\n";
-        healthText.text = $"Increases base hp by {healthAmountUpgrades[1]}.\r\n";
+        bladeSpinText.text = $"Extends the duration of rotating blades by {bladeSpinDurationUpgrades[bladeUpIndex]} seconds.\r\n";
+        bladeStormText.text = $"Increases the number of swords thrown by {bladeStormDamageUpgrades[stormUpIndex]} swords.\r\n";
+        damageText.text = $"Increases base attack by an additional {damageUpgrades[damageUpIndex]}%, compounding the total bonus.\r\n";
+        gunText.text = $"Reduces the cooldown for gaining a bullet by {gunReloadUpgrades[gunUpIndex]} seconds.\r\n";
+        dashText.text = $"Extends the duration of rotating blades by {dashDamageUpgrades[dashUpIndex]} seconds.\r\n";
+        healthText.text = $"Increases base hp by {healthAmountUpgrades[healthIndex]}.\r\n";
 
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.enabled = false;
@@ -148,11 +155,17 @@ public class UpgradeCanvas : MonoBehaviour
 
     public void UpgradeGunReloadDamage()
     {
+        if (gunUpIndex > 4)
+        {
+            return;
+        }
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(gunUpgradeCosts[0]);
         if (enoughCurrency)
         {
             gunUpgradeCosts.RemoveAt(0);
             gunController.ChangeCurrentReloadSpeed(gunReloadUpgrades[0]);
+            gunUpIndex++;
+            gunText.text = $"Reduces the cooldown for gaining a bullet by {gunReloadUpgrades[gunUpIndex]} seconds.\r\n";
             gunReloadUpgrades.RemoveAt(0);
         }
         else
@@ -162,22 +175,30 @@ public class UpgradeCanvas : MonoBehaviour
         }
     }
 
-    // Maybe make this also increase the reload time probably no
     public void UpgradeBladeStorm()
     {
+        if (stormUpIndex > 4)
+        {
+            return;
+        }
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeStormUpgradeCosts[0]);
         if (enoughCurrency)
         {
-            if (currentUpgradeIndex == 1 || currentUpgradeIndex == 3)
+            if (stormUpIndex == 1 || stormUpIndex == 3)
             {
                 bladeStormUpgradeCosts.RemoveAt(0);
                 bladeStorm.IncreaseSwordCount(bladeStormDamageUpgrades[0]);
+                // change string to increase sword count
+                stormUpIndex++;
+                bladeStormText.text = $"Increases the number of swords thrown by {bladeStormDamageUpgrades[stormUpIndex]} swords.\r\n";
                 bladeStormDamageUpgrades.RemoveAt(0);
             }
             else
             {
                 bladeStormUpgradeCosts.RemoveAt(0);
                 bladeStorm.IncreaseDuration(bladeStormDamageUpgrades[0]);
+                stormUpIndex++;
+                bladeStormText.text = $"Increase Divine Armament duration by {bladeStormDamageUpgrades[stormUpIndex]} second.\r\n";
                 bladeStormDamageUpgrades.RemoveAt(0);
             }
         }
@@ -186,11 +207,14 @@ public class UpgradeCanvas : MonoBehaviour
             Debug.Log("Not enough currency");
             return;
         }
-        currentUpgradeIndex++;
     }
 
     public void UpgradeDamage()
     {
+        if (damageUpIndex > 4)
+        {
+            return;
+        }
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(damageUpgradeCosts[0]);
         if (enoughCurrency)
         {
@@ -200,6 +224,8 @@ public class UpgradeCanvas : MonoBehaviour
             bladeSpin.ChangeCurrentDamage(damageUpgrades[0]);
             bladeStorm.ChangeCurrentDamage(damageUpgrades[0]);
             dash.IncreaseDamage(damageUpgrades[0]);
+            damageUpIndex++;
+            damageText.text = $"Increases base attack by an additional {damageUpgrades[damageUpIndex]}%, compounding the total bonus.\r\n";
             damageUpgrades.RemoveAt(0);
             return;
         }
@@ -211,12 +237,18 @@ public class UpgradeCanvas : MonoBehaviour
     }
 
     public void UpgradeHealth()
-    { 
+    {
+        if (healthIndex > 4)
+        {
+            return;
+        }
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(healthUpgradeCosts[0]);
         if (enoughCurrency)
         {
             healthUpgradeCosts.RemoveAt(0);
             playerStats.IncreaseHealth(healthAmountUpgrades[0]);
+            healthIndex++;
+            healthText.text = $"Increases base hp by {healthAmountUpgrades[healthIndex]}.\r\n";
             HealingOrb.instance.IncreaseMaxValue(healthAmountUpgrades[0]);
             healthAmountUpgrades.RemoveAt(0);
             return;
@@ -229,12 +261,18 @@ public class UpgradeCanvas : MonoBehaviour
     }
 
     public void UpgradeSpinAbility()
-    { 
+    {
+        if (bladeUpIndex > 4)
+        {
+            return;
+        }
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(bladeSpinUpgradeCosts[0]);
         if (enoughCurrency)
         {
             bladeSpinUpgradeCosts.RemoveAt(0);
             bladeSpinDuration.IncreaseDuration(bladeSpinDurationUpgrades[0]);
+            bladeUpIndex++;
+            bladeSpinText.text = $"Extends the duration of rotating blades by {bladeSpinDurationUpgrades[bladeUpIndex]} seconds.\r\n";
             bladeSpinDurationUpgrades.RemoveAt(0);
             return;
         }
@@ -247,6 +285,10 @@ public class UpgradeCanvas : MonoBehaviour
 
     public void UpgradeDashAbility()
     {
+        if (dashUpIndex > 4)
+        {
+            return;
+        }
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(dashUpgradeCosts[0]);
         if (enoughCurrency)
         {
@@ -254,6 +296,9 @@ public class UpgradeCanvas : MonoBehaviour
             {
                 dashUpgradeCosts.RemoveAt(0);
                 dash.Damage(dashDamageUpgrades[0]);
+                currentDashIndex++;
+                dashText.text = $"Dash now does {dashDamageUpgrades[dashUpIndex]} damage.\r\n";
+
                 dashDamageUpgrades.RemoveAt(0);
             }
 
@@ -262,6 +307,8 @@ public class UpgradeCanvas : MonoBehaviour
         { 
             dashUpgradeCosts.RemoveAt(0);
             dash.DecreaseCooldown(dashDamageUpgrades[0]);
+            currentDashIndex++;
+            dashText.text = $"Reduces dash cooldown by {dashDamageUpgrades[dashUpIndex]} second.\r\n";
             dashDamageUpgrades.RemoveAt(0);
         }
         else
@@ -269,6 +316,5 @@ public class UpgradeCanvas : MonoBehaviour
             Debug.Log("Not enough currency");
             return;
         }
-        currentDashIndex++;
     }
 }
