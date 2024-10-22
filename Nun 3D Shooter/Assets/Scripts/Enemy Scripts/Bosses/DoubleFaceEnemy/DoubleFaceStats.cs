@@ -73,9 +73,13 @@ public class DoubleFaceStats : MonoBehaviour
 
     public IEnumerator Stagger()
     {
+        if (isStaggered)
+        {
+            yield break;
+        }
         isStaggered = true;
         enemyMovement.enabled = false;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(3f);
         enemyMovement.enabled = true;
         isStaggered = false;
     }
