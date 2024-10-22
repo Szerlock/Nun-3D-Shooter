@@ -267,6 +267,7 @@ MonoBehaviour:
   showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
   currentMoveSpeed: 0
+  Explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
 --- !u!135 &2330387175096966673
 SphereCollider:
   m_ObjectHideFlags: 0

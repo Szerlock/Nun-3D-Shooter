@@ -21,7 +21,10 @@ public class ImpEnemy : MonoBehaviour
     public float currentHealth;
     private float currentDamage;
     private float healthCurrency;
-    private int currencyAmount; 
+    private int currencyAmount;
+
+    private float frameAttackSpeed = 0.6f;
+
 
     void Awake()
     {
@@ -74,6 +77,10 @@ public class ImpEnemy : MonoBehaviour
         Destroy(gameObject);
 
     }
+    private void Update()
+    {
+        frameAttackSpeed -= Time.deltaTime;
+    }
 
     private void OnTriggerEnter(Collider col)
     {
@@ -82,6 +89,20 @@ public class ImpEnemy : MonoBehaviour
             IsAttacking = true;
             PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage, transform.position, 0); // use currentDamage
+        }
+    }
+
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            if (frameAttackSpeed <= 0)
+            {
+                IsAttacking = true;
+                PlayerStats player = col.gameObject.GetComponent<PlayerStats>();
+                player.TakeDamage(currentDamage, transform.position, 0); // use currentDamage
+                frameAttackSpeed = 0.8f;
+            }
         }
     }
 }

@@ -22,6 +22,8 @@ public class ExplodingEnemyStats : MonoBehaviour
     private float healthCurrency;
     private int currencyAmount;
 
+    public GameObject Explosion;
+
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
@@ -73,6 +75,7 @@ public class ExplodingEnemyStats : MonoBehaviour
 
         wave.EnemyDied(currencyAmount);
         CurrencyManager.Instance.AddHealthCurrency((int)Math.Round(healthCurrency));
+        Instantiate(Explosion, transform.position + new Vector3(0, 1.79f, 0), Quaternion.identity);
         Destroy(gameObject);
     }
 
