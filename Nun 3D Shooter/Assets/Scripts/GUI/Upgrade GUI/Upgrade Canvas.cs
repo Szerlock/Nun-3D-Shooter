@@ -17,6 +17,7 @@ public class UpgradeCanvas : MonoBehaviour
     private bool isPlayerNearby = false;
     public float showTextRange = 5f;
     public bool isUpgradeCanvasActive = false;
+    public Image upgradeImage;
 
     //  Reference to the player stats script
     [SerializeField]
@@ -44,7 +45,7 @@ public class UpgradeCanvas : MonoBehaviour
     private List<int> healthAmountUpgrades = new List<int> { 20, 30, 40, 60, 80 };
 
     private List<int> dashUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
-    private List<int> dashDamageUpgrades = new List<int> { 10, 1, 1, 1, 1 };
+    private List<int> dashDamageUpgrades = new List<int> { 1, 1, 1, 1, 1 };
 
     private List<int> bladeSpinUpgradeCosts = new List<int> { 100, 200, 300, 400, 500 };
     private List<int> bladeSpinDurationUpgrades = new List<int> { 1, 1, 1, 1, 1 };
@@ -79,16 +80,33 @@ public class UpgradeCanvas : MonoBehaviour
     public GameObject dashButton;
     public GameObject healthButton;
 
+    public TextMeshProUGUI BladeSpinName;
+    public TextMeshProUGUI BladeStormName;
+    public TextMeshProUGUI DamageName;
+    public TextMeshProUGUI GunName;
+    public TextMeshProUGUI DashName;
+    public TextMeshProUGUI HealthName;
+
+    private bool Unlocked;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Unlocked = false;
+        DashName.text = $"Phantom Step LV. {dashUpIndex + 1}";
+        HealthName.text = $"Blessing of Vitality LV. {healthIndex + 1}";
+        DamageName.text = $"Holy Annihilation LV. {dashUpIndex + 1}";
+        GunName.text = $"Divine Caliber LV. {gunUpIndex + 1}";
+        BladeStormName.text = $"Heaven's Judgement LV. {stormUpIndex + 1}";
+        BladeSpinName.text = $"Scarlet Vortex LV. {bladeUpIndex + 1}";
+
+
         bladeSpinText.text = $"Extends the duration of rotating blades by {bladeSpinDurationUpgrades[bladeUpIndex]} second.\r\n";
         bladeStormText.text = $"Increase Divine Armament duration by {bladeStormDamageUpgrades[stormUpIndex]} second.\r\n";
         damageText.text = $"Increases base attack by an additional {damageUpgrades[damageUpIndex] * 100}%, compounding the total bonus.\r\n";
         gunText.text = $"Reduces the cooldown for gaining a bullet by {gunReloadUpgrades[gunUpIndex]} seconds.\r\n";
-        dashText.text = $"Dash now does {dashDamageUpgrades[dashUpIndex]} damage.\r\n";
+        dashText.text = $"Reduces dash cooldown by {dashDamageUpgrades[dashUpIndex]} second.\r\n";
         healthText.text = $"Increases base hp by {healthAmountUpgrades[healthIndex]}.\r\n";
 
         sphereCollider = GetComponent<SphereCollider>();
@@ -115,6 +133,12 @@ public class UpgradeCanvas : MonoBehaviour
                     HideInteractButton();
                 }
             }  
+        }
+
+        if (!Unlocked && damageUpIndex == 5 && bladeUpIndex == 5 && gunUpIndex == 5 && stormUpIndex == 5 && dashUpIndex == 5 && healthIndex == 5)
+        {
+            upgradeImage.color = Color.red;
+            Unlocked = true;
         }
     }
 
@@ -174,7 +198,20 @@ public class UpgradeCanvas : MonoBehaviour
             gunUpgradeCosts.RemoveAt(0);
             gunController.ChangeCurrentReloadSpeed(gunReloadUpgrades[0]);
             gunUpIndex++;
+            if (gunUpIndex == 5)
+            {
+                Button temp = gunButton.GetComponent<Button>();
+
+                ColorBlock colorBlock = temp.colors;
+
+                colorBlock.disabledColor = Color.red;
+
+                temp.colors = colorBlock;
+                gunButton.GetComponent<Button>().interactable = false;
+                return;
+            }
             gunText.text = $"Reduces the cooldown for gaining a bullet by {gunReloadUpgrades[gunUpIndex]} second.\r\n";
+            GunName.text = $"Divine Caliber LV. {gunUpIndex + 1}";
         }
         else
         {
@@ -198,7 +235,8 @@ public class UpgradeCanvas : MonoBehaviour
                 bladeStorm.IncreaseSwordCount(bladeStormDamageUpgrades[0]);
                 // change string to increase sword count
                 stormUpIndex++;
-                bladeStormText.text = $"Increases the number of swords thrown by {bladeStormDamageUpgrades[stormUpIndex]} swords.\r\n";
+                bladeStormText.text += $"Increases the number of swords thrown by {bladeStormDamageUpgrades[stormUpIndex]} swords.\r\n";
+                BladeStormName.text = $"Heaven's Judgement LV. {stormUpIndex + 1}";
             }
             else
             {
@@ -207,9 +245,18 @@ public class UpgradeCanvas : MonoBehaviour
                 stormUpIndex++;
                 if (stormUpIndex == 5)
                 {
+                    Button temp = stormButton.GetComponent<Button>();
+
+                    ColorBlock colorBlock = temp.colors;
+
+                    colorBlock.disabledColor = Color.red;
+
+                    temp.colors = colorBlock;
                     stormButton.GetComponent<Button>().interactable = false;
+                    return;
                 }
                 bladeStormText.text = $"Increase Divine Armament duration by {bladeStormDamageUpgrades[stormUpIndex]} second.\r\n";
+                BladeStormName.text = $"Heaven's Judgement LV. {stormUpIndex + 1}";
             }
         }
         else
@@ -235,13 +282,24 @@ public class UpgradeCanvas : MonoBehaviour
             bladeStorm.ChangeCurrentDamage(damageUpgrades[0]);
             dash.IncreaseDamage(damageUpgrades[0]);
             damageUpIndex++;
+            if (damageUpIndex == 5)
+            {
+                Button temp = damageButton.GetComponent<Button>();
+
+                ColorBlock colorBlock = temp.colors;
+
+                colorBlock.disabledColor = Color.red;
+
+                temp.colors = colorBlock;
+                damageButton.GetComponent<Button>().interactable = false;
+                return;
+            }
             damageText.text = $"Increases base attack by an additional {damageUpgrades[damageUpIndex] * 100}%, compounding the total bonus.\r\n";
-            return;
+            DamageName.text = $"Holy Annihilation LV. {damageUpIndex + 1}";
         }
         else
         {
             Debug.Log("Not enough currency");
-            return;
         }
     }
 
@@ -257,8 +315,21 @@ public class UpgradeCanvas : MonoBehaviour
             healthUpgradeCosts.RemoveAt(0);
             playerStats.IncreaseHealth(healthAmountUpgrades[0]);
             healthIndex++;
+            if (healthIndex == 5)
+            {
+                Button temp = healthButton.GetComponent<Button>();
+
+                ColorBlock colorBlock = temp.colors;
+
+                colorBlock.disabledColor = Color.red;
+
+                temp.colors = colorBlock;
+                healthButton.GetComponent<Button>().interactable = false;
+                return;
+            }
             healthText.text = $"Increases base hp by {healthAmountUpgrades[healthIndex]}.\r\n";
             HealingOrb.instance.IncreaseMaxValue(healthAmountUpgrades[0]);
+            HealthName.text = $"Blessing of Vitality LV. {healthIndex + 1}";
             return;
         }
         else
@@ -280,7 +351,20 @@ public class UpgradeCanvas : MonoBehaviour
             bladeSpinUpgradeCosts.RemoveAt(0);
             bladeSpinDuration.IncreaseDuration(bladeSpinDurationUpgrades[0]);
             bladeUpIndex++;
+            if (bladeUpIndex == 5)
+            {
+                Button temp = bladeSpinButton.GetComponent<Button>();
+
+                ColorBlock colorBlock = temp.colors;
+
+                colorBlock.disabledColor = Color.red;
+
+                temp.colors = colorBlock;
+                bladeSpinButton.GetComponent<Button>().interactable = false;
+                return;
+            }
             bladeSpinText.text = $"Extends the duration of rotating blades by {bladeSpinDurationUpgrades[bladeUpIndex]} seconds.\r\n";
+            BladeSpinName.text = $"Scarlet Vortex LV. {bladeUpIndex + 1}";
             return;
         }
         else
@@ -299,22 +383,23 @@ public class UpgradeCanvas : MonoBehaviour
         bool enoughCurrency = CurrencyManager.Instance.SpendCurrency(dashUpgradeCosts[0]);
         if (enoughCurrency)
         {
-            if (currentDashIndex == 0)
-            {
-                dashUpgradeCosts.RemoveAt(0);
-                dash.Damage(dashDamageUpgrades[0]);
-                currentDashIndex++;
-                dashText.text = $"Dash now does {dashDamageUpgrades[dashUpIndex]} damage.\r\n";
-                dashText.text = $"Reduces dash cooldown by {dashDamageUpgrades[dashUpIndex]} second.\r\n";
-            }
-
-        }
-        else if (currentDashIndex > 0)
-        { 
             dashUpgradeCosts.RemoveAt(0);
             dash.DecreaseCooldown(dashDamageUpgrades[0]);
-            currentDashIndex++;
+            dashUpIndex++;
+            if (dashUpIndex == 5)
+            {
+                Button temp = dashButton.GetComponent<Button>();
+
+                ColorBlock colorBlock = temp.colors;
+
+                colorBlock.disabledColor = Color.red;
+
+                temp.colors = colorBlock;
+                dashButton.GetComponent<Button>().interactable = false;
+                return;
+            }
             dashText.text = $"Reduces dash cooldown by {dashDamageUpgrades[dashUpIndex]} second.\r\n";
+            DashName.text = $"Phantom Step LV. {dashUpIndex + 1}";
         }
         else
         {
