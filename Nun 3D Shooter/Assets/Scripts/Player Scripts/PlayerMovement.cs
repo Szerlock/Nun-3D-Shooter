@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 healthPotionDuration = 4f;
                 CurrencyManager.Instance.SpendHealthPotion();
-                playerStats.RestoreHealth(10);
+                playerStats.RestoreHealth();
             }
         }
 

@@ -73,13 +73,13 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.OpenRestartMenu();
     }
 
-    public void RestoreHealth(float amount)
+    public void RestoreHealth()
     {
         StartCoroutine(EnableVFX());
         //1 if statement makes it so it only heals if he is below max health
         if(currentHealth < maxHealth)
         {
-            currentHealth += amount;
+            currentHealth += maxHealth/4;
 
             //to not overheal over max health
             if(currentHealth > maxHealth)
@@ -88,7 +88,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
         HealingIcon.instance.ModifyHealth(-100);
-        HealingOrb.instance.ModifyHealth(amount);
+        HealingOrb.instance.ModifyHealth(maxHealth / 4);
     }
 
     private IEnumerator EnableVFX()
