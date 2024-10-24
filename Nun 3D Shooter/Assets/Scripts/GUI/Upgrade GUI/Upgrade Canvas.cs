@@ -88,6 +88,10 @@ public class UpgradeCanvas : MonoBehaviour
     public TextMeshProUGUI HealthName;
 
     private bool Unlocked;
+    public GameObject crown;
+    public GameObject aura;
+    public GameObject sword;
+    public Material newMaterial;
 
 
     // Start is called before the first frame update
@@ -138,6 +142,10 @@ public class UpgradeCanvas : MonoBehaviour
         if (!Unlocked && damageUpIndex == 5 && bladeUpIndex == 5 && gunUpIndex == 5 && stormUpIndex == 5 && dashUpIndex == 5 && healthIndex == 5)
         {
             upgradeImage.color = Color.red;
+            aura.SetActive(true);
+            crown.SetActive(true);
+            Renderer renderer = sword.GetComponent<Renderer>();
+            renderer.material = newMaterial;
             Unlocked = true;
         }
     }

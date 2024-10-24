@@ -34,9 +34,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("CooldownsForAbilities")]
     private float bladeStormCooldown = 0f;
     private float bladeSpinCooldown = 0f;
+    private float healthPotionDuration = 0f;
 
     public TextMeshProUGUI bladeStormCooldownText;
     public TextMeshProUGUI bladeSpinCooldownText;
+    public TextMeshProUGUI healthPotionText;
 
     void Start()
     {
@@ -76,12 +78,22 @@ public class PlayerMovement : MonoBehaviour
             bladeSpinCooldownText.text = string.Empty;
         }
 
+        if (healthPotionDuration > 0)
+        {
+            healthPotionDuration -= Time.deltaTime;
+            healthPotionText.text = healthPotionDuration.ToString("F0");
+        }
+        else if (healthPotionDuration < 0)
+        {
+            healthPotionText.text = string.Empty;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))  // Press E to switch to gun
         {
             weaponToggle.ToggleWeapons();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && bladeSpinCooldown <= 0)
         { 
             bladeSpinCooldown = 10f;
             spinBlade.SetActive(true);
@@ -90,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DeactivateSpin());
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) && bladeStormCooldown <= 0)
         {
             bladeStormCooldown = 20f;
             Instantiate(bladeStorm, MarthyrSpawn.position, MarthyrSpawn.rotation);
@@ -100,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (CurrencyManager.Instance.CurrentHealthPotions > 0)
             {
+                healthPotionDuration = 4f;
                 CurrencyManager.Instance.SpendHealthPotion();
                 playerStats.RestoreHealth(10);
             }
