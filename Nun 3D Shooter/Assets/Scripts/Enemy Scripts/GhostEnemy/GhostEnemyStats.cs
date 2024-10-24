@@ -46,7 +46,7 @@ public class GhostEnemyStats : MonoBehaviour
 
         if (showTextDamage)
         {
-            ShowFloatingText();
+            ShowFloatingText(dmg);
         }
 
         currentHealth -= dmg;
@@ -56,12 +56,12 @@ public class GhostEnemyStats : MonoBehaviour
         }
     }
 
-    private void ShowFloatingText()
+    private void ShowFloatingText(float dmg)
     {
         Transform cameraTransform = Camera.main.transform;
 
         var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
-        go.GetComponent<TextMesh>().text = currentHealth.ToString();
+        go.GetComponent<TextMesh>().text = dmg.ToString();
     }
 
     private IEnumerator Kill()

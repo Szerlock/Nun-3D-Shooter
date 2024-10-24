@@ -4,52 +4,55 @@ using UnityEngine;
 
 public class GhostEnemyMovement : MonoBehaviour
 {
-     public float runSpeed = 0.005f; // Speed at which the enemy will run
+    public float runSpeed = 0.005f; // Speed at which the enemy will run
+    public float detectionRange = 10f; // Range within which the enemy detects the player
     private Transform playerTransform; // Reference to the player's transform
-    private bool isRunningAway = false; // State if enemy is running away
     public GhostEnemyStats ghostEnemyStats;
 
     public float attackCooldown = 2f;
     private float lastAttackTime = 0f;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Player"))
+        // Assuming player has a tag "Player"
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            Debug.Log("Player Entered Sphere Collider");
-            playerTransform = other.transform;
-            isRunningAway = true; // Start running away
+            playerTransform = player.transform;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
-            Debug.Log("Player Left Sphere Collider");
-            isRunningAway = false; // Stop running away
-            playerTransform = null; // Clear the player reference
+            Debug.LogError("Player not found in the scene!");
         }
     }
 
     private void Update()
     {
-        if (isRunningAway && (playerTransform != null))
+        if (playerTransform == null) return;
+
+        // Check the distance between the enemy and the player
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+        // If the player is within detection range, run away
+        if (distanceToPlayer <= detectionRange)
         {
-            // Calculate direction away from the player
+            // Run away logic
             Vector3 directionAwayFromPlayer = (transform.position - playerTransform.position).normalized;
-            // Move the enemy in the direction away from the player
             transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
+
+            // Make the enemy look at the player
+            gameObject.transform.LookAt(playerTransform);
         }
-        else if (playerTransform != null)
+
+        // Projectile attack logic (cooldown management)
+        if (attackCooldown <= 0)
         {
-            // Check if enough time has passed to fire another projectile
-            if (Time.time >= lastAttackTime + attackCooldown)
-            {
-                Debug.Log("Fire Projectile");
-                ghostEnemyStats.ProjectileFire();
-                lastAttackTime = Time.time; // Reset the attack timer
-            }
+            ghostEnemyStats.ProjectileFire();
+            attackCooldown = 2f;
+        }
+        else
+        {
+            attackCooldown -= Time.deltaTime;
         }
     }
 }

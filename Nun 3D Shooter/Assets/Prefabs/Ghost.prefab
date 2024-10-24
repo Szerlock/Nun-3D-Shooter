@@ -2011,13 +2011,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a7a410156264b439fa50f1a462b62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
-  projectile: {fileID: 7570604535680005406, guid: 725e8d4b4c2086b40aa3f0e0ed481984,
+  enemyData: {fileID: 11400000, guid: ce06d277e33c729408fe6497598237a2, type: 2}
+  projectile: {fileID: 1103020942116291023, guid: 048e85c368c34f24180ac7953267a164,
     type: 3}
   projectileSpawnPoint: {fileID: 6233054105738836125}
   playerTransform: {fileID: 0}
+  showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
+    type: 3}
+  currentMoveSpeed: 0
   currentHealth: 0
   currentDamage: 0
+  healthCurrency: 0
+  currencyAmount: 0
 --- !u!114 &5629647439277656392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,7 +2073,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.029790796, y: 0.037098475, z: 0.027552575}
   m_Center: {x: 0.0007896365, y: 0.02145079, z: -0.007633462}
