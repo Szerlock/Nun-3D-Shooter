@@ -260,6 +260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 812d4e9a321894045bc5df21a3a2fdcb,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 812d4e9a321894045bc5df21a3a2fdcb,
+        type: 3}
       propertyPath: m_TagString
       value: Exploding_Enemy
       objectReference: {fileID: 0}
@@ -491,12 +496,12 @@ PrefabInstance:
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2437315117923314143, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -511,12 +516,12 @@ PrefabInstance:
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974934639518438589, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -567,6 +572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649205417687353528, guid: 790ec3682266a714a94860449f4a37f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4098789848224250818, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}

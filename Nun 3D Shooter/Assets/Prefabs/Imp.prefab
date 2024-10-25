@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e611e90eb8c20f49b21e8c56a48fdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4440611404253199406, guid: 4a1144fa761fb9a4884632112b8ed265, type: 3}
   showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
 --- !u!1001 &5072699263322479479
@@ -74,12 +73,12 @@ PrefabInstance:
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2437315117923314143, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -94,12 +93,12 @@ PrefabInstance:
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974934639518438589, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -150,6 +149,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649205417687353528, guid: 790ec3682266a714a94860449f4a37f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4098789848224250818, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -285,6 +289,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512559551282561898, guid: 790ec3682266a714a94860449f4a37f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8893287453228671219, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}

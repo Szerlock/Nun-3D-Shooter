@@ -15458,7 +15458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 725, y: -304}
+  m_AnchoredPosition: {x: 624, y: -304}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &656475063
@@ -19590,7 +19590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 834, y: -410}
+  m_AnchoredPosition: {x: 733, y: -410}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815621382
@@ -27081,7 +27081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.1410522, y: -1.4273376}
+  m_AnchoredPosition: {x: 0.3, y: -0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1228470982
@@ -28335,7 +28335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 619, y: -410}
+  m_AnchoredPosition: {x: 518, y: -410}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1268164897
@@ -30631,8 +30631,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 656475062}
   - {fileID: 3598814210979373872}
+  - {fileID: 656475062}
   - {fileID: 815621381}
   - {fileID: 1268164896}
   m_Father: {fileID: 316257469}
@@ -42929,6 +42929,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 2271086205944488974, guid: 658308e5010631e48be6aa1b2ddc83f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4484451916825505207, guid: 658308e5010631e48be6aa1b2ddc83f0,
         type: 3}
       propertyPath: m_Pivot.x
@@ -44115,6 +44120,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.203107
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.203107
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.203107
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -44151,12 +44171,12 @@ PrefabInstance:
     - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 501
+      value: 838
       objectReference: {fileID: 0}
     - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -265
+      value: -305.5
       objectReference: {fileID: 0}
     - target: {fileID: 6052654532167008622, guid: b5b6839d5e9e7e14eb7acde498997714,
         type: 3}
@@ -44177,6 +44197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Health Button Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334342832410774444, guid: b5b6839d5e9e7e14eb7acde498997714,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
