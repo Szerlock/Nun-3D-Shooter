@@ -5,16 +5,14 @@ using UnityEngine;
 public class GhostEnemyMovement : MonoBehaviour
 {
     public float runSpeed = 0.005f; // Speed at which the enemy will run
-    public float detectionRange = 10f; // Range within which the enemy detects the player
+    public float detectionRange = 5f; // Range within which the enemy detects the player
     private Transform playerTransform; // Reference to the player's transform
     public GhostEnemyStats ghostEnemyStats;
 
     public float attackCooldown = 2f;
-    private float lastAttackTime = 0f;
 
     private void Start()
     {
-        // Assuming player has a tag "Player"
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {

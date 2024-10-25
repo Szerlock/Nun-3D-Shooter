@@ -14,6 +14,7 @@ public class GhostEnemyStats : MonoBehaviour
     public GameObject showTextDamage;
 
     private BoxCollider enemyCollider;
+    private HealthBar healthBar;
 
     [HideInInspector]
     public float currentMoveSpeed;
@@ -28,6 +29,7 @@ public class GhostEnemyStats : MonoBehaviour
 
     void Awake()
     {
+        healthBar = GetComponentInChildren<HealthBar>();
         enemyCollider = GetComponent<BoxCollider>();
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
@@ -42,12 +44,8 @@ public class GhostEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        //StartCoroutine(showTextDamage.ShowDamage(dmg, transform));
-
-        if (showTextDamage)
-        {
-            ShowFloatingText(dmg);
-        }
+        ShowFloatingText(dmg);
+        healthBar.ReduceHealth(dmg);
 
         currentHealth -= dmg;
         if(currentHealth <= 0)

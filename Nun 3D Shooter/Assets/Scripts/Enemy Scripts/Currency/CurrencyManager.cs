@@ -14,6 +14,7 @@ public class CurrencyManager : MonoBehaviour
 
 
     public TextMeshProUGUI HealthPotionText;
+    public TextMeshProUGUI CurrencyText;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class CurrencyManager : MonoBehaviour
     public void AddCurrency(int amount)
     {
         CurrentCurrency += amount;
+        CurrencyText.text = CurrentCurrency.ToString();
     }
 
     public bool SpendCurrency(int amount)
@@ -66,6 +68,7 @@ public class CurrencyManager : MonoBehaviour
         if (CurrentCurrency >= amount)
         {
             CurrentCurrency -= amount;
+            CurrencyText.text = CurrentCurrency.ToString();
             return true;
         }
         return false;
