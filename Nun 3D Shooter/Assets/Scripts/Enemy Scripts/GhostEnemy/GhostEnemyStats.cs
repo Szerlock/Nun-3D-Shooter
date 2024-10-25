@@ -18,18 +18,18 @@ public class GhostEnemyStats : MonoBehaviour
 
     [HideInInspector]
     public float currentMoveSpeed;
-    [HideInInspector]
     public float currentHealth;
     [HideInInspector]
     public float currentDamage;
     [HideInInspector]
     public float healthCurrency;
-    [HideInInspector]
     public int currencyAmount;
 
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.maxHealth = enemyData.MaxHealth;
+        healthBar.healthSlider.maxValue = enemyData.MaxHealth;
         enemyCollider = GetComponent<BoxCollider>();
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
@@ -74,17 +74,15 @@ public class GhostEnemyStats : MonoBehaviour
 
     }
 
-    public void ProjectileFire()
+    public void ProjectileFire(Vector3 targetPosition)
     {
-        Vector3 directionToPlayer = (playerTransform.position - projectileSpawnPoint.position).normalized;
-        // Instantiate the bullet at the bullet spawn point
-        GameObject projectileGameObject = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        Vector3 directionToPlayer = (targetPosition - projectileSpawnPoint.position).normalized;
 
-        // Set bullet velocity in the direction the player is looking
+        GameObject projectileGameObject = Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
+
         Rigidbody rb = projectileGameObject.GetComponent<Rigidbody>();
         rb.velocity = directionToPlayer * enemyData.ProjectileSpeed;
 
-        // Set bullet damage
         GhostProjectile ghostProjectile = projectileGameObject.GetComponent<GhostProjectile>();
         if (ghostProjectile != null)
         {
@@ -92,7 +90,7 @@ public class GhostEnemyStats : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Bullet script not found on bullet prefab.");
+            Debug.LogError("Projectile script not found on projectile prefab.");
         }
     }
 }

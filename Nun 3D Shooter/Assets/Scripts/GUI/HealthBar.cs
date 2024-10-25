@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 
     public Slider healthSlider;
     public Slider easeHealthBar;
-    public float maxHealth = 100f;
+    public float maxHealth;
     public float currentHealth;
     private float lerpSpeed = 0.2f;
 

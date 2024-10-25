@@ -26,8 +26,6 @@ public class Blades : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
 
-        //Quaternion lookRotation = Quaternion.LookRotation(direction);
-
         transform.LookAt(target.position);
 
         if (Vector3.Distance(transform.position, target.position) < 0.1f)

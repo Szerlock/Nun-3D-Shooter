@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 7973217589771240586, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8512559551282561898, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -2344,7 +2344,8 @@ MonoBehaviour:
   projectile: {fileID: 7209275100092912184, guid: 533d7a4efe2fa8d48bee06547cac7de1,
     type: 3}
   projectileSpawnPoint: {fileID: 6233054105738836125}
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
+    type: 3}
   showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
   currentMoveSpeed: 0

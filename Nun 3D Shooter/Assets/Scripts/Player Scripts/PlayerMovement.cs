@@ -40,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI bladeSpinCooldownText;
     public TextMeshProUGUI healthPotionText;
 
+    public bool Unlocked = false;
+    private bool activateStormBlade = false;
+    public Transform SpawnUnlocked;
+
     void Start()
     {
         playerStats = GetComponent<PlayerStats>(); // Get the PlayerStats component
@@ -57,13 +61,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (bladeStormCooldown > 0)
+        if (bladeStormCooldown > 0 && !Unlocked)
         {
             bladeStormCooldown -= Time.deltaTime;
             // Can change to 2 decimal places
             bladeStormCooldownText.text = bladeStormCooldown.ToString("F0");
         }
-        else if (bladeStormCooldown < 0)
+        else if (bladeStormCooldown < 0 && !Unlocked)
         {
             bladeStormCooldownText.text = string.Empty;
         }
@@ -93,18 +97,28 @@ public class PlayerMovement : MonoBehaviour
             weaponToggle.ToggleWeapons();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && bladeSpinCooldown <= 0)
-        { 
+        if (Input.GetKeyDown(KeyCode.Q) && bladeSpinCooldown <= 0 && !Unlocked)
+        {
             bladeSpinCooldown = 10f;
             spinBlade.SetActive(true);
             colliderSpin.SetActive(true);
 
             StartCoroutine(DeactivateSpin());
         }
+        else if (Unlocked)
+        { 
+            spinBlade.SetActive(true);
+        }
 
-        if (Input.GetKeyDown(KeyCode.T) && bladeStormCooldown <= 0)
+        if (Input.GetKeyDown(KeyCode.T) && bladeStormCooldown <= 0 && !Unlocked)
         {
             bladeStormCooldown = 20f;
+            Instantiate(bladeStorm, MarthyrSpawn.position, MarthyrSpawn.rotation);
+        }
+        else if (Unlocked && !activateStormBlade)
+        {
+            activateStormBlade = true;
+            bladeStormCooldown = - 1;
             Instantiate(bladeStorm, MarthyrSpawn.position, MarthyrSpawn.rotation);
         }
 

@@ -29,6 +29,8 @@ public class ImpEnemy : MonoBehaviour
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.maxHealth = enemyData.MaxHealth;
+        healthBar.healthSlider.maxValue = enemyData.MaxHealth;
         enemyCollider = GetComponent<CapsuleCollider>();
         animatorController = GetComponent<Animator>();
         currentMoveSpeed = enemyData.MoveSpeed;

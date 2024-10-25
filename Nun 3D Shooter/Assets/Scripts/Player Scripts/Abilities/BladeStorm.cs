@@ -16,7 +16,7 @@ public class BladeStorm : MonoBehaviour
     private GameObject swordProjectile;
 
     [SerializeField]
-    private Transform bladeSpawnPoint;
+    private List<Transform> bladeSpawnPoint;
 
     [SerializeField]
     private float bladeSpeed = 10f;
@@ -40,6 +40,8 @@ public class BladeStorm : MonoBehaviour
     [SerializeField]
     private static int swordAmount = 1;
 
+    public bool Unlocked = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +62,11 @@ public class BladeStorm : MonoBehaviour
         {
             bladeCooldown -= Time.deltaTime;
         }
-        if (duration >= 0)
+        if (duration >= 0 && !Unlocked)
         {
             duration -= Time.deltaTime;
         }
-        if (duration <= 0)  
+        if (duration <= 0 && !Unlocked)  
         {
             Destroy(gameObject);
         }
@@ -99,7 +101,7 @@ public class BladeStorm : MonoBehaviour
     {
         for (int i = 0; i < swordAmount; i++)
         {
-            GameObject sword = Instantiate(swordProjectile, bladeSpawnPoint.position, target.transform.rotation);
+            GameObject sword = Instantiate(swordProjectile, bladeSpawnPoint[i].position, target.transform.rotation);
             sword.GetComponent<Blades>().SetDamage(currentDamage, speed);
             sword.GetComponent<Blades>().SetTarget(target.transform);
         }

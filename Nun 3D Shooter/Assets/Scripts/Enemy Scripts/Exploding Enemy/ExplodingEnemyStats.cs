@@ -29,7 +29,7 @@ public class ExplodingEnemyStats : MonoBehaviour
     {
         healthBar = GetComponentInChildren<HealthBar>();
         enemyCollider = GetComponent<CapsuleCollider>();
-        currentMoveSpeed = enemyData.MoveSpeed;
+        currentMoveSpeed = enemyData.MoveSpeed;     
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;

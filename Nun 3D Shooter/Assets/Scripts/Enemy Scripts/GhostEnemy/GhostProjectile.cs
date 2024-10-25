@@ -25,7 +25,7 @@ public class GhostProjectile : MonoBehaviour
                 Debug.LogError("playerstats component not found on enemy object.");
             }
 
-            Destroy(this);
+            Destroy(gameObject, 3f);
         }
     }
 }

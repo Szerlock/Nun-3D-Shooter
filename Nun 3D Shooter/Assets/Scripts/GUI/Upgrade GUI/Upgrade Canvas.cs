@@ -87,7 +87,7 @@ public class UpgradeCanvas : MonoBehaviour
     public TextMeshProUGUI DashName;
     public TextMeshProUGUI HealthName;
 
-    private bool Unlocked;
+    public bool Unlocked;
     public GameObject crown;
     public GameObject aura;
     public GameObject sword;
@@ -146,6 +146,8 @@ public class UpgradeCanvas : MonoBehaviour
             crown.SetActive(true);
             Renderer renderer = sword.GetComponent<Renderer>();
             renderer.material = newMaterial;
+            bladeSpinDuration.Unlocked = true;
+            bladeStorm.Unlocked = true;
             Unlocked = true;
         }
     }
