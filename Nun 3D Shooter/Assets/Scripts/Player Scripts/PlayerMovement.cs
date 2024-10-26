@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Unlocked)
         { 
             spinBlade.SetActive(true);
+            colliderSpin.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.T) && bladeStormCooldown <= 0 && !Unlocked)

@@ -31,27 +31,7 @@ public class GhostEnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        //if (playerTransform == null) return;
-
-        //float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-
-        //if (distanceToPlayer <= detectionRange)
-        //{
-        //    Vector3 directionAwayFromPlayer = (transform.position - playerTransform.position).normalized;
-        //    transform.position += directionAwayFromPlayer * runSpeed * Time.deltaTime;
-
-        //    gameObject.transform.LookAt(playerTransform);
-        //}
-
-        //if (attackCooldown <= 0)
-        //{
-        //    ghostEnemyStats.ProjectileFire(playerTransform.position);
-        //    attackCooldown = 2f;
-        //}
-        //else
-        //{
-        //    attackCooldown -= Time.deltaTime;
-        //}
+        gameObject.transform.LookAt(playerTransform);
 
         if (playerTransform == null) return;
 

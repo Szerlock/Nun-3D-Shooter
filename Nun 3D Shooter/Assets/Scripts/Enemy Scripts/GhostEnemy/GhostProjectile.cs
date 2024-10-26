@@ -11,6 +11,11 @@ public class GhostProjectile : MonoBehaviour
         this.damage = damage;
     }
 
+    private void Start()
+    {
+        Destroy(gameObject, 3f);
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
@@ -24,8 +29,6 @@ public class GhostProjectile : MonoBehaviour
             {
                 Debug.LogError("playerstats component not found on enemy object.");
             }
-
-            Destroy(gameObject, 3f);
         }
     }
 }

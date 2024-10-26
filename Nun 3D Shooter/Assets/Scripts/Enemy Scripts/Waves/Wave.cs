@@ -8,6 +8,9 @@ public class Wave : MonoBehaviour
     public List<EnemySpawnData> enemySpawnData;
     public GameObject Boss;
     public Vector3 bossSpawnPoint;
+    [SerializeField]
+    public GameObject Portal;
+    private HashSet<Vector3> spawnPointsSet = new HashSet<Vector3>();
 
     private int amountPerEnemy;
     public int enemiesAlive = 0;
@@ -30,6 +33,12 @@ public class Wave : MonoBehaviour
             {
                 GameObject newEnemy = Instantiate(prefab);
                 Vector3 spawnPosition = spawnPoints[random.NextInt(0, spawnPoints.Count)];
+                if (!spawnPointsSet.Contains(spawnPosition))
+                {
+                    Vector3 portalSpawnPosition = spawnPosition + new Vector3(0, 2, 0);
+                    Instantiate(Portal, portalSpawnPosition, Quaternion.identity);
+                    spawnPointsSet.Add(spawnPosition);
+                }
                 newEnemy.transform.position = spawnPosition;
 
                 if(newEnemy.CompareTag("Exploding_Enemy"))
