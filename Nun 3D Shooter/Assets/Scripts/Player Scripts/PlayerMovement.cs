@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         {
             activateStormBlade = true;
             bladeStormCooldown = - 1;
-            Instantiate(bladeStorm, MarthyrSpawn.position, MarthyrSpawn.rotation);
+            Instantiate(bladeStorm, SpawnUnlocked.position, SpawnUnlocked.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.R))

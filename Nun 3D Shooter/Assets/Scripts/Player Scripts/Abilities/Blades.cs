@@ -23,6 +23,12 @@ public class Blades : MonoBehaviour
 
     private void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject, 2f);
+            return;
+        }
+
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
 

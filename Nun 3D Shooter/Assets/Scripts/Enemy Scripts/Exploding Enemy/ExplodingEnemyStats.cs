@@ -28,6 +28,9 @@ public class ExplodingEnemyStats : MonoBehaviour
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.maxHealth = enemyData.MaxHealth;
+        healthBar.healthSlider.maxValue = enemyData.MaxHealth;
+        healthBar.easeHealthBar.maxValue = enemyData.MaxHealth;
         enemyCollider = GetComponent<CapsuleCollider>();
         currentMoveSpeed = enemyData.MoveSpeed;     
         healthCurrency = enemyData.HealthCurrencyAmount;

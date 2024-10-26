@@ -25,11 +25,14 @@ public class GhostEnemyStats : MonoBehaviour
     public float healthCurrency;
     public int currencyAmount;
 
+    private bool isDead = false;
+
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
         healthBar.maxHealth = enemyData.MaxHealth;
         healthBar.healthSlider.maxValue = enemyData.MaxHealth;
+        healthBar.easeHealthBar.maxValue = enemyData.MaxHealth;
         enemyCollider = GetComponent<BoxCollider>();
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
@@ -64,6 +67,11 @@ public class GhostEnemyStats : MonoBehaviour
 
     private IEnumerator Kill()
     {
+        if (isDead)
+        {
+            yield break;
+        }
+        isDead = true;
         enemyCollider.enabled = false;
 
         yield return new WaitForSeconds(0.3f);

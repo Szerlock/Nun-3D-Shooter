@@ -28,6 +28,7 @@ public class EnemyStats : MonoBehaviour
         healthBar = GetComponentInChildren<HealthBar>();
         healthBar.maxHealth = enemyData.MaxHealth;
         healthBar.healthSlider.maxValue = enemyData.MaxHealth;
+        healthBar.easeHealthBar.maxValue = enemyData.MaxHealth;
         enemyCollider = GetComponent<BoxCollider>();
         currentMoveSpeed = enemyData.MoveSpeed;
         enemyMovement = GetComponent<TankMovement>();
