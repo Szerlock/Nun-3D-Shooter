@@ -596,8 +596,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 6cd7954555b5e3947b937983550f413b, type: 2}
-  showTextDamage: {fileID: 569784095058934194, guid: b11a232983b638141935b38f7922bf52,
-    type: 3}
   isStaggered: 0
   currentMoveSpeed: 0
   currentHealth: 0

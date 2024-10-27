@@ -10,11 +10,11 @@ public class GhostEnemyStats : MonoBehaviour
     public GameObject projectile;
     public Transform projectileSpawnPoint;
     public Transform playerTransform;
-    [SerializeField]
-    public GameObject showTextDamage;
+    //[SerializeField]
+    //public GameObject showTextDamage;
 
     private BoxCollider enemyCollider;
-    private HealthBar healthBar;
+    //private HealthBar healthBar;
 
     [HideInInspector]
     public float currentMoveSpeed;
@@ -29,10 +29,10 @@ public class GhostEnemyStats : MonoBehaviour
 
     void Awake()
     {
-        healthBar = GetComponentInChildren<HealthBar>();
-        healthBar.maxHealth = enemyData.MaxHealth;
-        healthBar.healthSlider.maxValue = enemyData.MaxHealth;
-        healthBar.easeHealthBar.maxValue = enemyData.MaxHealth;
+        //healthBar = GetComponentInChildren<HealthBar>();
+        //healthBar.maxHealth = enemyData.MaxHealth;
+        //healthBar.healthSlider.maxValue = enemyData.MaxHealth;
+        //healthBar.easeHealthBar.maxValue = enemyData.MaxHealth;
         enemyCollider = GetComponent<BoxCollider>();
         healthCurrency = enemyData.HealthCurrencyAmount;
         currentHealth = enemyData.MaxHealth;
@@ -47,8 +47,8 @@ public class GhostEnemyStats : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        ShowFloatingText(dmg);
-        healthBar.ReduceHealth(dmg);
+        //ShowFloatingText(dmg);
+        //healthBar.ReduceHealth(dmg);
 
         currentHealth -= dmg;
         if(currentHealth <= 0)
@@ -57,13 +57,13 @@ public class GhostEnemyStats : MonoBehaviour
         }
     }
 
-    private void ShowFloatingText(float dmg)
-    {
-        Transform cameraTransform = Camera.main.transform;
+    //private void ShowFloatingText(float dmg)
+    //{
+    //    Transform cameraTransform = Camera.main.transform;
 
-        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
-        go.GetComponent<TextMesh>().text = dmg.ToString();
-    }
+    //    var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
+    //    go.GetComponent<TextMesh>().text = dmg.ToString();
+    //}
 
     private IEnumerator Kill()
     {

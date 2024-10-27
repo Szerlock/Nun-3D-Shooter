@@ -373,8 +373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 611dbc1a92b7352478acd6143331ee1f, type: 2}
   explosionCollider: {fileID: 2330387175096966673}
-  showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
-    type: 3}
   currentMoveSpeed: 0
   circleUI: {fileID: 4559577970790410911}
   Explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
@@ -496,12 +494,12 @@ PrefabInstance:
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2437315117923314143, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -516,12 +514,12 @@ PrefabInstance:
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974934639518438589, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -576,7 +574,7 @@ PrefabInstance:
     - target: {fileID: 3649205417687353528, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4098789848224250818, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}

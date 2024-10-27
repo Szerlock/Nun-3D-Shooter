@@ -33,29 +33,29 @@ public class CurrencyManager : MonoBehaviour
 
     public void AddHealthCurrency(int amount)
     {
-        if (CurrentHealthPotions == 15) 
-        {
-            return;
-        }
-        HealingIcon.instance.ModifyHealth(amount);
-        CurrentHealthCurrency += amount;
-        if (CurrentHealthCurrency >= 10)
-        { 
-            CurrentHealthCurrency -= 10;
-            CurrentHealthPotions++;
-            HealthPotionText.text = CurrentHealthPotions.ToString();
-            HealingIcon.instance.ModifyHealth(-1f);
+        //if (CurrentHealthPotions == 15) 
+        //{
+        //    return;
+        //}
+        //HealingIcon.instance.ModifyHealth(amount);
+        //CurrentHealthCurrency += amount;
+        //if (CurrentHealthCurrency >= 10)
+        //{ 
+        //    CurrentHealthCurrency -= 10;
+        //    CurrentHealthPotions++;
+        //    HealthPotionText.text = CurrentHealthPotions.ToString();
+        //    HealingIcon.instance.ModifyHealth(-1f);
 
-        }
+        //}
     }
 
-    public void Update()
-    {
-        if (HealingIcon.instance.healthSlider.value == 0)
-        {
-            HealingIcon.instance.ModifyHealth(CurrentHealthCurrency);
-        }
-    }
+    //public void Update()
+    //{
+    //    if (HealingIcon.instance.healthSlider.value == 0)
+    //    {
+    //        HealingIcon.instance.ModifyHealth(CurrentHealthCurrency);
+    //    }
+    //}
 
     public void AddCurrency(int amount)
     {

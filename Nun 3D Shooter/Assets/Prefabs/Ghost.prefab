@@ -72,12 +72,12 @@ PrefabInstance:
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839187990919382405, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2437315117923314143, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -92,12 +92,12 @@ PrefabInstance:
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2742034306040061017, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974934639518438589, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -152,7 +152,7 @@ PrefabInstance:
     - target: {fileID: 3649205417687353528, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4098789848224250818, guid: 790ec3682266a714a94860449f4a37f1,
         type: 3}
@@ -2345,8 +2345,6 @@ MonoBehaviour:
     type: 3}
   projectileSpawnPoint: {fileID: 6233054105738836125}
   playerTransform: {fileID: 6288570809601514253, guid: f8bacff460d510742a72a511d76fef5a,
-    type: 3}
-  showTextDamage: {fileID: 7280203175104842806, guid: b11a232983b638141935b38f7922bf52,
     type: 3}
   currentMoveSpeed: 0
   currentHealth: 0

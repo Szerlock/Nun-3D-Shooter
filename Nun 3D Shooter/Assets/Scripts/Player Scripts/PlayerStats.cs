@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,26 +45,26 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float dmg, Vector3 damageSourcePosition, float pushBackForce)
     {
-        if(!isInvincible)
-        {
-            //if (pushBackForce < 1)
-            //{
-            //    return;
-            //}
-            currentHealth -= dmg;
+        //if(!isInvincible)
+        //{
+        //    //if (pushBackForce < 1)
+        //    //{
+        //    //    return;
+        //    //}
+        //    currentHealth -= dmg;
 
-            Vector3 pushDirection = (transform.position - damageSourcePosition).normalized;
-            Rigidbody playerRigidbody = GetComponent<Rigidbody>();
-            playerRigidbody.AddForce(pushDirection * pushBackForce, ForceMode.Impulse);
+        //    Vector3 pushDirection = (transform.position - damageSourcePosition).normalized;
+        //    Rigidbody playerRigidbody = GetComponent<Rigidbody>();
+        //    playerRigidbody.AddForce(pushDirection * pushBackForce, ForceMode.Impulse);
 
-            invincibilityTimer = invincibilityDuration;
-            isInvincible = true;
-            HealingOrb.instance.ModifyHealth(-dmg);
-            if (currentHealth <= 0)
-            {
-                Kill();
-            }
-        }
+        //    invincibilityTimer = invincibilityDuration;
+        //    isInvincible = true;
+        //    HealingOrb.instance.ModifyHealth(-dmg);
+        //    if (currentHealth <= 0)
+        //    {
+        //        Kill();
+        //    }
+        //}
     }
 
     public void Kill()

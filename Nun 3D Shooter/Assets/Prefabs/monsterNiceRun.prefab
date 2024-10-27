@@ -849,12 +849,12 @@ PrefabInstance:
     - target: {fileID: 5397159795964317369, guid: cc522d98e4a773544955a63587ace64e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5397159795964317369, guid: cc522d98e4a773544955a63587ace64e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6303810355416665776, guid: cc522d98e4a773544955a63587ace64e,
         type: 3}
@@ -890,6 +890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044790320361145220, guid: cc522d98e4a773544955a63587ace64e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7339807583535856287, guid: cc522d98e4a773544955a63587ace64e,
         type: 3}
@@ -999,12 +1004,12 @@ PrefabInstance:
     - target: {fileID: 8461456842690713445, guid: cc522d98e4a773544955a63587ace64e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8461456842690713445, guid: cc522d98e4a773544955a63587ace64e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

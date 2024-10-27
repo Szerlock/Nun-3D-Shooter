@@ -36,9 +36,9 @@ public class PlayerMovement : MonoBehaviour
     private float bladeSpinCooldown = 0f;
     private float healthPotionDuration = 0f;
 
-    public TextMeshProUGUI bladeStormCooldownText;
-    public TextMeshProUGUI bladeSpinCooldownText;
-    public TextMeshProUGUI healthPotionText;
+    //public TextMeshProUGUI bladeStormCooldownText;
+    //public TextMeshProUGUI bladeSpinCooldownText;
+    //public TextMeshProUGUI healthPotionText;
 
     public bool Unlocked = false;
     private bool activateStormBlade = false;
@@ -61,36 +61,36 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (bladeStormCooldown > 0 && !Unlocked)
-        {
-            bladeStormCooldown -= Time.deltaTime;
-            // Can change to 2 decimal places
-            bladeStormCooldownText.text = bladeStormCooldown.ToString("F0");
-        }
-        else if (bladeStormCooldown < 0 && !Unlocked)
-        {
-            bladeStormCooldownText.text = string.Empty;
-        }
+        //if (bladeStormCooldown > 0 && !Unlocked)
+        //{
+        //    bladeStormCooldown -= Time.deltaTime;
+        //    // Can change to 2 decimal places
+        //    bladeStormCooldownText.text = bladeStormCooldown.ToString("F0");
+        //}
+        //else if (bladeStormCooldown < 0 && !Unlocked)
+        //{
+        //    bladeStormCooldownText.text = string.Empty;
+        //}
 
-        if (bladeSpinCooldown > 0)
-        {
-            bladeSpinCooldown -= Time.deltaTime;
-            bladeSpinCooldownText.text = bladeSpinCooldown.ToString("F0");
-        }
-        else if (bladeSpinCooldown < 0)
-        {
-            bladeSpinCooldownText.text = string.Empty;
-        }
+        //if (bladeSpinCooldown > 0)
+        //{
+        //    bladeSpinCooldown -= Time.deltaTime;
+        //    bladeSpinCooldownText.text = bladeSpinCooldown.ToString("F0");
+        //}
+        //else if (bladeSpinCooldown < 0)
+        //{
+        //    bladeSpinCooldownText.text = string.Empty;
+        //}
 
-        if (healthPotionDuration > 0)
-        {
-            healthPotionDuration -= Time.deltaTime;
-            healthPotionText.text = healthPotionDuration.ToString("F0");
-        }
-        else if (healthPotionDuration < 0)
-        {
-            healthPotionText.text = string.Empty;
-        }
+        //if (healthPotionDuration > 0)
+        //{
+        //    healthPotionDuration -= Time.deltaTime;
+        //    healthPotionText.text = healthPotionDuration.ToString("F0");
+        //}
+        //else if (healthPotionDuration < 0)
+        //{
+        //    healthPotionText.text = string.Empty;
+        //}
 
         if (Input.GetKeyDown(KeyCode.E))  // Press E to switch to gun
         {

@@ -12,11 +12,11 @@ public class DoubleFaceStats : MonoBehaviour
     private BossMovement enemyMovement;
     public EnemyScriptableObject enemyData;
     public Wave wave;
-    [SerializeField]
-    public ShowTextDamage showTextDamage;
+    //[SerializeField]
+    //public ShowTextDamage showTextDamage;
     private CapsuleCollider enemyCollider;
 
-    private BossHealthBar healthBar;
+    //private BossHealthBar healthBar;
 
 
     private HashSet<Bullet> hitBullets = new HashSet<Bullet>();
@@ -37,7 +37,7 @@ public class DoubleFaceStats : MonoBehaviour
 
     void Awake()
     {
-        healthBar = GetComponentInChildren<BossHealthBar>();
+        //healthBar = GetComponentInChildren<BossHealthBar>();
         anim = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
         enemyMovement = GetComponent<BossMovement>();
@@ -55,13 +55,13 @@ public class DoubleFaceStats : MonoBehaviour
     public void TakeDamage(float dmg)
     {
 
-        ShowFloatingText(dmg);
+        //ShowFloatingText(dmg);
         if (currentHealth <= 50)
         {
             currentHealth = 50;
             return;
         }
-        healthBar.ReduceHealth(dmg);
+        //healthBar.ReduceHealth(dmg);
         currentHealth -= dmg;
 
         if (currentHealth <= maxHealth/2)
@@ -78,13 +78,13 @@ public class DoubleFaceStats : MonoBehaviour
     public void TakeGunDamage(float dmg)
     {
 
-        ShowFloatingText(dmg);
+        //ShowFloatingText(dmg);
         if (currentHealth <= 50)
         {
             currentHealth = 50;
             return;
         }
-        healthBar.ReduceHealth(dmg);
+        //healthBar.ReduceHealth(dmg);
         currentHealth -= dmg;
         StartCoroutine(Stagger());
         if (currentHealth <= maxHealth / 2)
@@ -113,14 +113,8 @@ public class DoubleFaceStats : MonoBehaviour
         StaggerVFX.SetActive(false);
     }
 
-    private void ShowFloatingText(float dmg)
-    {
-        Transform cameraTransform = Camera.main.transform;
+    
 
-        var go = Instantiate(showTextDamage, transform.position, Quaternion.LookRotation(transform.position - cameraTransform.position), transform);
-
-        go.GetComponent<TextMesh>().text = dmg.ToString();
-    }
 
     protected void OnTriggerEnter(Collider col)
     {
