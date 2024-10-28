@@ -61,22 +61,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //if (bladeStormCooldown > 0 && !Unlocked)
-        //{
-        //    bladeStormCooldown -= Time.deltaTime;
-        //    // Can change to 2 decimal places
-        //    bladeStormCooldownText.text = bladeStormCooldown.ToString("F0");
-        //}
+        if (bladeStormCooldown > 0 && !Unlocked)
+        {
+            bladeStormCooldown -= Time.deltaTime;
+            // Can change to 2 decimal places
+            //bladeStormCooldownText.text = bladeStormCooldown.ToString("F0");
+        }
         //else if (bladeStormCooldown < 0 && !Unlocked)
         //{
         //    bladeStormCooldownText.text = string.Empty;
         //}
 
-        //if (bladeSpinCooldown > 0)
-        //{
-        //    bladeSpinCooldown -= Time.deltaTime;
-        //    bladeSpinCooldownText.text = bladeSpinCooldown.ToString("F0");
-        //}
+        if (bladeSpinCooldown > 0)
+        {
+            bladeSpinCooldown -= Time.deltaTime;
+            //bladeSpinCooldownText.text = bladeSpinCooldown.ToString("F0");
+        }
         //else if (bladeSpinCooldown < 0)
         //{
         //    bladeSpinCooldownText.text = string.Empty;
