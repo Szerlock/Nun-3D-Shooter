@@ -1,8 +1,8 @@
 Crimson Covenant
 August 2024 – Present 
-| Release Date: October 31, 2024
+Release Date: October 31, 2024
 Team Size: 3 | Unity 
-| Programming Language: C#
+Programming Language: C#
 
 # Overview of the Spreadsheet functionality
 
